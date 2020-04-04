@@ -1401,7 +1401,9 @@
 
 
 <h1 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a><center>常用注解</center></h1><h2 id="用于创建对象的"><a href="#用于创建对象的" class="headerlink" title="用于创建对象的"></a>用于创建对象的</h2><p><code>相当于：&lt;bean&gt; id = &quot;&quot; class =&quot;&quot;&gt;</code> </p>
-<h3 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h3><p><strong>作用</strong>：<br>把资源让 spring 来管理。相当于在 xml 中配置一个 bean。<br><strong>属性</strong>：<br>value：指定 bean 的 id。如果不指定 value 属性，默认 bean 的 id 是当前类的类名。首字母小写。  </p>
+<h3 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h3><blockquote>
+<p><strong>作用</strong>：<br>把资源让 spring 来管理。相当于在 xml 中配置一个 bean。<br><strong>属性</strong>：<br>value：指定 bean 的 id。如果不指定 value 属性，默认 bean 的 id 是当前类的类名。首字母小写。  </p>
+</blockquote>
 <h3 id="Controller-Service-Repository"><a href="#Controller-Service-Repository" class="headerlink" title="@Controller @Service @Repository"></a>@Controller @Service @Repository</h3><blockquote>
 <p>他们三个注解都是针对一个的衍生注解，他们的作用及属性都是一模一样的。<br>他们只不过是提供了更加明确的语义化。<br>@Controller： 一般用于表现层的注解。<br>@Service： 一般用于业务层的注解。<br>@Repository： 一般用于持久层的注解。<br>细节：如果注解中有且只有一个属性要赋值时，且名称是 value， value 在赋值是可以不写。  </p>
 </blockquote>
