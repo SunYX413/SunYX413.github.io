@@ -1732,7 +1732,7 @@
 </li>
 <li><p>SpringMVC在三层架构中的位置  </p>
 <p>表现层框架</p>
-<p><img src="/" class="lazyload" data-src="img/SpringMvc/1.png"  alt=""></p>
+<p><img src="/" class="lazyload" data-src="/img/SpringMvc/1.png"  alt=""></p>
 </li>
 <li><p>SpringMVC的优势  </p>
 <blockquote>
@@ -1796,7 +1796,7 @@
 </ol>
 </li>
 <li><p>图解  </p>
-<p><img src="/" class="lazyload" data-src="img/SpringMvc/2.bmp"  alt=""></p>
+<p><img src="/" class="lazyload" data-src="/img/SpringMvc/2.bmp"  alt=""></p>
 </li>
 <li><p>入门案例中的组件分析  </p>
 <ol>
