@@ -181,214 +181,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux常用命令</title>
-    <url>/2020/03/26/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a><center>Linux常用命令</center></h1><h2 id="切换目录命令cd"><a href="#切换目录命令cd" class="headerlink" title="切换目录命令cd"></a>切换目录命令cd</h2><p>使用cd app   切换到app目录 </p>
-<p>cd ..  切换到上一层目录<br>cd /     切换到系统根目录<br>cd ~   切换到用户主目录<br>cd -     切换到上一个所在目录</p>
-<p>使用tab键来补全文件路径</p>
-<h2 id="列出文件列表：ls-ll"><a href="#列出文件列表：ls-ll" class="headerlink" title="列出文件列表：ls ll"></a>列出文件列表：ls ll</h2><p>ls(list)是一个非常有用的命令，用来显示当前目录下的内容。配合参数的使用，能以不同的方式显示目录内容。</p>
-<p>格式：ls[参数] [路径或文件名]</p>
-<p>在linux中以 . 开头的文件都是隐藏的文件</p>
-<p>ls<br>ls -a 显示所有文件或目录（包含隐藏的文件）<br>ls -l 缩写成ll</p>
-<h2 id="创建目录和移除目录：mkdir-rmdir"><a href="#创建目录和移除目录：mkdir-rmdir" class="headerlink" title="创建目录和移除目录：mkdir rmdir"></a>创建目录和移除目录：mkdir rmdir</h2><p>mkdir(make directory)命令可用来创建子目录。<br>mkdir app     在当前目录下创建app目录<br>mkdir –p app2/test  级联创建aap2以及test目<br>rmdir(remove directory)命令可用来删除“空”的子目录:rmdir app  删除app目录</p>
-<h2 id="浏览文件"><a href="#浏览文件" class="headerlink" title="浏览文件"></a>浏览文件</h2><p><strong>【cat、more、less】</strong></p>
-<p>cat用于显示文件的内容。格式：cat[参数]&lt;文件名&gt;</p>
-<blockquote>
-<p> cat a.txt</p>
-</blockquote>
-<p>more一般用于要显示的内容会超过一个画面长度的情况。按空格键显示下一个画面。</p>
-<p>回车显示下一行内容。按 q 键退出查看。</p>
-<blockquote>
-<p>more yum.conf</p>
-<p>空格显示下一页数据 回车显示下一行的数据</p>
-</blockquote>
-<p>less用法和more类似，不同的是less可以通过PgUp、PgDn键来控制.</p>
-<blockquote>
-<p>less yum.conf</p>
-<p>PgUp 和 PgDn 进行上下翻页.</p>
-</blockquote>
-<p><strong>tail</strong></p>
-<p>tail命令是在实际使用过程中使用非常多的一个命令，它的功能是：用于显示文件后几行的内容。</p>
-<p>用法:</p>
-<blockquote>
-<p>tail -10 /etc/passwd    查看后10行数据</p>
-<p>tail -f catalina.log   动态查看日志</p>
-<p>ctrl+c 结束查看</p>
-</blockquote>
-<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p><strong>【rm】</strong></p>
-<p>rm 删除文件</p>
-<ul>
-<li><p>用法：</p>
-<blockquote>
-<p>rm [选项]… 文件..<br>rm a.txt  删除a.txt文件   删除需要用户确认，y/n<br>rm -f a.txt  不询问，直接删除rm 删除目录<br>rm -r a    递归删除不询问递归删除（慎用）<br>rm -rf a  不询问递归删除<br>rm -rf *    删除所有文件<br>rm -rf /*    删除系统所有文件，危险行为</p>
-</blockquote>
-</li>
-</ul>
-<p><strong>【cp、mv】</strong></p>
-<p>cp(copy)命令可以将文件从一处复制到另一处。一般在使用cp命令时将一个文件复制成另一个文件或复制到某目录时，需要指定源文件名与目标文件名或目录。</p>
-<blockquote>
-<p>cp a.txt b.txt  将a.txt复制为b.txt文件<br>cp a.txt ../    将a.txt文件复制到上一层目录中</p>
-</blockquote>
-<p>mv 移动或者重命名：</p>
-<blockquote>
-<p>mv a.txt ../  将a.txt文件移动到上一层目录中<br>mv a.txt b.txt  将a.txt文件重命名为b.txt</p>
-</blockquote>
-<p><strong>【tar】命令:( 打包或解压)</strong></p>
-<p>tar命令位于/bin目录下，它能够将用户所指定的文件或目录打包成一个文件，但不做压缩。一般Linux上常用的压缩方式是选用tar将许多文件打包成一个文件，再以gzip压缩命令压缩成xxx.tar.gz(或称为xxx.tgz)的文件。</p>
-<p>常用参数：</p>
-<blockquote>
-<p>-c：创建一个新tar文件<br>-v：显示运行过程的信息<br>-f：指定文件名<br>-z：调用gzip压缩命令进行压缩<br>-t：查看压缩文件的内容<br>-x：解开tar文件</p>
-</blockquote>
-<p>打包：</p>
-<blockquote>
-<p>tar –cvf  xxx.tar  ./*</p>
-</blockquote>
-<p>打包并且压缩：</p>
-<blockquote>
-<p> tar –zcvf xxx.tar.gz ./*</p>
-</blockquote>
-<p>解压 ：tar –xvf xxx.tar</p>
-<blockquote>
-<p>tar -zxvf xxx.tar.gz -C /usr/aaa</p>
-</blockquote>
-<p><strong>【find】命令</strong></p>
-<p>find指令用于查找符合条件的文件。</p>
-<p>示例：</p>
-<blockquote>
-<p> find / -name “ins*” 查找文件名称是以ins开头的文件</p>
-<p>find / -name “ins*” –ls </p>
-<p>find / –user ss –ls 查找用户ss的文件</p>
-<p>find / –user ss–type d –ls 查找用户ss的目录</p>
-<p>find /-perm -777 –type d-ls 查找权限是777的文件</p>
-</blockquote>
-<p><strong>【grep】命令</strong></p>
-<p>查找文件里符合条件的字符串。</p>
-<p>用法：</p>
-<p>grep [选项]… PATTERN [FILE]…示例：</p>
-<p>grep lang anaconda-ks.cfg     在文件中查找lang</p>
-<p>grep lang anaconda-ks.cfg –color     高亮显示</p>
-<blockquote>
-<p>grep debug yum.conf –color</p>
-<p>grep debug yum.conf –color  -A5</p>
-<p>grep debug yum.conf –color -A5 -B5</p>
-</blockquote>
-<h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><p><strong>【pwd】</strong></p>
-<p>显示当前所在目录</p>
-<p><strong>【touch】</strong></p>
-<p>创建一个空文件</p>
-<blockquote>
-<p>touch a.txt</p>
-</blockquote>
-<p><strong>【clear/ crtl + L】</strong></p>
-<p>清屏</p>
-<h2 id="VI和Vim编辑器"><a href="#VI和Vim编辑器" class="headerlink" title="VI和Vim编辑器"></a>VI和Vim编辑器</h2><p>在Linux下一般使用vi编辑器来编辑文件。vi既可以查看文件也可以编辑文件。三种模式：命令行、插入、底行模式。</p>
-<p>切换到命令行模式：按Esc键</p>
-<p>切换到插入模式：按 i 、o、a键；</p>
-<blockquote>
-<p>  i 在当前位置前插入</p>
-<p>  I 在当前行首插入</p>
-<p>  a 在当前位置后插入</p>
-<p>  A 在当前行尾插入</p>
-<p>  o 在当前行之后插入一行</p>
-<p>  O 在当前行之前插入一行</p>
-</blockquote>
-<p>打开文件：vim file</p>
-<p>退出：esc   :q</p>
-<p>修改文件：输入i进入插入模式</p>
-<p>保存并退出：esc :wq</p>
-<p>不保存退出：esc :q!</p>
-<p>三种进入插入模式：</p>
-<blockquote>
-<p> i:在当前的光标所在处插入<br>o:在当前光标所在的行的下一行插入<br>a:在光标所在的下一个字符插入</p>
-</blockquote>
-<p>快捷键：</p>
-<blockquote>
-<p>dd – 快速删除一行</p>
-<p>yy - 复制当前行</p>
-<p>nyy - 从当前行向后复制几行</p>
-<p>p - 粘贴</p>
-<p>R – 替换</p>
-</blockquote>
-<h2 id="重定向输出-gt-和-gt-gt"><a href="#重定向输出-gt-和-gt-gt" class="headerlink" title="重定向输出&gt;和&gt;&gt;"></a>重定向输出&gt;和&gt;&gt;</h2><p> 重定向输出，覆盖原有内容；&gt;&gt; 重定向输出，又追加功能；示例：</p>
-<blockquote>
-<p>cat /etc/passwd &gt; a.txt 将输出定向到a.txt中</p>
-<p>cat /etc/passwd &gt;&gt; a.txt 输出并且追加</p>
-<p>ifconfig &gt; ifconfig.txt</p>
-</blockquote>
-<h2 id="系统管理命令"><a href="#系统管理命令" class="headerlink" title="系统管理命令"></a>系统管理命令</h2><p>ps 正在运行的某个进程的状态</p>
-<blockquote>
-<p>ps –ef 查看所有进程</p>
-<p>ps –ef | grep ssh 查找某一进程</p>
-<p>kill 2868 杀掉2868编号的进程</p>
-<p>kill -9 2868 强制杀死进程</p>
-</blockquote>
-<h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><p>管道是Linux命令中重要的一个概念，其作用是将一个命令的输出用作另一个命令的输入。示例：</p>
-<blockquote>
-<p>ls –help | more 分页查询帮助信息</p>
-<p>ps –ef | grep java 查询名称中包含java的进程</p>
-<p>ifconfig | more</p>
-<p>cat index.html | more</p>
-<p>ps –ef | grep aio</p>
-</blockquote>
-<h2 id="LInux权限命令"><a href="#LInux权限命令" class="headerlink" title="LInux权限命令"></a>LInux权限命令</h2><h3 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h3><p><img src="/" class="lazyload" data-src="/img/Linux/1.png"  alt=""></p>
-<p><img src="/" class="lazyload" data-src="/img/Linux/2.png"  alt=""></p>
-<p>r:对文件是指可读取内容 对目录是可以ls</p>
-<p>w:对文件是指可修改文件内容，对目录 是指可以在其中创建或删除子节点(目录或文件)</p>
-<p>x:对文件是指是否可以运行这个文件，对目录是指是否可以cd进入这个目录</p>
-<h3 id="Linux三种文件类型："><a href="#Linux三种文件类型：" class="headerlink" title="Linux三种文件类型："></a>Linux三种文件类型：</h3><blockquote>
-<p>普通文件： 包括文本文件、数据文件、可执行的二进制程序文件等。 </p>
-<p>目录文件： Linux系统把目录看成是一种特殊的文件，利用它构成文件系统的树型结构。 </p>
-<p>设备文件： Linux系统把每一个设备都看成是一个文件</p>
-</blockquote>
-<h3 id="文件类型标识"><a href="#文件类型标识" class="headerlink" title="文件类型标识"></a>文件类型标识</h3><blockquote>
-<p>普通文件（-）目录（d）符号链接（l）</p>
-<p>进入etc可以查看，相当于快捷方式字符设备文件（c）块设备文件（s）套接字（s）命名管道（p</p>
-</blockquote>
-<h3 id="文件权限管理"><a href="#文件权限管理" class="headerlink" title="文件权限管理"></a>文件权限管理</h3><blockquote>
-<p>chmod 变更文件或目录的权限。</p>
-<p>chmod 755 a.txt </p>
-<p>chmod u=rwx,g=rx,o=rx a.txt</p>
-</blockquote>
-<h2 id="Linux上常用网络操作"><a href="#Linux上常用网络操作" class="headerlink" title="Linux上常用网络操作"></a>Linux上常用网络操作</h2><h3 id="主机名配置"><a href="#主机名配置" class="headerlink" title="主机名配置"></a>主机名配置</h3><blockquote>
-<p>hostname 查看主机名</p>
-<p>hostname xxx 修改主机名 重启后无效</p>
-<p>如果想要永久生效，可以修改/etc/sysconfig/network文件</p>
-</blockquote>
-<h3 id="IP地址配置"><a href="#IP地址配置" class="headerlink" title="IP地址配置"></a>IP地址配置</h3><blockquote>
-<p>ifconfig 查看(修改)ip地址(重启后无效)</p>
-<p>ifconfig eth0 192.168.12.22 修改ip地址</p>
-<p>如果想要永久生效</p>
-<p>修改 /etc/sysconfig/network-scripts/ifcfg-eth0文件</p>
-<p>DEVICE=eth0 #网卡名称</p>
-<p>BOOTPROTO=static #获取ip的方式(static/dhcp/bootp/none)</p>
-<p>HWADDR=00:0C:29:B5:B2:69 #MAC地址</p>
-<p>IPADDR=12.168.177.129 #IP地址<br>NETMASK=255.255.255.0 #子网掩码<br>NETWORK=192.168.177.0 #网络地址<br>BROADCAST=192.168.0.255 #广播地址</p>
-<p>NBOOT=yes #  系统启动时是否设置此网络接口，设置为yes时，系统启动时激活此设备。</p>
-</blockquote>
-<h3 id="域名映射"><a href="#域名映射" class="headerlink" title="域名映射"></a>域名映射</h3><p>/etc/hosts文件用于在通过主机名进行访问时做ip地址解析之用,相当于windows系统的C:\Windows\System32\drivers\etc\hosts文件的功能</p>
-<h3 id="网络服务管理"><a href="#网络服务管理" class="headerlink" title="网络服务管理"></a>网络服务管理</h3><blockquote>
-<p>service network status 查看指定服务的状态</p>
-<p>service network stop 停止指定服务</p>
-<p>service network start 启动指定服务</p>
-<p>service network restart 重启指定服务</p>
-<p>service –status–all 查看系统中所有后台服务</p>
-<p>netstat –nltp 查看系统中网络进程的端口监听情况</p>
-<p>防火墙设置</p>
-<p>防火墙根据配置文件/etc/sysconfig/iptables来控制本机的”出”、”入”网络访问行为。</p>
-<p>service iptables status 查看防火墙状态</p>
-<p>service iptables stop 关闭防火墙</p>
-<p>service iptables start 启动防火墙</p>
-<p>chkconfig iptables off 禁止防火墙自启</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Docker学习笔记</title>
     <url>/2020/03/24/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h1><h2 id="什么是虚拟化"><a href="#什么是虚拟化" class="headerlink" title="什么是虚拟化"></a>什么是虚拟化</h2><p>​    在计算机中，虚拟化（英语：Virtualization）是一种资源管理技术，是将计算机的各种实体资源，如服务器、网络、内存及存储等，予以抽象、转换后呈现出来，打破实体结构间的不可切割的障碍，使用户可以比原本的组态更好的方式来应用这些资源。这些资源的新虚拟部份是不受现有资源的架设方式，地域或物理组态所限制。一般所指的虚拟化资源包括计算能力和资料存储。</p>
@@ -688,6 +480,214 @@
       </categories>
       <tags>
         <tag>docker学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux常用命令</title>
+    <url>/2020/03/26/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a><center>Linux常用命令</center></h1><h2 id="切换目录命令cd"><a href="#切换目录命令cd" class="headerlink" title="切换目录命令cd"></a>切换目录命令cd</h2><p>使用cd app   切换到app目录 </p>
+<p>cd ..  切换到上一层目录<br>cd /     切换到系统根目录<br>cd ~   切换到用户主目录<br>cd -     切换到上一个所在目录</p>
+<p>使用tab键来补全文件路径</p>
+<h2 id="列出文件列表：ls-ll"><a href="#列出文件列表：ls-ll" class="headerlink" title="列出文件列表：ls ll"></a>列出文件列表：ls ll</h2><p>ls(list)是一个非常有用的命令，用来显示当前目录下的内容。配合参数的使用，能以不同的方式显示目录内容。</p>
+<p>格式：ls[参数] [路径或文件名]</p>
+<p>在linux中以 . 开头的文件都是隐藏的文件</p>
+<p>ls<br>ls -a 显示所有文件或目录（包含隐藏的文件）<br>ls -l 缩写成ll</p>
+<h2 id="创建目录和移除目录：mkdir-rmdir"><a href="#创建目录和移除目录：mkdir-rmdir" class="headerlink" title="创建目录和移除目录：mkdir rmdir"></a>创建目录和移除目录：mkdir rmdir</h2><p>mkdir(make directory)命令可用来创建子目录。<br>mkdir app     在当前目录下创建app目录<br>mkdir –p app2/test  级联创建aap2以及test目<br>rmdir(remove directory)命令可用来删除“空”的子目录:rmdir app  删除app目录</p>
+<h2 id="浏览文件"><a href="#浏览文件" class="headerlink" title="浏览文件"></a>浏览文件</h2><p><strong>【cat、more、less】</strong></p>
+<p>cat用于显示文件的内容。格式：cat[参数]&lt;文件名&gt;</p>
+<blockquote>
+<p> cat a.txt</p>
+</blockquote>
+<p>more一般用于要显示的内容会超过一个画面长度的情况。按空格键显示下一个画面。</p>
+<p>回车显示下一行内容。按 q 键退出查看。</p>
+<blockquote>
+<p>more yum.conf</p>
+<p>空格显示下一页数据 回车显示下一行的数据</p>
+</blockquote>
+<p>less用法和more类似，不同的是less可以通过PgUp、PgDn键来控制.</p>
+<blockquote>
+<p>less yum.conf</p>
+<p>PgUp 和 PgDn 进行上下翻页.</p>
+</blockquote>
+<p><strong>tail</strong></p>
+<p>tail命令是在实际使用过程中使用非常多的一个命令，它的功能是：用于显示文件后几行的内容。</p>
+<p>用法:</p>
+<blockquote>
+<p>tail -10 /etc/passwd    查看后10行数据</p>
+<p>tail -f catalina.log   动态查看日志</p>
+<p>ctrl+c 结束查看</p>
+</blockquote>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p><strong>【rm】</strong></p>
+<p>rm 删除文件</p>
+<ul>
+<li><p>用法：</p>
+<blockquote>
+<p>rm [选项]… 文件..<br>rm a.txt  删除a.txt文件   删除需要用户确认，y/n<br>rm -f a.txt  不询问，直接删除rm 删除目录<br>rm -r a    递归删除不询问递归删除（慎用）<br>rm -rf a  不询问递归删除<br>rm -rf *    删除所有文件<br>rm -rf /*    删除系统所有文件，危险行为</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>【cp、mv】</strong></p>
+<p>cp(copy)命令可以将文件从一处复制到另一处。一般在使用cp命令时将一个文件复制成另一个文件或复制到某目录时，需要指定源文件名与目标文件名或目录。</p>
+<blockquote>
+<p>cp a.txt b.txt  将a.txt复制为b.txt文件<br>cp a.txt ../    将a.txt文件复制到上一层目录中</p>
+</blockquote>
+<p>mv 移动或者重命名：</p>
+<blockquote>
+<p>mv a.txt ../  将a.txt文件移动到上一层目录中<br>mv a.txt b.txt  将a.txt文件重命名为b.txt</p>
+</blockquote>
+<p><strong>【tar】命令:( 打包或解压)</strong></p>
+<p>tar命令位于/bin目录下，它能够将用户所指定的文件或目录打包成一个文件，但不做压缩。一般Linux上常用的压缩方式是选用tar将许多文件打包成一个文件，再以gzip压缩命令压缩成xxx.tar.gz(或称为xxx.tgz)的文件。</p>
+<p>常用参数：</p>
+<blockquote>
+<p>-c：创建一个新tar文件<br>-v：显示运行过程的信息<br>-f：指定文件名<br>-z：调用gzip压缩命令进行压缩<br>-t：查看压缩文件的内容<br>-x：解开tar文件</p>
+</blockquote>
+<p>打包：</p>
+<blockquote>
+<p>tar –cvf  xxx.tar  ./*</p>
+</blockquote>
+<p>打包并且压缩：</p>
+<blockquote>
+<p> tar –zcvf xxx.tar.gz ./*</p>
+</blockquote>
+<p>解压 ：tar –xvf xxx.tar</p>
+<blockquote>
+<p>tar -zxvf xxx.tar.gz -C /usr/aaa</p>
+</blockquote>
+<p><strong>【find】命令</strong></p>
+<p>find指令用于查找符合条件的文件。</p>
+<p>示例：</p>
+<blockquote>
+<p> find / -name “ins*” 查找文件名称是以ins开头的文件</p>
+<p>find / -name “ins*” –ls </p>
+<p>find / –user ss –ls 查找用户ss的文件</p>
+<p>find / –user ss–type d –ls 查找用户ss的目录</p>
+<p>find /-perm -777 –type d-ls 查找权限是777的文件</p>
+</blockquote>
+<p><strong>【grep】命令</strong></p>
+<p>查找文件里符合条件的字符串。</p>
+<p>用法：</p>
+<p>grep [选项]… PATTERN [FILE]…示例：</p>
+<p>grep lang anaconda-ks.cfg     在文件中查找lang</p>
+<p>grep lang anaconda-ks.cfg –color     高亮显示</p>
+<blockquote>
+<p>grep debug yum.conf –color</p>
+<p>grep debug yum.conf –color  -A5</p>
+<p>grep debug yum.conf –color -A5 -B5</p>
+</blockquote>
+<h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><p><strong>【pwd】</strong></p>
+<p>显示当前所在目录</p>
+<p><strong>【touch】</strong></p>
+<p>创建一个空文件</p>
+<blockquote>
+<p>touch a.txt</p>
+</blockquote>
+<p><strong>【clear/ crtl + L】</strong></p>
+<p>清屏</p>
+<h2 id="VI和Vim编辑器"><a href="#VI和Vim编辑器" class="headerlink" title="VI和Vim编辑器"></a>VI和Vim编辑器</h2><p>在Linux下一般使用vi编辑器来编辑文件。vi既可以查看文件也可以编辑文件。三种模式：命令行、插入、底行模式。</p>
+<p>切换到命令行模式：按Esc键</p>
+<p>切换到插入模式：按 i 、o、a键；</p>
+<blockquote>
+<p>  i 在当前位置前插入</p>
+<p>  I 在当前行首插入</p>
+<p>  a 在当前位置后插入</p>
+<p>  A 在当前行尾插入</p>
+<p>  o 在当前行之后插入一行</p>
+<p>  O 在当前行之前插入一行</p>
+</blockquote>
+<p>打开文件：vim file</p>
+<p>退出：esc   :q</p>
+<p>修改文件：输入i进入插入模式</p>
+<p>保存并退出：esc :wq</p>
+<p>不保存退出：esc :q!</p>
+<p>三种进入插入模式：</p>
+<blockquote>
+<p> i:在当前的光标所在处插入<br>o:在当前光标所在的行的下一行插入<br>a:在光标所在的下一个字符插入</p>
+</blockquote>
+<p>快捷键：</p>
+<blockquote>
+<p>dd – 快速删除一行</p>
+<p>yy - 复制当前行</p>
+<p>nyy - 从当前行向后复制几行</p>
+<p>p - 粘贴</p>
+<p>R – 替换</p>
+</blockquote>
+<h2 id="重定向输出-gt-和-gt-gt"><a href="#重定向输出-gt-和-gt-gt" class="headerlink" title="重定向输出&gt;和&gt;&gt;"></a>重定向输出&gt;和&gt;&gt;</h2><p> 重定向输出，覆盖原有内容；&gt;&gt; 重定向输出，又追加功能；示例：</p>
+<blockquote>
+<p>cat /etc/passwd &gt; a.txt 将输出定向到a.txt中</p>
+<p>cat /etc/passwd &gt;&gt; a.txt 输出并且追加</p>
+<p>ifconfig &gt; ifconfig.txt</p>
+</blockquote>
+<h2 id="系统管理命令"><a href="#系统管理命令" class="headerlink" title="系统管理命令"></a>系统管理命令</h2><p>ps 正在运行的某个进程的状态</p>
+<blockquote>
+<p>ps –ef 查看所有进程</p>
+<p>ps –ef | grep ssh 查找某一进程</p>
+<p>kill 2868 杀掉2868编号的进程</p>
+<p>kill -9 2868 强制杀死进程</p>
+</blockquote>
+<h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><p>管道是Linux命令中重要的一个概念，其作用是将一个命令的输出用作另一个命令的输入。示例：</p>
+<blockquote>
+<p>ls –help | more 分页查询帮助信息</p>
+<p>ps –ef | grep java 查询名称中包含java的进程</p>
+<p>ifconfig | more</p>
+<p>cat index.html | more</p>
+<p>ps –ef | grep aio</p>
+</blockquote>
+<h2 id="LInux权限命令"><a href="#LInux权限命令" class="headerlink" title="LInux权限命令"></a>LInux权限命令</h2><h3 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h3><p><img src="/" class="lazyload" data-src="/img/Linux/1.png"  alt=""></p>
+<p><img src="/" class="lazyload" data-src="/img/Linux/2.png"  alt=""></p>
+<p>r:对文件是指可读取内容 对目录是可以ls</p>
+<p>w:对文件是指可修改文件内容，对目录 是指可以在其中创建或删除子节点(目录或文件)</p>
+<p>x:对文件是指是否可以运行这个文件，对目录是指是否可以cd进入这个目录</p>
+<h3 id="Linux三种文件类型："><a href="#Linux三种文件类型：" class="headerlink" title="Linux三种文件类型："></a>Linux三种文件类型：</h3><blockquote>
+<p>普通文件： 包括文本文件、数据文件、可执行的二进制程序文件等。 </p>
+<p>目录文件： Linux系统把目录看成是一种特殊的文件，利用它构成文件系统的树型结构。 </p>
+<p>设备文件： Linux系统把每一个设备都看成是一个文件</p>
+</blockquote>
+<h3 id="文件类型标识"><a href="#文件类型标识" class="headerlink" title="文件类型标识"></a>文件类型标识</h3><blockquote>
+<p>普通文件（-）目录（d）符号链接（l）</p>
+<p>进入etc可以查看，相当于快捷方式字符设备文件（c）块设备文件（s）套接字（s）命名管道（p</p>
+</blockquote>
+<h3 id="文件权限管理"><a href="#文件权限管理" class="headerlink" title="文件权限管理"></a>文件权限管理</h3><blockquote>
+<p>chmod 变更文件或目录的权限。</p>
+<p>chmod 755 a.txt </p>
+<p>chmod u=rwx,g=rx,o=rx a.txt</p>
+</blockquote>
+<h2 id="Linux上常用网络操作"><a href="#Linux上常用网络操作" class="headerlink" title="Linux上常用网络操作"></a>Linux上常用网络操作</h2><h3 id="主机名配置"><a href="#主机名配置" class="headerlink" title="主机名配置"></a>主机名配置</h3><blockquote>
+<p>hostname 查看主机名</p>
+<p>hostname xxx 修改主机名 重启后无效</p>
+<p>如果想要永久生效，可以修改/etc/sysconfig/network文件</p>
+</blockquote>
+<h3 id="IP地址配置"><a href="#IP地址配置" class="headerlink" title="IP地址配置"></a>IP地址配置</h3><blockquote>
+<p>ifconfig 查看(修改)ip地址(重启后无效)</p>
+<p>ifconfig eth0 192.168.12.22 修改ip地址</p>
+<p>如果想要永久生效</p>
+<p>修改 /etc/sysconfig/network-scripts/ifcfg-eth0文件</p>
+<p>DEVICE=eth0 #网卡名称</p>
+<p>BOOTPROTO=static #获取ip的方式(static/dhcp/bootp/none)</p>
+<p>HWADDR=00:0C:29:B5:B2:69 #MAC地址</p>
+<p>IPADDR=12.168.177.129 #IP地址<br>NETMASK=255.255.255.0 #子网掩码<br>NETWORK=192.168.177.0 #网络地址<br>BROADCAST=192.168.0.255 #广播地址</p>
+<p>NBOOT=yes #  系统启动时是否设置此网络接口，设置为yes时，系统启动时激活此设备。</p>
+</blockquote>
+<h3 id="域名映射"><a href="#域名映射" class="headerlink" title="域名映射"></a>域名映射</h3><p>/etc/hosts文件用于在通过主机名进行访问时做ip地址解析之用,相当于windows系统的C:\Windows\System32\drivers\etc\hosts文件的功能</p>
+<h3 id="网络服务管理"><a href="#网络服务管理" class="headerlink" title="网络服务管理"></a>网络服务管理</h3><blockquote>
+<p>service network status 查看指定服务的状态</p>
+<p>service network stop 停止指定服务</p>
+<p>service network start 启动指定服务</p>
+<p>service network restart 重启指定服务</p>
+<p>service –status–all 查看系统中所有后台服务</p>
+<p>netstat –nltp 查看系统中网络进程的端口监听情况</p>
+<p>防火墙设置</p>
+<p>防火墙根据配置文件/etc/sysconfig/iptables来控制本机的”出”、”入”网络访问行为。</p>
+<p>service iptables status 查看防火墙状态</p>
+<p>service iptables stop 关闭防火墙</p>
+<p>service iptables start 启动防火墙</p>
+<p>chkconfig iptables off 禁止防火墙自启</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1005,73 +1005,49 @@
       </tags>
   </entry>
   <entry>
-    <title>Mybatis学习笔记（五）</title>
-    <url>/2020/03/31/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/</url>
-    <content><![CDATA[<h1 id="Mybatis学习笔记（五）"><a href="#Mybatis学习笔记（五）" class="headerlink" title="Mybatis学习笔记（五）"></a><center>Mybatis学习笔记（五）</center></h1><h2 id="Mybatis-延迟加载策略"><a href="#Mybatis-延迟加载策略" class="headerlink" title="Mybatis 延迟加载策略"></a>Mybatis 延迟加载策略</h2><h3 id="何为延迟加载"><a href="#何为延迟加载" class="headerlink" title="何为延迟加载?"></a>何为延迟加载?</h3><blockquote>
-<p>延迟加载：<br>就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。延迟加载也称懒加载.<br>好处： 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多张表速度要快。<br>坏处：<br>因为只有当需要用到数据时，才会进行数据库查询，这样在大批量数据查询时，因为查询工作也要消耗<br>时间，所以可能造成用户等待时间变长，造成用户体验下降  </p>
-</blockquote>
-<h3 id="实现需求"><a href="#实现需求" class="headerlink" title="实现需求"></a>实现需求</h3><blockquote>
-<p>需求：<br>查询账户(Account)信息并且关联查询用户(User)信息。如果先查询账户(Account)信息即可满足要<br>求，当我们需要查询用户(User)信息时再查询用户(User)信息。把对用户(User)信息的按需去查询就是延迟加<br>载。  </p>
-</blockquote>
-<h3 id="使用-assocation-实现延迟加载"><a href="#使用-assocation-实现延迟加载" class="headerlink" title="使用 assocation 实现延迟加载"></a>使用 assocation 实现延迟加载</h3><p>账户的持久层 DAO 接口  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IAccountDao &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 查询所有</span><br><span class="line">     *&#x2F;</span><br><span class="line">    List&lt;Account&gt; findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>Mybatis学习笔记（二）</title>
+    <url>/2020/03/28/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="Mybatis学习笔记（二）"><a href="#Mybatis学习笔记（二）" class="headerlink" title="Mybatis学习笔记（二）"></a><center>Mybatis学习笔记（二）</center></h1><h2 id="根据ID查询"><a href="#根据ID查询" class="headerlink" title="根据ID查询"></a>根据ID查询</h2><h3 id="在持久层接口中添加-findById-方法"><a href="#在持久层接口中添加-findById-方法" class="headerlink" title="在持久层接口中添加 findById 方法"></a>在持久层接口中添加 findById 方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 根据Id查询</span><br><span class="line"> *&#x2F;</span><br><span class="line">User findById(int userId);</span><br></pre></td></tr></table></figure>
 
-<p>账户的持久层映射文件  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">        PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;&#x2F;DTD Mapper 3.0&#x2F;&#x2F;EN&quot;</span><br><span class="line">        &quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;mapper namespace&#x3D;&quot;com.syx.dao.IAccountDao&quot;&gt;</span><br><span class="line">    &lt;!--定义封装account和user的resultMap--&gt;</span><br><span class="line">    &lt;resultMap id&#x3D;&quot;accountUserMao&quot; type&#x3D;&quot;account&quot;&gt;</span><br><span class="line">        &lt;id property&#x3D;&quot;id&quot; column&#x3D;&quot;id&quot;&#x2F;&gt;</span><br><span class="line">        &lt;result property&#x3D;&quot;uid&quot; column&#x3D;&quot;uid&quot;&#x2F;&gt;</span><br><span class="line">        &lt;result property&#x3D;&quot;money&quot; column&#x3D;&quot;money&quot;&#x2F;&gt;</span><br><span class="line">        &lt;!--一对一关系映射，配置User的内容--&gt;</span><br><span class="line">        &lt;association property&#x3D;&quot;user&quot; column&#x3D;&quot;uid&quot; javaType&#x3D;&quot;user&quot; select&#x3D;&quot;com.syx.dao.IUserDao.findById&quot;&gt;</span><br><span class="line">        &lt;&#x2F;association&gt;</span><br><span class="line">    &lt;&#x2F;resultMap&gt;</span><br><span class="line">&lt;select id&#x3D;&quot;findAll&quot; resultMap&#x3D;&quot;accountUserMao&quot;&gt;</span><br><span class="line">    SELECT * from  account</span><br><span class="line">&lt;&#x2F;select&gt;</span><br><span class="line">    &lt;select id&#x3D;&quot;findAccountByUid&quot; resultType&#x3D;&quot;account&quot; parameterType&#x3D;&quot;int&quot;&gt;</span><br><span class="line">        select * from account where uid&#x3D; #&#123;uid&#125;</span><br><span class="line">    &lt;&#x2F;select&gt;</span><br><span class="line">&lt;&#x2F;mapper&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="在用户的映射配置文件中配置"><a href="#在用户的映射配置文件中配置" class="headerlink" title="在用户的映射配置文件中配置"></a>在用户的映射配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 根据Id查询--&gt;</span><br><span class="line">&lt;select id&#x3D;&quot;findById&quot; resultType&#x3D;&quot;com.syx.domain.User&quot; parameterType&#x3D;&quot;int&quot;&gt;</span><br><span class="line">    select * from user  where id &#x3D; #&#123;uid&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
 
-<p><strong>select</strong>： 填写我们要调用的 select 映射的 id<br><strong>column</strong> ： 填写我们要传递给 select 映射的参数  </p>
-<p>用户的持久层接口和映射文件  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 根据Id查询--&gt;</span><br><span class="line">   &lt;select id&#x3D;&quot;findById&quot; resultType&#x3D;&quot;com.syx.domain.User&quot; parameterType&#x3D;&quot;int&quot;&gt;</span><br><span class="line">       select * from user  where id &#x3D; #&#123;uid&#125;</span><br><span class="line">   &lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
+<p>细节：<br><strong>resultType 属性</strong>：用于指定结果集的类型。<br><strong>parameterType 属性</strong>：  用于指定传入参数的类型。<br><strong>sql 语句中使用#{}字符</strong>：它代表占位符， 相当于原来 jdbc 部分所学的?，都是用于执行语句时替换实际的数据。具体的数据是由#{}里面的内容决定的。<br> <strong>#{}中内容的写法</strong>：由于数据类型是基本类型，所以此处可以随意写。  </p>
+<h3 id="在测试类添加测试"><a href="#在测试类添加测试" class="headerlink" title="在测试类添加测试"></a>在测试类添加测试</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MybatisTest &#123;</span><br><span class="line">    private InputStream in ;</span><br><span class="line">    private SqlSessionFactory factory;</span><br><span class="line">    private SqlSession session;</span><br><span class="line">    private IUserDao userDao;</span><br><span class="line">    @Before</span><br><span class="line">    public void init() throws Exception&#123;</span><br><span class="line">        &#x2F;&#x2F;1.读取配置文件</span><br><span class="line">       in &#x3D; Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);</span><br><span class="line">        &#x2F;&#x2F;2.创建构建者对象</span><br><span class="line">        SqlSessionFactoryBuilder builder &#x3D; new SqlSessionFactoryBuilder();</span><br><span class="line">        &#x2F;&#x2F; 3.创建SqlSession工厂对象</span><br><span class="line">         factory &#x3D; builder.build(in);</span><br><span class="line">        &#x2F;&#x2F;4.创建SqlSession对向</span><br><span class="line">        session &#x3D; factory.openSession();</span><br><span class="line">        &#x2F;&#x2F;5.创建Dao代理对象</span><br><span class="line">        userDao &#x3D; session.getMapper(IUserDao.class);</span><br><span class="line">        &#125;</span><br><span class="line">        @After</span><br><span class="line">        public void destroy() throws Exception&#123;</span><br><span class="line">            session.commit();</span><br><span class="line">            &#x2F;&#x2F;7.释放资源</span><br><span class="line">            session.close();</span><br><span class="line">            in.close();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void findById()&#123;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;6.执行操作</span><br><span class="line">        User user &#x3D; userDao.findById(41);</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>开启 Mybatis 的延迟加载策略  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--配置参数--&gt;</span><br><span class="line">    &lt;settings&gt;</span><br><span class="line">        &lt;!--开启延迟加载的全局开关--&gt;</span><br><span class="line">        &lt;setting name&#x3D;&quot;lazyLoadingEnabled&quot; value&#x3D;&quot;true&quot;&#x2F;&gt;</span><br><span class="line">        &lt;setting name&#x3D;&quot;aggressiveLazyLoading&quot; value&#x3D;&quot;false&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;settings&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="保存操作"><a href="#保存操作" class="headerlink" title="保存操作"></a>保存操作</h2><h3 id="在持久层接口中新增方法"><a href="#在持久层接口中新增方法" class="headerlink" title="在持久层接口中新增方法"></a>在持久层接口中新增方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> *保存用户</span><br><span class="line"> *&#x2F;</span><br><span class="line">int saveUser(User user);</span><br></pre></td></tr></table></figure>
 
-<h2 id="Mybatis-缓存"><a href="#Mybatis-缓存" class="headerlink" title="Mybatis 缓存"></a>Mybatis 缓存</h2><h3 id="Mybatis-一级缓存"><a href="#Mybatis-一级缓存" class="headerlink" title="Mybatis 一级缓存"></a>Mybatis 一级缓存</h3><blockquote>
-<p>一级缓存是 SqlSession 范围的缓存，当调用 SqlSession 的修改，添加，删除， commit()， close()等  方法时，就会清空一级缓存。  </p>
-</blockquote>
-<h3 id="Mybatis-二级缓存"><a href="#Mybatis-二级缓存" class="headerlink" title="Mybatis 二级缓存"></a>Mybatis 二级缓存</h3><p>二级缓存的开启与关闭 :</p>
-<p>第一步：在 SqlMapConfig.xml 文件开启二级缓存  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 开启二级缓存的支持 --&gt;</span><br><span class="line">&lt;setting name&#x3D;&quot;cacheEnabled&quot; value&#x3D;&quot;true&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;settings&gt;</span><br><span class="line">因为 cacheEnabled 的取值默认就为 true，所以这一步可以省略不配置。为 true 代表开启二级缓存；为</span><br><span class="line">false 代表不开启二级缓存</span><br></pre></td></tr></table></figure>
+<h3 id="在用户的映射配置文件中配置-1"><a href="#在用户的映射配置文件中配置-1" class="headerlink" title="在用户的映射配置文件中配置"></a>在用户的映射配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 保存用户--&gt;</span><br><span class="line">&lt;insert id&#x3D;&quot;saveUser&quot; parameterType&#x3D;&quot;com.syx.domain.User&quot;&gt;</span><br><span class="line">    insert into user(username,birthday,sex,address) values(#&#123;username&#125;,#&#123;birthday&#125;,#&#123;sex&#125;,#&#123;address&#125;)</span><br><span class="line">&lt;&#x2F;insert&gt;</span><br></pre></td></tr></table></figure>
 
-<p>第二步：配置相关的 Mapper 映射文件 :</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;cache&gt;标签表示当前这个 mapper 映射将使用二级缓存，区分的标准就看 mapper 的 namespace 值。</span><br><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;&#x2F;DTD Mapper 3.0&#x2F;&#x2F;EN&quot;</span><br><span class="line">&quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;mapper namespace&#x3D;&quot;com.itheima.dao.IUserDao&quot;&gt;</span><br><span class="line">&lt;!-- 开启二级缓存的支持 --&gt;</span><br><span class="line">&lt;cache&gt;&lt;&#x2F;cache&gt;</span><br><span class="line">&lt;&#x2F;mapper&gt;</span><br></pre></td></tr></table></figure>
+<p>细节：<br>parameterType 属性：代表参数的类型，因为我们要传入的是一个类的对象，所以类型就写类的全名称。<br>sql 语句中使用#{}字符：它代表占位符， 相当于原来 jdbc 部分所学的?，都是用于执行语句时替换实际的数据。具体的数据是由#{}里面的内容决定的。<br>#{}中内容的写法：由于我们保存方法的参数是 一个 User 对象，此处要写 User 对象中的属性名称。它用的是 ognl 表达式。<br>ognl 表达式：<br>它是 apache 提供的一种表达式语言， 全称是Object Graphic Navigation Language 对象图导航语言它是按照一定的语法格式来获取数据的。语法格式就是使用 #{对象.对象}的方式</p>
+<p>#{user.username}它会先去找 user 对象，然后在 user 对象中找到 username 属性，并调用getUsername()方法把值取出来。但是我们在 parameterType 属性上指定了实体类名称，所以可以省略 user.而直接写 username。  </p>
+<h3 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a>测试方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void saveUser()&#123;</span><br><span class="line">        User user &#x3D; new User();</span><br><span class="line">        user.setUsername(&quot;Mybatis save&quot;);</span><br><span class="line">        user.setSex(&quot;男&quot;);</span><br><span class="line">        user.setAddress(&quot;河南&quot;);</span><br><span class="line">        user.setBirthday(new Date());</span><br><span class="line">        int i &#x3D; userDao.saveUser(user);</span><br><span class="line">        System.out.println(i);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<p>第三步： 配置 statement 上面的 useCache 属性  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 根据 id 查询 --&gt;</span><br><span class="line">&lt;select id&#x3D;&quot;findById&quot; resultType&#x3D;&quot;user&quot; parameterType&#x3D;&quot;int&quot; useCache&#x3D;&quot;true&quot;&gt;</span><br><span class="line">select * from user where id &#x3D; #&#123;uid&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br><span class="line">将 UserDao.xml 映射文件中的&lt;select&gt;标签中设置 useCache&#x3D;”true”代表当前这个 statement 要使用</span><br><span class="line">二级缓存，如果不使用二级缓存可以设置为 false。</span><br><span class="line">注意： 针对每次查询都需要最新的数据 sql，要设置成 useCache&#x3D;false，禁用二级缓存。</span><br></pre></td></tr></table></figure>
+<h3 id="问题扩展：新增用户-id-的返回值"><a href="#问题扩展：新增用户-id-的返回值" class="headerlink" title="问题扩展：新增用户 id 的返回值"></a>问题扩展：新增用户 id 的返回值</h3><p>新增用户后， 同时还要返回当前新增用户的 id 值，因为 id 是由数据库的自动增长来实现的，所以就相当于我们要在新增后将自动增长 auto_increment 的值返回。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 保存用户--&gt;</span><br><span class="line">&lt;insert id&#x3D;&quot;saveUser&quot; parameterType&#x3D;&quot;com.syx.domain.User&quot;&gt;</span><br><span class="line">    &lt;!-- 配置保存时获取插入的 id --&gt;</span><br><span class="line">    &lt;selectKey keyColumn&#x3D;&quot;id&quot; keyProperty&#x3D;&quot;id&quot; resultType&#x3D;&quot;int&quot;&gt;</span><br><span class="line">        select last_insert_id();</span><br><span class="line">    &lt;&#x2F;selectKey&gt;</span><br><span class="line">    insert into user(username,birthday,sex,address) values(#&#123;username&#125;,#&#123;birthday&#125;,#&#123;sex&#125;,#&#123;address&#125;)</span><br><span class="line">&lt;&#x2F;insert&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="使用注解实现复杂关系映射开发"><a href="#使用注解实现复杂关系映射开发" class="headerlink" title="使用注解实现复杂关系映射开发"></a>使用注解实现复杂关系映射开发</h2><h3 id="复杂关系映射的注解说明"><a href="#复杂关系映射的注解说明" class="headerlink" title="复杂关系映射的注解说明"></a>复杂关系映射的注解说明</h3><blockquote>
-<p>@Results 注解<br>代替的是标签<resultMap><br>该注解中可以使用单个@Result 注解，也可以使用@Result 集合<br>@Results（{@Result（）， @Result（） }）或@Results（@Result（））<br>@Resutl 注解<br>代替了 <id>标签和<result>标签<br>@Result 中 属性介绍：<br>id 是否是主键字段<br>column 数据库的列名<br>property 需要装配的属性名</p>
-<p>one 需要使用的@One 注解（@Result（one=@One）（）））</p>
-<p>many 需要使用的@Many 注解（@Result（many=@many）（）））</p>
-<p>@One 注解（一对一）<br>代替了<assocation>标签，是多表查询的关键，在注解中用来指定子查询返回单一对象。<br>@One 注解属性介绍：<br>select 指定用来多表查询的 sqlmapper<br>fetchType 会覆盖全局的配置参数 lazyLoadingEnabled。。<br>使用格式：<br>@Result(column=” “,property=””,one=@One(select=””))<br>@Many 注解（多对一）<br>代替了<Collection>标签,是是多表查询的关键，在注解中用来指定子查询返回对象集合。<br>注意：聚集元素用来处理“一对多”的关系。需要指定映射的 Java 实体类的属性，属性的 javaType<br>（一般为 ArrayList）但是注解中可以不定义；<br>使用格式：<br>@Result(property=””,column=””,many=@Many(select=””))</p>
-</blockquote>
-<h3 id="使用注解实现一对一复杂关系映射及延迟加载"><a href="#使用注解实现一对一复杂关系映射及延迟加载" class="headerlink" title="使用注解实现一对一复杂关系映射及延迟加载"></a>使用注解实现一对一复杂关系映射及延迟加载</h3><p>添加 User 实体类及 Account 实体类  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class User implements Serializable &#123;</span><br><span class="line">private Integer userId;</span><br><span class="line">private String userName;</span><br><span class="line">private Date userBirthday;</span><br><span class="line">private String userSex;</span><br><span class="line">private String userAddress;</span><br><span class="line">public Integer getUserId() &#123;</span><br><span class="line">return userId;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserId(Integer userId) &#123;</span><br><span class="line">this.userId &#x3D; userId;</span><br><span class="line">&#125;</span><br><span class="line">public String getUserName() &#123;</span><br><span class="line">return userName;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserName(String userName) &#123;</span><br><span class="line">this.userName &#x3D; userName;</span><br><span class="line">&#125;</span><br><span class="line">public Date getUserBirthday() &#123;</span><br><span class="line">return userBirthday;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserBirthday(Date userBirthday) &#123;</span><br><span class="line">this.userBirthday &#x3D; userBirthday;</span><br><span class="line">&#125;</span><br><span class="line">public String getUserSex() &#123;</span><br><span class="line">return userSex;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserSex(String userSex) &#123;</span><br><span class="line">this.userSex &#x3D; userSex;</span><br><span class="line">&#125;</span><br><span class="line">public String getUserAddress() &#123;</span><br><span class="line">return userAddress;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserAddress(String userAddress) &#123;</span><br><span class="line">this.userAddress &#x3D; userAddress;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">public String toString() &#123;</span><br><span class="line">return &quot;User [userId&#x3D;&quot; + userId + &quot;, userName&#x3D;&quot; + userName + &quot;, userBirthday&#x3D;&quot;</span><br><span class="line">+ userBirthday + &quot;, userSex&#x3D;&quot;</span><br><span class="line">+ userSex + &quot;, userAddress&#x3D;&quot; + userAddress + &quot;]&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="用户更新"><a href="#用户更新" class="headerlink" title="用户更新"></a>用户更新</h2><h3 id="在持久层接口中添加更新方法"><a href="#在持久层接口中添加更新方法" class="headerlink" title="在持久层接口中添加更新方法"></a>在持久层接口中添加更新方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 更新用户</span><br><span class="line"> *&#x2F;</span><br><span class="line">int updateUser(User user);</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Account implements Serializable &#123;</span><br><span class="line">private Integer id;</span><br><span class="line">private Integer uid;</span><br><span class="line">private Double money;</span><br><span class="line">&#x2F;&#x2F;多对一关系映射：从表方应该包含一个主表方的对象引用</span><br><span class="line">private User user;</span><br><span class="line">public User getUser() &#123;</span><br><span class="line">return user;</span><br><span class="line">&#125;</span><br><span class="line">public void setUser(User user) &#123;</span><br><span class="line">this.user &#x3D; user;</span><br><span class="line">&#125;</span><br><span class="line">public Integer getId() &#123;</span><br><span class="line">return id;</span><br><span class="line">&#125;</span><br><span class="line">public void setId(Integer id) &#123;</span><br><span class="line">this.id &#x3D; id;</span><br><span class="line">&#125;</span><br><span class="line">public Integer getUid() &#123;</span><br><span class="line">return uid;</span><br><span class="line">&#125;</span><br><span class="line">public void setUid(Integer uid) &#123;this.uid &#x3D; uid;</span><br><span class="line">&#125;</span><br><span class="line">public Double getMoney() &#123;</span><br><span class="line">return money;</span><br><span class="line">&#125;</span><br><span class="line">public void setMoney(Double money) &#123;</span><br><span class="line">this.money &#x3D; money;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">public String toString() &#123;</span><br><span class="line">return &quot;Account [id&#x3D;&quot; + id + &quot;, uid&#x3D;&quot; + uid + &quot;, money&#x3D;&quot; + money + &quot;]&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="在用户的映射配置文件中配置-2"><a href="#在用户的映射配置文件中配置-2" class="headerlink" title="在用户的映射配置文件中配置"></a>在用户的映射配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 更新用户--&gt;</span><br><span class="line">&lt;update id&#x3D;&quot;updateUser&quot; parameterType&#x3D;&quot;com.syx.domain.User&quot;&gt;</span><br><span class="line">    update user set username&#x3D;#&#123;username&#125;,birthday&#x3D;#&#123;birthday&#125;,sex&#x3D;#&#123;sex&#125;,address&#x3D;#&#123;address&#125; where id&#x3D;#&#123;id&#125;</span><br><span class="line">&lt;&#x2F;update&gt;</span><br></pre></td></tr></table></figure>
 
-<p>添加账户的持久层接口并使用注解配置  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IAccountDao &#123;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 查询所有账户，采用延迟加载的方式查询账户的所属用户</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Select(&quot;select * from account&quot;)</span><br><span class="line">@Results(id&#x3D;&quot;accountMap&quot;,</span><br><span class="line">value&#x3D; &#123;</span><br><span class="line">@Result(id&#x3D;true,column&#x3D;&quot;id&quot;,property&#x3D;&quot;id&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;uid&quot;,property&#x3D;&quot;uid&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;money&quot;,property&#x3D;&quot;money&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;uid&quot;,</span><br><span class="line">property&#x3D;&quot;user&quot;,</span><br><span class="line">one&#x3D;@One(select&#x3D;&quot;com.itheima.dao.IUserDao.findById&quot;,</span><br><span class="line">fetchType&#x3D;FetchType.LAZY)</span><br><span class="line">)</span><br><span class="line">&#125;)</span><br><span class="line">List&lt;Account&gt; findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="加入更新的测试方法"><a href="#加入更新的测试方法" class="headerlink" title="加入更新的测试方法"></a>加入更新的测试方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">  public void updateUser()&#123;</span><br><span class="line">      User user &#x3D; new User();</span><br><span class="line">      user.setId(51);</span><br><span class="line">      user.setUsername(&quot;Mybatis update&quot;);</span><br><span class="line">      user.setSex(&quot;男&quot;);</span><br><span class="line">      user.setAddress(&quot;河南&quot;);</span><br><span class="line">      user.setBirthday(new Date());</span><br><span class="line">      userDao.updateUser(user);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-<p>添加用户的持久层接口并使用注解配置  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IUserDao &#123;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 查询所有用户</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Select(&quot;select * from user&quot;)</span><br><span class="line">@Results(id&#x3D;&quot;userMap&quot;,</span><br><span class="line">value&#x3D; &#123;</span><br><span class="line">@Result(id&#x3D;true,column&#x3D;&quot;id&quot;,property&#x3D;&quot;userId&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;username&quot;,property&#x3D;&quot;userName&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;sex&quot;,property&#x3D;&quot;userSex&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;address&quot;,property&#x3D;&quot;userAddress&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;birthday&quot;,property&#x3D;&quot;userBirthday&quot;)</span><br><span class="line">&#125;)</span><br><span class="line">List&lt;User&gt; findAll();</span><br><span class="line">&#x2F;**</span><br><span class="line">* 根据 id 查询一个用户</span><br><span class="line">* @param userId</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Select(&quot;select * from user where id &#x3D; #&#123;uid&#125; &quot;)</span><br><span class="line">@ResultMap(&quot;userMap&quot;)</span><br><span class="line">User findById(Integer userId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="用户删除"><a href="#用户删除" class="headerlink" title="用户删除"></a>用户删除</h2><h3 id="在持久层接口中添加删除方法"><a href="#在持久层接口中添加删除方法" class="headerlink" title="在持久层接口中添加删除方法"></a>在持久层接口中添加删除方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 删除用户</span><br><span class="line"> *&#x2F;</span><br><span class="line">int deleteUser(Integer userId);</span><br></pre></td></tr></table></figure>
 
-<h3 id="使用注解实现一对多复杂关系映射"><a href="#使用注解实现一对多复杂关系映射" class="headerlink" title="使用注解实现一对多复杂关系映射"></a>使用注解实现一对多复杂关系映射</h3><blockquote>
-<p> User 实体类加入 List<Account>  </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class User implements Serializable &#123;</span><br><span class="line">private Integer userId;</span><br><span class="line">private String userName;</span><br><span class="line">private Date userBirthday;</span><br><span class="line">private String userSex;</span><br><span class="line">private String userAddress;</span><br><span class="line">&#x2F;&#x2F;一对多关系映射：主表方法应该包含一个从表方的集合引用</span><br><span class="line">private List&lt;Account&gt; accounts;</span><br><span class="line">public List&lt;Account&gt; getAccounts() &#123;</span><br><span class="line">return accounts;</span><br><span class="line">&#125;</span><br><span class="line">public void setAccounts(List&lt;Account&gt; accounts) &#123;this.accounts &#x3D; accounts;</span><br><span class="line">&#125;</span><br><span class="line">public Integer getUserId() &#123;</span><br><span class="line">return userId;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserId(Integer userId) &#123;</span><br><span class="line">this.userId &#x3D; userId;</span><br><span class="line">&#125;</span><br><span class="line">public String getUserName() &#123;</span><br><span class="line">return userName;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserName(String userName) &#123;</span><br><span class="line">this.userName &#x3D; userName;</span><br><span class="line">&#125;</span><br><span class="line">public Date getUserBirthday() &#123;</span><br><span class="line">return userBirthday;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserBirthday(Date userBirthday) &#123;</span><br><span class="line">this.userBirthday &#x3D; userBirthday;</span><br><span class="line">&#125;</span><br><span class="line">public String getUserSex() &#123;</span><br><span class="line">return userSex;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserSex(String userSex) &#123;</span><br><span class="line">this.userSex &#x3D; userSex;</span><br><span class="line">&#125;</span><br><span class="line">public String getUserAddress() &#123;</span><br><span class="line">return userAddress;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserAddress(String userAddress) &#123;</span><br><span class="line">this.userAddress &#x3D; userAddress;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">public String toString() &#123;</span><br><span class="line">return &quot;User [userId&#x3D;&quot; + userId + &quot;, userName&#x3D;&quot; + userName + &quot;, userBirthday&#x3D;&quot;</span><br><span class="line">+ userBirthday + &quot;, userSex&#x3D;&quot;</span><br><span class="line">+ userSex + &quot;, userAddress&#x3D;&quot; + userAddress + &quot;]&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="在用户的映射配置文件中配置-3"><a href="#在用户的映射配置文件中配置-3" class="headerlink" title="在用户的映射配置文件中配置"></a>在用户的映射配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 删除用户--&gt;</span><br><span class="line">&lt;delete id&#x3D;&quot;deleteUser&quot; parameterType&#x3D;&quot;Integer&quot;&gt;</span><br><span class="line">    delete from user where id &#x3D; #&#123;uid&#125;</span><br><span class="line">&lt;&#x2F;delete&gt;</span><br></pre></td></tr></table></figure>
 
-<p>编写用户的持久层接口并使用注解配置  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IUserDao &#123;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 查询所有用户</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Select(&quot;select * from user&quot;)</span><br><span class="line">@Results(id&#x3D;&quot;userMap&quot;,</span><br><span class="line">value&#x3D; &#123;</span><br><span class="line">@Result(id&#x3D;true,column&#x3D;&quot;id&quot;,property&#x3D;&quot;userId&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;username&quot;,property&#x3D;&quot;userName&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;sex&quot;,property&#x3D;&quot;userSex&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;address&quot;,property&#x3D;&quot;userAddress&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;birthday&quot;,property&#x3D;&quot;userBirthday&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;id&quot;,property&#x3D;&quot;accounts&quot;,</span><br><span class="line">many&#x3D;@Many(</span><br><span class="line">select&#x3D;&quot;com.itheima.dao.IAccountDao.findByUid&quot;,</span><br><span class="line">fetchType&#x3D;FetchType.LAZY</span><br><span class="line">)</span><br><span class="line">)</span><br><span class="line">&#125;)</span><br><span class="line">List&lt;User&gt; findAll();</span><br><span class="line">&#125;</span><br><span class="line">@Many:</span><br><span class="line">相当于&lt;collection&gt;的配置</span><br><span class="line">select 属性：代表将要执行的 sql 语句</span><br><span class="line">fetchType 属性：代表加载方式，一般如果要延迟加载都设置为 LAZY 的值</span><br></pre></td></tr></table></figure>
+<h3 id="加入删除的测试方法"><a href="#加入删除的测试方法" class="headerlink" title="加入删除的测试方法"></a>加入删除的测试方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void deleteUser()&#123;</span><br><span class="line">    userDao.deleteUser(51);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>编写账户的持久层接口并使用注解配置  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IAccountDao &#123;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 根据用户 id 查询用户下的所有账户</span><br><span class="line">* @param userId</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Select(&quot;select * from account where uid &#x3D; #&#123;uid&#125; &quot;)</span><br><span class="line">List&lt;Account&gt; findByUid(Integer userId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="用户模糊查询"><a href="#用户模糊查询" class="headerlink" title="用户模糊查询"></a>用户模糊查询</h2><h3 id="在持久层接口中添加模糊查询方法"><a href="#在持久层接口中添加模糊查询方法" class="headerlink" title="在持久层接口中添加模糊查询方法"></a>在持久层接口中添加模糊查询方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 根据名字模糊查询</span><br><span class="line"> *&#x2F;</span><br><span class="line">List&lt;User&gt; findByName(String username);</span><br></pre></td></tr></table></figure>
 
-<h3 id="mybatis-基于注解的二级缓存"><a href="#mybatis-基于注解的二级缓存" class="headerlink" title="mybatis 基于注解的二级缓存"></a>mybatis 基于注解的二级缓存</h3><p>在 SqlMapConfig 中开启二级缓存支持  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 配置二级缓存 --&gt;</span><br><span class="line">&lt;settings&gt;</span><br><span class="line">&lt;!-- 开启二级缓存的支持 --&gt;</span><br><span class="line">&lt;setting name&#x3D;&quot;cacheEnabled&quot; value&#x3D;&quot;true&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;settings&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="在用户的映射配置文件中配置-4"><a href="#在用户的映射配置文件中配置-4" class="headerlink" title="在用户的映射配置文件中配置"></a>在用户的映射配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 根据名字模糊查询--&gt;</span><br><span class="line">&lt;select id&#x3D;&quot;findByName&quot; resultType&#x3D;&quot;com.syx.domain.User&quot; parameterType&#x3D;&quot;String&quot;&gt;</span><br><span class="line">    select * from user where username like #&#123;username&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
 
-<p>在持久层接口中使用注解配置二级缓存  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@CacheNamespace(blocking&#x3D;true)&#x2F;&#x2F;mybatis 基于注解方式实现配置二级缓存</span><br><span class="line">public interface IUserDao &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试方法-1"><a href="#测试方法-1" class="headerlink" title="测试方法"></a>测试方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void findByName()&#123;</span><br><span class="line">    List&lt;User&gt; userList &#x3D; userDao.findByName(&quot;%王%&quot;);</span><br><span class="line">    for (User user : userList) &#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询使用聚合函数"><a href="#查询使用聚合函数" class="headerlink" title="查询使用聚合函数"></a>查询使用聚合函数</h2><h3 id="在持久层接口中添加模糊查询方法-1"><a href="#在持久层接口中添加模糊查询方法-1" class="headerlink" title="在持久层接口中添加模糊查询方法"></a>在持久层接口中添加模糊查询方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 查询总记录数</span><br><span class="line"> *&#x2F;</span><br><span class="line">int findTotal();</span><br></pre></td></tr></table></figure>
+
+<h3 id="在用户的映射配置文件中配置-5"><a href="#在用户的映射配置文件中配置-5" class="headerlink" title="在用户的映射配置文件中配置"></a>在用户的映射配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--查询总记录条数 --&gt;</span><br><span class="line"> &lt;select id&#x3D;&quot;findTotal&quot; resultType&#x3D;&quot;Integer&quot;&gt;</span><br><span class="line">     select count(*) from user</span><br><span class="line"> &lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="加入聚合查询的测试方法"><a href="#加入聚合查询的测试方法" class="headerlink" title="加入聚合查询的测试方法"></a>加入聚合查询的测试方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">public  void findTotal()&#123;</span><br><span class="line">    int total &#x3D; userDao.findTotal();</span><br><span class="line">    System.out.println(total);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -1191,49 +1167,73 @@
       </tags>
   </entry>
   <entry>
-    <title>Mybatis学习笔记（二）</title>
-    <url>/2020/03/28/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
-    <content><![CDATA[<h1 id="Mybatis学习笔记（二）"><a href="#Mybatis学习笔记（二）" class="headerlink" title="Mybatis学习笔记（二）"></a><center>Mybatis学习笔记（二）</center></h1><h2 id="根据ID查询"><a href="#根据ID查询" class="headerlink" title="根据ID查询"></a>根据ID查询</h2><h3 id="在持久层接口中添加-findById-方法"><a href="#在持久层接口中添加-findById-方法" class="headerlink" title="在持久层接口中添加 findById 方法"></a>在持久层接口中添加 findById 方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 根据Id查询</span><br><span class="line"> *&#x2F;</span><br><span class="line">User findById(int userId);</span><br></pre></td></tr></table></figure>
+    <title>Mybatis学习笔记（五）</title>
+    <url>/2020/03/31/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="Mybatis学习笔记（五）"><a href="#Mybatis学习笔记（五）" class="headerlink" title="Mybatis学习笔记（五）"></a><center>Mybatis学习笔记（五）</center></h1><h2 id="Mybatis-延迟加载策略"><a href="#Mybatis-延迟加载策略" class="headerlink" title="Mybatis 延迟加载策略"></a>Mybatis 延迟加载策略</h2><h3 id="何为延迟加载"><a href="#何为延迟加载" class="headerlink" title="何为延迟加载?"></a>何为延迟加载?</h3><blockquote>
+<p>延迟加载：<br>就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。延迟加载也称懒加载.<br>好处： 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多张表速度要快。<br>坏处：<br>因为只有当需要用到数据时，才会进行数据库查询，这样在大批量数据查询时，因为查询工作也要消耗<br>时间，所以可能造成用户等待时间变长，造成用户体验下降  </p>
+</blockquote>
+<h3 id="实现需求"><a href="#实现需求" class="headerlink" title="实现需求"></a>实现需求</h3><blockquote>
+<p>需求：<br>查询账户(Account)信息并且关联查询用户(User)信息。如果先查询账户(Account)信息即可满足要<br>求，当我们需要查询用户(User)信息时再查询用户(User)信息。把对用户(User)信息的按需去查询就是延迟加<br>载。  </p>
+</blockquote>
+<h3 id="使用-assocation-实现延迟加载"><a href="#使用-assocation-实现延迟加载" class="headerlink" title="使用 assocation 实现延迟加载"></a>使用 assocation 实现延迟加载</h3><p>账户的持久层 DAO 接口  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IAccountDao &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 查询所有</span><br><span class="line">     *&#x2F;</span><br><span class="line">    List&lt;Account&gt; findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="在用户的映射配置文件中配置"><a href="#在用户的映射配置文件中配置" class="headerlink" title="在用户的映射配置文件中配置"></a>在用户的映射配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 根据Id查询--&gt;</span><br><span class="line">&lt;select id&#x3D;&quot;findById&quot; resultType&#x3D;&quot;com.syx.domain.User&quot; parameterType&#x3D;&quot;int&quot;&gt;</span><br><span class="line">    select * from user  where id &#x3D; #&#123;uid&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
+<p>账户的持久层映射文件  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">        PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;&#x2F;DTD Mapper 3.0&#x2F;&#x2F;EN&quot;</span><br><span class="line">        &quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;mapper namespace&#x3D;&quot;com.syx.dao.IAccountDao&quot;&gt;</span><br><span class="line">    &lt;!--定义封装account和user的resultMap--&gt;</span><br><span class="line">    &lt;resultMap id&#x3D;&quot;accountUserMao&quot; type&#x3D;&quot;account&quot;&gt;</span><br><span class="line">        &lt;id property&#x3D;&quot;id&quot; column&#x3D;&quot;id&quot;&#x2F;&gt;</span><br><span class="line">        &lt;result property&#x3D;&quot;uid&quot; column&#x3D;&quot;uid&quot;&#x2F;&gt;</span><br><span class="line">        &lt;result property&#x3D;&quot;money&quot; column&#x3D;&quot;money&quot;&#x2F;&gt;</span><br><span class="line">        &lt;!--一对一关系映射，配置User的内容--&gt;</span><br><span class="line">        &lt;association property&#x3D;&quot;user&quot; column&#x3D;&quot;uid&quot; javaType&#x3D;&quot;user&quot; select&#x3D;&quot;com.syx.dao.IUserDao.findById&quot;&gt;</span><br><span class="line">        &lt;&#x2F;association&gt;</span><br><span class="line">    &lt;&#x2F;resultMap&gt;</span><br><span class="line">&lt;select id&#x3D;&quot;findAll&quot; resultMap&#x3D;&quot;accountUserMao&quot;&gt;</span><br><span class="line">    SELECT * from  account</span><br><span class="line">&lt;&#x2F;select&gt;</span><br><span class="line">    &lt;select id&#x3D;&quot;findAccountByUid&quot; resultType&#x3D;&quot;account&quot; parameterType&#x3D;&quot;int&quot;&gt;</span><br><span class="line">        select * from account where uid&#x3D; #&#123;uid&#125;</span><br><span class="line">    &lt;&#x2F;select&gt;</span><br><span class="line">&lt;&#x2F;mapper&gt;</span><br></pre></td></tr></table></figure>
 
-<p>细节：<br><strong>resultType 属性</strong>：用于指定结果集的类型。<br><strong>parameterType 属性</strong>：  用于指定传入参数的类型。<br><strong>sql 语句中使用#{}字符</strong>：它代表占位符， 相当于原来 jdbc 部分所学的?，都是用于执行语句时替换实际的数据。具体的数据是由#{}里面的内容决定的。<br> <strong>#{}中内容的写法</strong>：由于数据类型是基本类型，所以此处可以随意写。  </p>
-<h3 id="在测试类添加测试"><a href="#在测试类添加测试" class="headerlink" title="在测试类添加测试"></a>在测试类添加测试</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MybatisTest &#123;</span><br><span class="line">    private InputStream in ;</span><br><span class="line">    private SqlSessionFactory factory;</span><br><span class="line">    private SqlSession session;</span><br><span class="line">    private IUserDao userDao;</span><br><span class="line">    @Before</span><br><span class="line">    public void init() throws Exception&#123;</span><br><span class="line">        &#x2F;&#x2F;1.读取配置文件</span><br><span class="line">       in &#x3D; Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);</span><br><span class="line">        &#x2F;&#x2F;2.创建构建者对象</span><br><span class="line">        SqlSessionFactoryBuilder builder &#x3D; new SqlSessionFactoryBuilder();</span><br><span class="line">        &#x2F;&#x2F; 3.创建SqlSession工厂对象</span><br><span class="line">         factory &#x3D; builder.build(in);</span><br><span class="line">        &#x2F;&#x2F;4.创建SqlSession对向</span><br><span class="line">        session &#x3D; factory.openSession();</span><br><span class="line">        &#x2F;&#x2F;5.创建Dao代理对象</span><br><span class="line">        userDao &#x3D; session.getMapper(IUserDao.class);</span><br><span class="line">        &#125;</span><br><span class="line">        @After</span><br><span class="line">        public void destroy() throws Exception&#123;</span><br><span class="line">            session.commit();</span><br><span class="line">            &#x2F;&#x2F;7.释放资源</span><br><span class="line">            session.close();</span><br><span class="line">            in.close();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void findById()&#123;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;6.执行操作</span><br><span class="line">        User user &#x3D; userDao.findById(41);</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>select</strong>： 填写我们要调用的 select 映射的 id<br><strong>column</strong> ： 填写我们要传递给 select 映射的参数  </p>
+<p>用户的持久层接口和映射文件  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 根据Id查询--&gt;</span><br><span class="line">   &lt;select id&#x3D;&quot;findById&quot; resultType&#x3D;&quot;com.syx.domain.User&quot; parameterType&#x3D;&quot;int&quot;&gt;</span><br><span class="line">       select * from user  where id &#x3D; #&#123;uid&#125;</span><br><span class="line">   &lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="保存操作"><a href="#保存操作" class="headerlink" title="保存操作"></a>保存操作</h2><h3 id="在持久层接口中新增方法"><a href="#在持久层接口中新增方法" class="headerlink" title="在持久层接口中新增方法"></a>在持久层接口中新增方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> *保存用户</span><br><span class="line"> *&#x2F;</span><br><span class="line">int saveUser(User user);</span><br></pre></td></tr></table></figure>
+<p>开启 Mybatis 的延迟加载策略  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--配置参数--&gt;</span><br><span class="line">    &lt;settings&gt;</span><br><span class="line">        &lt;!--开启延迟加载的全局开关--&gt;</span><br><span class="line">        &lt;setting name&#x3D;&quot;lazyLoadingEnabled&quot; value&#x3D;&quot;true&quot;&#x2F;&gt;</span><br><span class="line">        &lt;setting name&#x3D;&quot;aggressiveLazyLoading&quot; value&#x3D;&quot;false&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;settings&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="在用户的映射配置文件中配置-1"><a href="#在用户的映射配置文件中配置-1" class="headerlink" title="在用户的映射配置文件中配置"></a>在用户的映射配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 保存用户--&gt;</span><br><span class="line">&lt;insert id&#x3D;&quot;saveUser&quot; parameterType&#x3D;&quot;com.syx.domain.User&quot;&gt;</span><br><span class="line">    insert into user(username,birthday,sex,address) values(#&#123;username&#125;,#&#123;birthday&#125;,#&#123;sex&#125;,#&#123;address&#125;)</span><br><span class="line">&lt;&#x2F;insert&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Mybatis-缓存"><a href="#Mybatis-缓存" class="headerlink" title="Mybatis 缓存"></a>Mybatis 缓存</h2><h3 id="Mybatis-一级缓存"><a href="#Mybatis-一级缓存" class="headerlink" title="Mybatis 一级缓存"></a>Mybatis 一级缓存</h3><blockquote>
+<p>一级缓存是 SqlSession 范围的缓存，当调用 SqlSession 的修改，添加，删除， commit()， close()等  方法时，就会清空一级缓存。  </p>
+</blockquote>
+<h3 id="Mybatis-二级缓存"><a href="#Mybatis-二级缓存" class="headerlink" title="Mybatis 二级缓存"></a>Mybatis 二级缓存</h3><p>二级缓存的开启与关闭 :</p>
+<p>第一步：在 SqlMapConfig.xml 文件开启二级缓存  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 开启二级缓存的支持 --&gt;</span><br><span class="line">&lt;setting name&#x3D;&quot;cacheEnabled&quot; value&#x3D;&quot;true&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;settings&gt;</span><br><span class="line">因为 cacheEnabled 的取值默认就为 true，所以这一步可以省略不配置。为 true 代表开启二级缓存；为</span><br><span class="line">false 代表不开启二级缓存</span><br></pre></td></tr></table></figure>
 
-<p>细节：<br>parameterType 属性：代表参数的类型，因为我们要传入的是一个类的对象，所以类型就写类的全名称。<br>sql 语句中使用#{}字符：它代表占位符， 相当于原来 jdbc 部分所学的?，都是用于执行语句时替换实际的数据。具体的数据是由#{}里面的内容决定的。<br>#{}中内容的写法：由于我们保存方法的参数是 一个 User 对象，此处要写 User 对象中的属性名称。它用的是 ognl 表达式。<br>ognl 表达式：<br>它是 apache 提供的一种表达式语言， 全称是Object Graphic Navigation Language 对象图导航语言它是按照一定的语法格式来获取数据的。语法格式就是使用 #{对象.对象}的方式</p>
-<p>#{user.username}它会先去找 user 对象，然后在 user 对象中找到 username 属性，并调用getUsername()方法把值取出来。但是我们在 parameterType 属性上指定了实体类名称，所以可以省略 user.而直接写 username。  </p>
-<h3 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a>测试方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void saveUser()&#123;</span><br><span class="line">        User user &#x3D; new User();</span><br><span class="line">        user.setUsername(&quot;Mybatis save&quot;);</span><br><span class="line">        user.setSex(&quot;男&quot;);</span><br><span class="line">        user.setAddress(&quot;河南&quot;);</span><br><span class="line">        user.setBirthday(new Date());</span><br><span class="line">        int i &#x3D; userDao.saveUser(user);</span><br><span class="line">        System.out.println(i);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>第二步：配置相关的 Mapper 映射文件 :</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;cache&gt;标签表示当前这个 mapper 映射将使用二级缓存，区分的标准就看 mapper 的 namespace 值。</span><br><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;&#x2F;DTD Mapper 3.0&#x2F;&#x2F;EN&quot;</span><br><span class="line">&quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;mapper namespace&#x3D;&quot;com.itheima.dao.IUserDao&quot;&gt;</span><br><span class="line">&lt;!-- 开启二级缓存的支持 --&gt;</span><br><span class="line">&lt;cache&gt;&lt;&#x2F;cache&gt;</span><br><span class="line">&lt;&#x2F;mapper&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="问题扩展：新增用户-id-的返回值"><a href="#问题扩展：新增用户-id-的返回值" class="headerlink" title="问题扩展：新增用户 id 的返回值"></a>问题扩展：新增用户 id 的返回值</h3><p>新增用户后， 同时还要返回当前新增用户的 id 值，因为 id 是由数据库的自动增长来实现的，所以就相当于我们要在新增后将自动增长 auto_increment 的值返回。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 保存用户--&gt;</span><br><span class="line">&lt;insert id&#x3D;&quot;saveUser&quot; parameterType&#x3D;&quot;com.syx.domain.User&quot;&gt;</span><br><span class="line">    &lt;!-- 配置保存时获取插入的 id --&gt;</span><br><span class="line">    &lt;selectKey keyColumn&#x3D;&quot;id&quot; keyProperty&#x3D;&quot;id&quot; resultType&#x3D;&quot;int&quot;&gt;</span><br><span class="line">        select last_insert_id();</span><br><span class="line">    &lt;&#x2F;selectKey&gt;</span><br><span class="line">    insert into user(username,birthday,sex,address) values(#&#123;username&#125;,#&#123;birthday&#125;,#&#123;sex&#125;,#&#123;address&#125;)</span><br><span class="line">&lt;&#x2F;insert&gt;</span><br></pre></td></tr></table></figure>
+<p>第三步： 配置 statement 上面的 useCache 属性  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 根据 id 查询 --&gt;</span><br><span class="line">&lt;select id&#x3D;&quot;findById&quot; resultType&#x3D;&quot;user&quot; parameterType&#x3D;&quot;int&quot; useCache&#x3D;&quot;true&quot;&gt;</span><br><span class="line">select * from user where id &#x3D; #&#123;uid&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br><span class="line">将 UserDao.xml 映射文件中的&lt;select&gt;标签中设置 useCache&#x3D;”true”代表当前这个 statement 要使用</span><br><span class="line">二级缓存，如果不使用二级缓存可以设置为 false。</span><br><span class="line">注意： 针对每次查询都需要最新的数据 sql，要设置成 useCache&#x3D;false，禁用二级缓存。</span><br></pre></td></tr></table></figure>
 
-<h2 id="用户更新"><a href="#用户更新" class="headerlink" title="用户更新"></a>用户更新</h2><h3 id="在持久层接口中添加更新方法"><a href="#在持久层接口中添加更新方法" class="headerlink" title="在持久层接口中添加更新方法"></a>在持久层接口中添加更新方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 更新用户</span><br><span class="line"> *&#x2F;</span><br><span class="line">int updateUser(User user);</span><br></pre></td></tr></table></figure>
+<h2 id="使用注解实现复杂关系映射开发"><a href="#使用注解实现复杂关系映射开发" class="headerlink" title="使用注解实现复杂关系映射开发"></a>使用注解实现复杂关系映射开发</h2><h3 id="复杂关系映射的注解说明"><a href="#复杂关系映射的注解说明" class="headerlink" title="复杂关系映射的注解说明"></a>复杂关系映射的注解说明</h3><blockquote>
+<p>@Results 注解<br>代替的是标签<resultMap><br>该注解中可以使用单个@Result 注解，也可以使用@Result 集合<br>@Results（{@Result（）， @Result（） }）或@Results（@Result（））<br>@Resutl 注解<br>代替了 <id>标签和<result>标签<br>@Result 中 属性介绍：<br>id 是否是主键字段<br>column 数据库的列名<br>property 需要装配的属性名</p>
+<p>one 需要使用的@One 注解（@Result（one=@One）（）））</p>
+<p>many 需要使用的@Many 注解（@Result（many=@many）（）））</p>
+<p>@One 注解（一对一）<br>代替了<assocation>标签，是多表查询的关键，在注解中用来指定子查询返回单一对象。<br>@One 注解属性介绍：<br>select 指定用来多表查询的 sqlmapper<br>fetchType 会覆盖全局的配置参数 lazyLoadingEnabled。。<br>使用格式：<br>@Result(column=” “,property=””,one=@One(select=””))<br>@Many 注解（多对一）<br>代替了<Collection>标签,是是多表查询的关键，在注解中用来指定子查询返回对象集合。<br>注意：聚集元素用来处理“一对多”的关系。需要指定映射的 Java 实体类的属性，属性的 javaType<br>（一般为 ArrayList）但是注解中可以不定义；<br>使用格式：<br>@Result(property=””,column=””,many=@Many(select=””))</p>
+</blockquote>
+<h3 id="使用注解实现一对一复杂关系映射及延迟加载"><a href="#使用注解实现一对一复杂关系映射及延迟加载" class="headerlink" title="使用注解实现一对一复杂关系映射及延迟加载"></a>使用注解实现一对一复杂关系映射及延迟加载</h3><p>添加 User 实体类及 Account 实体类  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class User implements Serializable &#123;</span><br><span class="line">private Integer userId;</span><br><span class="line">private String userName;</span><br><span class="line">private Date userBirthday;</span><br><span class="line">private String userSex;</span><br><span class="line">private String userAddress;</span><br><span class="line">public Integer getUserId() &#123;</span><br><span class="line">return userId;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserId(Integer userId) &#123;</span><br><span class="line">this.userId &#x3D; userId;</span><br><span class="line">&#125;</span><br><span class="line">public String getUserName() &#123;</span><br><span class="line">return userName;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserName(String userName) &#123;</span><br><span class="line">this.userName &#x3D; userName;</span><br><span class="line">&#125;</span><br><span class="line">public Date getUserBirthday() &#123;</span><br><span class="line">return userBirthday;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserBirthday(Date userBirthday) &#123;</span><br><span class="line">this.userBirthday &#x3D; userBirthday;</span><br><span class="line">&#125;</span><br><span class="line">public String getUserSex() &#123;</span><br><span class="line">return userSex;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserSex(String userSex) &#123;</span><br><span class="line">this.userSex &#x3D; userSex;</span><br><span class="line">&#125;</span><br><span class="line">public String getUserAddress() &#123;</span><br><span class="line">return userAddress;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserAddress(String userAddress) &#123;</span><br><span class="line">this.userAddress &#x3D; userAddress;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">public String toString() &#123;</span><br><span class="line">return &quot;User [userId&#x3D;&quot; + userId + &quot;, userName&#x3D;&quot; + userName + &quot;, userBirthday&#x3D;&quot;</span><br><span class="line">+ userBirthday + &quot;, userSex&#x3D;&quot;</span><br><span class="line">+ userSex + &quot;, userAddress&#x3D;&quot; + userAddress + &quot;]&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="在用户的映射配置文件中配置-2"><a href="#在用户的映射配置文件中配置-2" class="headerlink" title="在用户的映射配置文件中配置"></a>在用户的映射配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 更新用户--&gt;</span><br><span class="line">&lt;update id&#x3D;&quot;updateUser&quot; parameterType&#x3D;&quot;com.syx.domain.User&quot;&gt;</span><br><span class="line">    update user set username&#x3D;#&#123;username&#125;,birthday&#x3D;#&#123;birthday&#125;,sex&#x3D;#&#123;sex&#125;,address&#x3D;#&#123;address&#125; where id&#x3D;#&#123;id&#125;</span><br><span class="line">&lt;&#x2F;update&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Account implements Serializable &#123;</span><br><span class="line">private Integer id;</span><br><span class="line">private Integer uid;</span><br><span class="line">private Double money;</span><br><span class="line">&#x2F;&#x2F;多对一关系映射：从表方应该包含一个主表方的对象引用</span><br><span class="line">private User user;</span><br><span class="line">public User getUser() &#123;</span><br><span class="line">return user;</span><br><span class="line">&#125;</span><br><span class="line">public void setUser(User user) &#123;</span><br><span class="line">this.user &#x3D; user;</span><br><span class="line">&#125;</span><br><span class="line">public Integer getId() &#123;</span><br><span class="line">return id;</span><br><span class="line">&#125;</span><br><span class="line">public void setId(Integer id) &#123;</span><br><span class="line">this.id &#x3D; id;</span><br><span class="line">&#125;</span><br><span class="line">public Integer getUid() &#123;</span><br><span class="line">return uid;</span><br><span class="line">&#125;</span><br><span class="line">public void setUid(Integer uid) &#123;this.uid &#x3D; uid;</span><br><span class="line">&#125;</span><br><span class="line">public Double getMoney() &#123;</span><br><span class="line">return money;</span><br><span class="line">&#125;</span><br><span class="line">public void setMoney(Double money) &#123;</span><br><span class="line">this.money &#x3D; money;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">public String toString() &#123;</span><br><span class="line">return &quot;Account [id&#x3D;&quot; + id + &quot;, uid&#x3D;&quot; + uid + &quot;, money&#x3D;&quot; + money + &quot;]&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="加入更新的测试方法"><a href="#加入更新的测试方法" class="headerlink" title="加入更新的测试方法"></a>加入更新的测试方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">  public void updateUser()&#123;</span><br><span class="line">      User user &#x3D; new User();</span><br><span class="line">      user.setId(51);</span><br><span class="line">      user.setUsername(&quot;Mybatis update&quot;);</span><br><span class="line">      user.setSex(&quot;男&quot;);</span><br><span class="line">      user.setAddress(&quot;河南&quot;);</span><br><span class="line">      user.setBirthday(new Date());</span><br><span class="line">      userDao.updateUser(user);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>添加账户的持久层接口并使用注解配置  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IAccountDao &#123;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 查询所有账户，采用延迟加载的方式查询账户的所属用户</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Select(&quot;select * from account&quot;)</span><br><span class="line">@Results(id&#x3D;&quot;accountMap&quot;,</span><br><span class="line">value&#x3D; &#123;</span><br><span class="line">@Result(id&#x3D;true,column&#x3D;&quot;id&quot;,property&#x3D;&quot;id&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;uid&quot;,property&#x3D;&quot;uid&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;money&quot;,property&#x3D;&quot;money&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;uid&quot;,</span><br><span class="line">property&#x3D;&quot;user&quot;,</span><br><span class="line">one&#x3D;@One(select&#x3D;&quot;com.itheima.dao.IUserDao.findById&quot;,</span><br><span class="line">fetchType&#x3D;FetchType.LAZY)</span><br><span class="line">)</span><br><span class="line">&#125;)</span><br><span class="line">List&lt;Account&gt; findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="用户删除"><a href="#用户删除" class="headerlink" title="用户删除"></a>用户删除</h2><h3 id="在持久层接口中添加删除方法"><a href="#在持久层接口中添加删除方法" class="headerlink" title="在持久层接口中添加删除方法"></a>在持久层接口中添加删除方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 删除用户</span><br><span class="line"> *&#x2F;</span><br><span class="line">int deleteUser(Integer userId);</span><br></pre></td></tr></table></figure>
+<p>添加用户的持久层接口并使用注解配置  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IUserDao &#123;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 查询所有用户</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Select(&quot;select * from user&quot;)</span><br><span class="line">@Results(id&#x3D;&quot;userMap&quot;,</span><br><span class="line">value&#x3D; &#123;</span><br><span class="line">@Result(id&#x3D;true,column&#x3D;&quot;id&quot;,property&#x3D;&quot;userId&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;username&quot;,property&#x3D;&quot;userName&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;sex&quot;,property&#x3D;&quot;userSex&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;address&quot;,property&#x3D;&quot;userAddress&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;birthday&quot;,property&#x3D;&quot;userBirthday&quot;)</span><br><span class="line">&#125;)</span><br><span class="line">List&lt;User&gt; findAll();</span><br><span class="line">&#x2F;**</span><br><span class="line">* 根据 id 查询一个用户</span><br><span class="line">* @param userId</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Select(&quot;select * from user where id &#x3D; #&#123;uid&#125; &quot;)</span><br><span class="line">@ResultMap(&quot;userMap&quot;)</span><br><span class="line">User findById(Integer userId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="在用户的映射配置文件中配置-3"><a href="#在用户的映射配置文件中配置-3" class="headerlink" title="在用户的映射配置文件中配置"></a>在用户的映射配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 删除用户--&gt;</span><br><span class="line">&lt;delete id&#x3D;&quot;deleteUser&quot; parameterType&#x3D;&quot;Integer&quot;&gt;</span><br><span class="line">    delete from user where id &#x3D; #&#123;uid&#125;</span><br><span class="line">&lt;&#x2F;delete&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="使用注解实现一对多复杂关系映射"><a href="#使用注解实现一对多复杂关系映射" class="headerlink" title="使用注解实现一对多复杂关系映射"></a>使用注解实现一对多复杂关系映射</h3><blockquote>
+<p> User 实体类加入 List<Account>  </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class User implements Serializable &#123;</span><br><span class="line">private Integer userId;</span><br><span class="line">private String userName;</span><br><span class="line">private Date userBirthday;</span><br><span class="line">private String userSex;</span><br><span class="line">private String userAddress;</span><br><span class="line">&#x2F;&#x2F;一对多关系映射：主表方法应该包含一个从表方的集合引用</span><br><span class="line">private List&lt;Account&gt; accounts;</span><br><span class="line">public List&lt;Account&gt; getAccounts() &#123;</span><br><span class="line">return accounts;</span><br><span class="line">&#125;</span><br><span class="line">public void setAccounts(List&lt;Account&gt; accounts) &#123;this.accounts &#x3D; accounts;</span><br><span class="line">&#125;</span><br><span class="line">public Integer getUserId() &#123;</span><br><span class="line">return userId;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserId(Integer userId) &#123;</span><br><span class="line">this.userId &#x3D; userId;</span><br><span class="line">&#125;</span><br><span class="line">public String getUserName() &#123;</span><br><span class="line">return userName;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserName(String userName) &#123;</span><br><span class="line">this.userName &#x3D; userName;</span><br><span class="line">&#125;</span><br><span class="line">public Date getUserBirthday() &#123;</span><br><span class="line">return userBirthday;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserBirthday(Date userBirthday) &#123;</span><br><span class="line">this.userBirthday &#x3D; userBirthday;</span><br><span class="line">&#125;</span><br><span class="line">public String getUserSex() &#123;</span><br><span class="line">return userSex;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserSex(String userSex) &#123;</span><br><span class="line">this.userSex &#x3D; userSex;</span><br><span class="line">&#125;</span><br><span class="line">public String getUserAddress() &#123;</span><br><span class="line">return userAddress;</span><br><span class="line">&#125;</span><br><span class="line">public void setUserAddress(String userAddress) &#123;</span><br><span class="line">this.userAddress &#x3D; userAddress;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">public String toString() &#123;</span><br><span class="line">return &quot;User [userId&#x3D;&quot; + userId + &quot;, userName&#x3D;&quot; + userName + &quot;, userBirthday&#x3D;&quot;</span><br><span class="line">+ userBirthday + &quot;, userSex&#x3D;&quot;</span><br><span class="line">+ userSex + &quot;, userAddress&#x3D;&quot; + userAddress + &quot;]&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="加入删除的测试方法"><a href="#加入删除的测试方法" class="headerlink" title="加入删除的测试方法"></a>加入删除的测试方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void deleteUser()&#123;</span><br><span class="line">    userDao.deleteUser(51);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编写用户的持久层接口并使用注解配置  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IUserDao &#123;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 查询所有用户</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Select(&quot;select * from user&quot;)</span><br><span class="line">@Results(id&#x3D;&quot;userMap&quot;,</span><br><span class="line">value&#x3D; &#123;</span><br><span class="line">@Result(id&#x3D;true,column&#x3D;&quot;id&quot;,property&#x3D;&quot;userId&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;username&quot;,property&#x3D;&quot;userName&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;sex&quot;,property&#x3D;&quot;userSex&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;address&quot;,property&#x3D;&quot;userAddress&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;birthday&quot;,property&#x3D;&quot;userBirthday&quot;),</span><br><span class="line">@Result(column&#x3D;&quot;id&quot;,property&#x3D;&quot;accounts&quot;,</span><br><span class="line">many&#x3D;@Many(</span><br><span class="line">select&#x3D;&quot;com.itheima.dao.IAccountDao.findByUid&quot;,</span><br><span class="line">fetchType&#x3D;FetchType.LAZY</span><br><span class="line">)</span><br><span class="line">)</span><br><span class="line">&#125;)</span><br><span class="line">List&lt;User&gt; findAll();</span><br><span class="line">&#125;</span><br><span class="line">@Many:</span><br><span class="line">相当于&lt;collection&gt;的配置</span><br><span class="line">select 属性：代表将要执行的 sql 语句</span><br><span class="line">fetchType 属性：代表加载方式，一般如果要延迟加载都设置为 LAZY 的值</span><br></pre></td></tr></table></figure>
 
-<h2 id="用户模糊查询"><a href="#用户模糊查询" class="headerlink" title="用户模糊查询"></a>用户模糊查询</h2><h3 id="在持久层接口中添加模糊查询方法"><a href="#在持久层接口中添加模糊查询方法" class="headerlink" title="在持久层接口中添加模糊查询方法"></a>在持久层接口中添加模糊查询方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 根据名字模糊查询</span><br><span class="line"> *&#x2F;</span><br><span class="line">List&lt;User&gt; findByName(String username);</span><br></pre></td></tr></table></figure>
+<p>编写账户的持久层接口并使用注解配置  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IAccountDao &#123;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 根据用户 id 查询用户下的所有账户</span><br><span class="line">* @param userId</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Select(&quot;select * from account where uid &#x3D; #&#123;uid&#125; &quot;)</span><br><span class="line">List&lt;Account&gt; findByUid(Integer userId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="在用户的映射配置文件中配置-4"><a href="#在用户的映射配置文件中配置-4" class="headerlink" title="在用户的映射配置文件中配置"></a>在用户的映射配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 根据名字模糊查询--&gt;</span><br><span class="line">&lt;select id&#x3D;&quot;findByName&quot; resultType&#x3D;&quot;com.syx.domain.User&quot; parameterType&#x3D;&quot;String&quot;&gt;</span><br><span class="line">    select * from user where username like #&#123;username&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="mybatis-基于注解的二级缓存"><a href="#mybatis-基于注解的二级缓存" class="headerlink" title="mybatis 基于注解的二级缓存"></a>mybatis 基于注解的二级缓存</h3><p>在 SqlMapConfig 中开启二级缓存支持  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 配置二级缓存 --&gt;</span><br><span class="line">&lt;settings&gt;</span><br><span class="line">&lt;!-- 开启二级缓存的支持 --&gt;</span><br><span class="line">&lt;setting name&#x3D;&quot;cacheEnabled&quot; value&#x3D;&quot;true&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;settings&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="测试方法-1"><a href="#测试方法-1" class="headerlink" title="测试方法"></a>测试方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void findByName()&#123;</span><br><span class="line">    List&lt;User&gt; userList &#x3D; userDao.findByName(&quot;%王%&quot;);</span><br><span class="line">    for (User user : userList) &#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="查询使用聚合函数"><a href="#查询使用聚合函数" class="headerlink" title="查询使用聚合函数"></a>查询使用聚合函数</h2><h3 id="在持久层接口中添加模糊查询方法-1"><a href="#在持久层接口中添加模糊查询方法-1" class="headerlink" title="在持久层接口中添加模糊查询方法"></a>在持久层接口中添加模糊查询方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 查询总记录数</span><br><span class="line"> *&#x2F;</span><br><span class="line">int findTotal();</span><br></pre></td></tr></table></figure>
-
-<h3 id="在用户的映射配置文件中配置-5"><a href="#在用户的映射配置文件中配置-5" class="headerlink" title="在用户的映射配置文件中配置"></a>在用户的映射配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--查询总记录条数 --&gt;</span><br><span class="line"> &lt;select id&#x3D;&quot;findTotal&quot; resultType&#x3D;&quot;Integer&quot;&gt;</span><br><span class="line">     select count(*) from user</span><br><span class="line"> &lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="加入聚合查询的测试方法"><a href="#加入聚合查询的测试方法" class="headerlink" title="加入聚合查询的测试方法"></a>加入聚合查询的测试方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">public  void findTotal()&#123;</span><br><span class="line">    int total &#x3D; userDao.findTotal();</span><br><span class="line">    System.out.println(total);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在持久层接口中使用注解配置二级缓存  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@CacheNamespace(blocking&#x3D;true)&#x2F;&#x2F;mybatis 基于注解方式实现配置二级缓存</span><br><span class="line">public interface IUserDao &#123;&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -1608,6 +1608,93 @@
       </tags>
   </entry>
   <entry>
+    <title>SpringIoc（基于注解配置）</title>
+    <url>/2020/04/04/SpringIoc%EF%BC%88%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建  "></a><center>环境搭建  </center></h1><h2 id="导入依赖"><a href="#导入依赖" class="headerlink" title="导入依赖"></a>导入依赖</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.springframework&lt;&#x2F;groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;spring-context&lt;&#x2F;artifactId&gt;</span><br><span class="line">           &lt;version&gt;5.1.0.RELEASE&lt;&#x2F;version&gt;</span><br><span class="line">       &lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建并编写配置文件"><a href="#创建并编写配置文件" class="headerlink" title="创建并编写配置文件"></a>创建并编写配置文件</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;</span><br><span class="line">       xmlns:context&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&quot;</span><br><span class="line">       xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">       xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans</span><br><span class="line">        http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans.xsd</span><br><span class="line">         http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context</span><br><span class="line">         http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&#x2F;spring-context.xsd&quot;&gt;</span><br><span class="line">&lt;!-- 告知 spring 创建容器时要扫描的包 --&gt;</span><br><span class="line">&lt;context:component-scan base-package&#x3D;&quot;com.itheima&quot;&gt;&lt;&#x2F;context:component-scan&gt;</span><br><span class="line">&lt;!-- 配置 dbAssit 此处我们只注入了数据源，表明每条语句独立事务--&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;dbAssit&quot; class&#x3D;&quot;com.syx.dbassit.DBAssit&quot;&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;dataSource&quot; ref&#x3D;&quot;dataSource&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;!-- 配置数据源 --&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;dataSource&quot; class&#x3D;&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;driverClass&quot; value&#x3D;&quot;com.mysql.jdbc.Driver&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;jdbcUrl&quot; value&#x3D;&quot;jdbc:mysql:&#x2F;&#x2F;&#x2F;spring&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;user&quot; value&#x3D;&quot;root&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;password&quot; value&#x3D;&quot;root&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;&#x2F;beans&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a><center>常用注解</center></h1><h2 id="用于创建对象的"><a href="#用于创建对象的" class="headerlink" title="用于创建对象的"></a>用于创建对象的</h2><p><code>相当于：&lt;bean&gt; id = &quot;&quot; class =&quot;&quot;&gt;</code> </p>
+<h3 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h3><blockquote>
+<p><strong>作用</strong>：<br>把资源让 spring 来管理。相当于在 xml 中配置一个 bean。<br><strong>属性</strong>：<br>value：指定 bean 的 id。如果不指定 value 属性，默认 bean 的 id 是当前类的类名。首字母小写。  </p>
+</blockquote>
+<h3 id="Controller-Service-Repository"><a href="#Controller-Service-Repository" class="headerlink" title="@Controller @Service @Repository"></a>@Controller @Service @Repository</h3><blockquote>
+<p>他们三个注解都是针对一个的衍生注解，他们的作用及属性都是一模一样的。<br>他们只不过是提供了更加明确的语义化。<br>@Controller： 一般用于表现层的注解。<br>@Service： 一般用于业务层的注解。<br>@Repository： 一般用于持久层的注解。<br>细节：如果注解中有且只有一个属性要赋值时，且名称是 value， value 在赋值是可以不写。  </p>
+</blockquote>
+<h2 id="用于注入数据的"><a href="#用于注入数据的" class="headerlink" title="用于注入数据的"></a>用于注入数据的</h2><p><code>相当于:&lt;property name =&quot;&quot; ref = “&quot;&gt;  &lt;property name=&quot;&quot; value=&quot;&quot;&gt;</code></p>
+<h3 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h3><blockquote>
+<p><strong>作用</strong>：<br>自动按照类型注入。当使用注解注入属性时， set 方法可以省略。它只能注入其他 bean 类型。当有多个<br>类型匹配时，使用要注入的对象变量名称作为 bean 的 id，在 spring 容器查找，找到了也可以注入成功。找不到<br>就报错。  </p>
+</blockquote>
+<h3 id="Qualifier"><a href="#Qualifier" class="headerlink" title="@Qualifier"></a>@Qualifier</h3><blockquote>
+<p><strong>作用</strong>：<br>在自动按照类型注入的基础之上，再按照 Bean 的 id 注入。它在给字段注入时不能独立使用，必须和<br>@Autowire 一起使用；但是给方法参数注入时，可以独立使用。<br><strong>属性</strong>：<br>value：指定 bean 的 id。  </p>
+</blockquote>
+<h3 id="Resource"><a href="#Resource" class="headerlink" title="@Resource"></a>@Resource</h3><blockquote>
+<p><strong>作用</strong>：<br>直接按照 Bean 的 id 注入。它也只能注入其他 bean 类型。<br><strong>属性</strong>：<br>name：指定 bean 的 id。  </p>
+</blockquote>
+<h3 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h3><blockquote>
+<p><strong>作用</strong>：<br>注入基本数据类型和 String 类型数据的<br><strong>属性</strong>：<br>value：用于指定值  </p>
+</blockquote>
+<h2 id="用于改变作用范围的："><a href="#用于改变作用范围的：" class="headerlink" title="用于改变作用范围的："></a>用于改变作用范围的：</h2><p><code>相当于 &lt;bean id=&quot;&quot; class=&quot;&quot; scope=&quot;&quot;</code></p>
+<h3 id="Scope"><a href="#Scope" class="headerlink" title="@Scope"></a>@Scope</h3><blockquote>
+<p><strong>作用</strong>：<br>指定 bean 的作用范围。<br><strong>属性</strong>：<br>value：指定范围的值。<br><strong>取值</strong>： singleton prototype request session globalsession  </p>
+</blockquote>
+<h2 id="和生命周期相关的："><a href="#和生命周期相关的：" class="headerlink" title="和生命周期相关的："></a>和生命周期相关的：</h2><p><code>相当于 &lt;bena id=&quot;&quot; class=&quot;&quot; init-method=&quot;&quot; destory-method=&quot;&quot;&gt;</code></p>
+<h3 id="PostConstruct"><a href="#PostConstruct" class="headerlink" title="@PostConstruct"></a>@PostConstruct</h3><blockquote>
+<p><strong>作用</strong>：用于指定初始化方法。  </p>
+</blockquote>
+<h3 id="PreDestroy"><a href="#PreDestroy" class="headerlink" title="@PreDestroy"></a>@PreDestroy</h3><blockquote>
+<p><strong>作用</strong>：用于指定销毁方法。  </p>
+</blockquote>
+<h1 id="新注解说明"><a href="#新注解说明" class="headerlink" title="新注解说明"></a><center>新注解说明</center></h1><h3 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h3><blockquote>
+<p><strong>作用</strong>：<br>用于指定当前类是一个 spring 配置类， 当创建容器时会从该类上加载注解。 获取容器时需要使用<br>AnnotationApplicationContext(有@Configuration 注解的类.class)。<br><strong>属性</strong>：<br>value:用于指定配置类的字节码  </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;示例代码：</span><br><span class="line">&#x2F;**</span><br><span class="line">* spring 的配置类，相当于 bean.xml 文件</span><br><span class="line">*&#x2F;</span><br><span class="line">@Configuration</span><br><span class="line">public class SpringConfiguration &#123;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**注意：</span><br><span class="line">*我们已经把配置文件用类来代替了， 但是如何配置创建容器时要扫描的包呢</span><br><span class="line">*请看下一个注解。</span><br><span class="line">*&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h3><blockquote>
+<p><strong>作用</strong>：<br>用于指定 spring 在初始化容器时要扫描的包。 作用和在 spring 的 xml 配置文件中的：<br>&lt;context:component-scan base-package=”com.itheima”/&gt;是一样的。<br><strong>属性</strong>：<br>basePackages：用于指定要扫描的包。和该注解中的 value 属性作用一样。<br><strong>示例代码</strong>：<br>/<em>*<br>\</em> spring 的配置类，相当于 bean.xml 文件<br>* @Version 1.0<br>*/<br>@Configuration<br>@ComponentScan(“com.itheima”)<br>public class SpringConfiguration {<br>}<br>注意：<br>我们已经配置好了要扫描的包，但是数据源和 JdbcTemplate 对象如何从配置文件中移除呢？<br>请看下一个注解。  </p>
+</blockquote>
+<h3 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h3><blockquote>
+<p><strong>作用</strong>：<br>该注解只能写在方法上，表明使用此方法创建一个对象，并且放入 spring 容器。<br><strong>属性</strong>：<br>name：给当前@Bean 注解方法创建的对象指定一个名称(即 bean 的 id）。  </p>
+</blockquote>
+<p><strong>示例代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* 连接数据库的配置类</span><br><span class="line">*&#x2F;</span><br><span class="line">public class JdbcConfig &#123;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 创建一个数据源，并存入 spring 容器中</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Bean(name&#x3D;&quot;dataSource&quot;)</span><br><span class="line">public DataSource createDataSource() &#123;</span><br><span class="line">try &#123;</span><br><span class="line">ComboPooledDataSource ds &#x3D; new ComboPooledDataSource();</span><br><span class="line">ds.setUser(&quot;root&quot;);</span><br><span class="line">ds.setPassword(&quot;1234&quot;);</span><br><span class="line">ds.setDriverClass(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">ds.setJdbcUrl(&quot;jdbc:mysql:&#x2F;&#x2F;&#x2F;spring_day02&quot;);</span><br><span class="line">return ds;</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">throw new RuntimeException(e);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 创建一个 DBAssit，并且也存入 spring 容器中</span><br><span class="line">* @param dataSource</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Bean(name&#x3D;&quot;dbAssit&quot;)</span><br><span class="line">public DBAssit createDBAssit(DataSource dataSource) &#123;</span><br><span class="line">return new DBAssit(dataSource);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">注意:</span><br><span class="line">我们已经把数据源和 DBAssit 从配置文件中移除了，此时可以删除 bean.xml 了。</span><br><span class="line">但是由于没有了配置文件，创建数据源的配置又都写死在类中了。如何把它们配置出来呢？</span><br><span class="line">请看下一个注解。</span><br></pre></td></tr></table></figure>
+
+<h3 id="PropertySource"><a href="#PropertySource" class="headerlink" title="@PropertySource"></a>@PropertySource</h3><blockquote>
+<p><strong>作用</strong>：  </p>
+<p>用于加载.properties 文件中的配置。例如我们配置数据源时，可以把连接数据库的信息写到<br>properties 配置文件中，就可以使用此注解指定 properties 配置文件的位置。<br><strong>属性</strong>：<br>value[]：用于指定 properties 文件位置。如果是在类路径下，需要写上 classpath:  </p>
+</blockquote>
+<p><strong>示例代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">配置：</span><br><span class="line">&#x2F;**</span><br><span class="line">* 连接数据库的配置类</span><br><span class="line">*&#x2F;</span><br><span class="line">public class JdbcConfig &#123;</span><br><span class="line">@Value(&quot;$&#123;jdbc.driver&#125;&quot;)</span><br><span class="line">private String driver;</span><br><span class="line">@Value(&quot;$&#123;jdbc.url&#125;&quot;)</span><br><span class="line">private String url;</span><br><span class="line">@Value(&quot;$&#123;jdbc.username&#125;&quot;)</span><br><span class="line">private String username;</span><br><span class="line">@Value(&quot;$&#123;jdbc.password&#125;&quot;)</span><br><span class="line">private String password;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 创建一个数据源，并存入 spring 容器中</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Bean(name&#x3D;&quot;dataSource&quot;)</span><br><span class="line">public DataSource createDataSource() &#123;</span><br><span class="line">try &#123;</span><br><span class="line">ComboPooledDataSource ds &#x3D; new ComboPooledDataSource();</span><br><span class="line">ds.setDriverClass(driver);</span><br><span class="line">ds.setJdbcUrl(url);</span><br><span class="line">ds.setUser(username);</span><br><span class="line">ds.setPassword(password);</span><br><span class="line">return ds;</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">throw new RuntimeException(e);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">jdbc.properties 文件：</span><br><span class="line">jdbc.driver&#x3D;com.mysql.jdbc.Driver</span><br><span class="line">jdbc.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;pring、</span><br><span class="line">jdbc.username&#x3D;root</span><br><span class="line">jdbc.password&#x3D;root</span><br><span class="line">注意：</span><br><span class="line">此时我们已经有了两个配置类，但是他们还没有关系。如何建立他们的关系呢？</span><br><span class="line">请看下一个注解。</span><br></pre></td></tr></table></figure>
+
+<h3 id="Import"><a href="#Import" class="headerlink" title="@Import"></a>@Import</h3><blockquote>
+<p><strong>作用</strong>：<br>用于导入其他配置类，在引入其他配置类时，可以不用再写@Configuration 注解。 当然，写上也没问<br>题。<br><strong>属性</strong>：<br>value[]：用于指定其他配置类的字节码。<br>示例代码：<br>@Configuration<br>@ComponentScan(basePackages = “com.itheima.spring”)<br>@Import({ JdbcConfig.class})<br>public class SpringConfiguration {<br>}</p>
+<p>@Configuration<br>@PropertySource(“classpath:jdbc.properties”)<br>public class JdbcConfig{<br>}<br>注意：<br>我们已经把要配置的都配置好了，但是新的问题产生了，由于没有配置文件了，如何获取容器呢？<br>请看下一小节。  </p>
+</blockquote>
+<h3 id="通过注解获取容器"><a href="#通过注解获取容器" class="headerlink" title="通过注解获取容器"></a>通过注解获取容器</h3><blockquote>
+<p>ApplicationContext ac =new AnnotationConfigApplicationContext(SpringConfiguration.class);  </p>
+</blockquote>
+<h1 id="Spring-整合-Junit"><a href="#Spring-整合-Junit" class="headerlink" title="Spring 整合 Junit"></a><center>Spring 整合 Junit</center></h1><h2 id="第一步：导入Junit依赖"><a href="#第一步：导入Junit依赖" class="headerlink" title="第一步：导入Junit依赖"></a>第一步：导入Junit依赖</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-test&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.0.8.RELEASE&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二步：使用-RunWith-注解替换原有运行器"><a href="#第二步：使用-RunWith-注解替换原有运行器" class="headerlink" title="第二步：使用@RunWith 注解替换原有运行器"></a>第二步：使用@RunWith 注解替换原有运行器</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* 测试类</span><br><span class="line">*&#x2F;</span><br><span class="line">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">public class AccountServiceTest &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三步：使用-ContextConfiguration-指定-spring-配置文件的位置"><a href="#第三步：使用-ContextConfiguration-指定-spring-配置文件的位置" class="headerlink" title="第三步：使用@ContextConfiguration 指定 spring 配置文件的位置"></a>第三步：使用@ContextConfiguration 指定 spring 配置文件的位置</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* 测试类</span><br><span class="line">*&#x2F;</span><br><span class="line">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">@ContextConfiguration(locations&#x3D; &#123;&quot;classpath:bean.xml&quot;&#125;)</span><br><span class="line">public class AccountServiceTest &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>@ContextConfiguration 注解：<br>locations 属性： 用于指定配置文件的位置。如果是类路径下，需要用 classpath:表明<br>classes 属性： 用于指定注解的类。当不使用 xml 配置时，需要用此属性指定注解类的位置。  </p>
+</blockquote>
+<h2 id="第四步：使用-Autowired-给测试类中的变量注入数据"><a href="#第四步：使用-Autowired-给测试类中的变量注入数据" class="headerlink" title="第四步：使用@Autowired 给测试类中的变量注入数据"></a>第四步：使用@Autowired 给测试类中的变量注入数据</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* 测试类</span><br><span class="line">*&#x2F;</span><br><span class="line">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">@ContextConfiguration(locations&#x3D; &#123;&quot;classpath:bean.xml&quot;&#125;)</span><br><span class="line">public class AccountServiceTest &#123;</span><br><span class="line">@Autowired</span><br><span class="line">private IAccountService as ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>SSM框架</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringMvc入门及常用注解</title>
     <url>/2020/04/06/SpringMvc%E5%85%A5%E9%97%A8%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</url>
     <content><![CDATA[<h1 id="三层架构和MVC"><a href="#三层架构和MVC" class="headerlink" title="三层架构和MVC "></a><center>三层架构和MVC </center></h1><h2 id="三层架构"><a href="#三层架构" class="headerlink" title="三层架构"></a>三层架构</h2><ol>
@@ -1919,93 +2006,6 @@
       </categories>
       <tags>
         <tag>SpringMVC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringIoc（基于注解配置）</title>
-    <url>/2020/04/04/SpringIoc%EF%BC%88%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE%EF%BC%89/</url>
-    <content><![CDATA[<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建  "></a><center>环境搭建  </center></h1><h2 id="导入依赖"><a href="#导入依赖" class="headerlink" title="导入依赖"></a>导入依赖</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.springframework&lt;&#x2F;groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;spring-context&lt;&#x2F;artifactId&gt;</span><br><span class="line">           &lt;version&gt;5.1.0.RELEASE&lt;&#x2F;version&gt;</span><br><span class="line">       &lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建并编写配置文件"><a href="#创建并编写配置文件" class="headerlink" title="创建并编写配置文件"></a>创建并编写配置文件</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;</span><br><span class="line">       xmlns:context&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&quot;</span><br><span class="line">       xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">       xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans</span><br><span class="line">        http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans.xsd</span><br><span class="line">         http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context</span><br><span class="line">         http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&#x2F;spring-context.xsd&quot;&gt;</span><br><span class="line">&lt;!-- 告知 spring 创建容器时要扫描的包 --&gt;</span><br><span class="line">&lt;context:component-scan base-package&#x3D;&quot;com.itheima&quot;&gt;&lt;&#x2F;context:component-scan&gt;</span><br><span class="line">&lt;!-- 配置 dbAssit 此处我们只注入了数据源，表明每条语句独立事务--&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;dbAssit&quot; class&#x3D;&quot;com.syx.dbassit.DBAssit&quot;&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;dataSource&quot; ref&#x3D;&quot;dataSource&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;!-- 配置数据源 --&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;dataSource&quot; class&#x3D;&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;driverClass&quot; value&#x3D;&quot;com.mysql.jdbc.Driver&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;jdbcUrl&quot; value&#x3D;&quot;jdbc:mysql:&#x2F;&#x2F;&#x2F;spring&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;user&quot; value&#x3D;&quot;root&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;password&quot; value&#x3D;&quot;root&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;&#x2F;beans&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a><center>常用注解</center></h1><h2 id="用于创建对象的"><a href="#用于创建对象的" class="headerlink" title="用于创建对象的"></a>用于创建对象的</h2><p><code>相当于：&lt;bean&gt; id = &quot;&quot; class =&quot;&quot;&gt;</code> </p>
-<h3 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h3><blockquote>
-<p><strong>作用</strong>：<br>把资源让 spring 来管理。相当于在 xml 中配置一个 bean。<br><strong>属性</strong>：<br>value：指定 bean 的 id。如果不指定 value 属性，默认 bean 的 id 是当前类的类名。首字母小写。  </p>
-</blockquote>
-<h3 id="Controller-Service-Repository"><a href="#Controller-Service-Repository" class="headerlink" title="@Controller @Service @Repository"></a>@Controller @Service @Repository</h3><blockquote>
-<p>他们三个注解都是针对一个的衍生注解，他们的作用及属性都是一模一样的。<br>他们只不过是提供了更加明确的语义化。<br>@Controller： 一般用于表现层的注解。<br>@Service： 一般用于业务层的注解。<br>@Repository： 一般用于持久层的注解。<br>细节：如果注解中有且只有一个属性要赋值时，且名称是 value， value 在赋值是可以不写。  </p>
-</blockquote>
-<h2 id="用于注入数据的"><a href="#用于注入数据的" class="headerlink" title="用于注入数据的"></a>用于注入数据的</h2><p><code>相当于:&lt;property name =&quot;&quot; ref = “&quot;&gt;  &lt;property name=&quot;&quot; value=&quot;&quot;&gt;</code></p>
-<h3 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h3><blockquote>
-<p><strong>作用</strong>：<br>自动按照类型注入。当使用注解注入属性时， set 方法可以省略。它只能注入其他 bean 类型。当有多个<br>类型匹配时，使用要注入的对象变量名称作为 bean 的 id，在 spring 容器查找，找到了也可以注入成功。找不到<br>就报错。  </p>
-</blockquote>
-<h3 id="Qualifier"><a href="#Qualifier" class="headerlink" title="@Qualifier"></a>@Qualifier</h3><blockquote>
-<p><strong>作用</strong>：<br>在自动按照类型注入的基础之上，再按照 Bean 的 id 注入。它在给字段注入时不能独立使用，必须和<br>@Autowire 一起使用；但是给方法参数注入时，可以独立使用。<br><strong>属性</strong>：<br>value：指定 bean 的 id。  </p>
-</blockquote>
-<h3 id="Resource"><a href="#Resource" class="headerlink" title="@Resource"></a>@Resource</h3><blockquote>
-<p><strong>作用</strong>：<br>直接按照 Bean 的 id 注入。它也只能注入其他 bean 类型。<br><strong>属性</strong>：<br>name：指定 bean 的 id。  </p>
-</blockquote>
-<h3 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h3><blockquote>
-<p><strong>作用</strong>：<br>注入基本数据类型和 String 类型数据的<br><strong>属性</strong>：<br>value：用于指定值  </p>
-</blockquote>
-<h2 id="用于改变作用范围的："><a href="#用于改变作用范围的：" class="headerlink" title="用于改变作用范围的："></a>用于改变作用范围的：</h2><p><code>相当于 &lt;bean id=&quot;&quot; class=&quot;&quot; scope=&quot;&quot;</code></p>
-<h3 id="Scope"><a href="#Scope" class="headerlink" title="@Scope"></a>@Scope</h3><blockquote>
-<p><strong>作用</strong>：<br>指定 bean 的作用范围。<br><strong>属性</strong>：<br>value：指定范围的值。<br><strong>取值</strong>： singleton prototype request session globalsession  </p>
-</blockquote>
-<h2 id="和生命周期相关的："><a href="#和生命周期相关的：" class="headerlink" title="和生命周期相关的："></a>和生命周期相关的：</h2><p><code>相当于 &lt;bena id=&quot;&quot; class=&quot;&quot; init-method=&quot;&quot; destory-method=&quot;&quot;&gt;</code></p>
-<h3 id="PostConstruct"><a href="#PostConstruct" class="headerlink" title="@PostConstruct"></a>@PostConstruct</h3><blockquote>
-<p><strong>作用</strong>：用于指定初始化方法。  </p>
-</blockquote>
-<h3 id="PreDestroy"><a href="#PreDestroy" class="headerlink" title="@PreDestroy"></a>@PreDestroy</h3><blockquote>
-<p><strong>作用</strong>：用于指定销毁方法。  </p>
-</blockquote>
-<h1 id="新注解说明"><a href="#新注解说明" class="headerlink" title="新注解说明"></a><center>新注解说明</center></h1><h3 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h3><blockquote>
-<p><strong>作用</strong>：<br>用于指定当前类是一个 spring 配置类， 当创建容器时会从该类上加载注解。 获取容器时需要使用<br>AnnotationApplicationContext(有@Configuration 注解的类.class)。<br><strong>属性</strong>：<br>value:用于指定配置类的字节码  </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;示例代码：</span><br><span class="line">&#x2F;**</span><br><span class="line">* spring 的配置类，相当于 bean.xml 文件</span><br><span class="line">*&#x2F;</span><br><span class="line">@Configuration</span><br><span class="line">public class SpringConfiguration &#123;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**注意：</span><br><span class="line">*我们已经把配置文件用类来代替了， 但是如何配置创建容器时要扫描的包呢</span><br><span class="line">*请看下一个注解。</span><br><span class="line">*&#x2F;</span><br></pre></td></tr></table></figure>
-
-<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h3><blockquote>
-<p><strong>作用</strong>：<br>用于指定 spring 在初始化容器时要扫描的包。 作用和在 spring 的 xml 配置文件中的：<br>&lt;context:component-scan base-package=”com.itheima”/&gt;是一样的。<br><strong>属性</strong>：<br>basePackages：用于指定要扫描的包。和该注解中的 value 属性作用一样。<br><strong>示例代码</strong>：<br>/<em>*<br>\</em> spring 的配置类，相当于 bean.xml 文件<br>* @Version 1.0<br>*/<br>@Configuration<br>@ComponentScan(“com.itheima”)<br>public class SpringConfiguration {<br>}<br>注意：<br>我们已经配置好了要扫描的包，但是数据源和 JdbcTemplate 对象如何从配置文件中移除呢？<br>请看下一个注解。  </p>
-</blockquote>
-<h3 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h3><blockquote>
-<p><strong>作用</strong>：<br>该注解只能写在方法上，表明使用此方法创建一个对象，并且放入 spring 容器。<br><strong>属性</strong>：<br>name：给当前@Bean 注解方法创建的对象指定一个名称(即 bean 的 id）。  </p>
-</blockquote>
-<p><strong>示例代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* 连接数据库的配置类</span><br><span class="line">*&#x2F;</span><br><span class="line">public class JdbcConfig &#123;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 创建一个数据源，并存入 spring 容器中</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Bean(name&#x3D;&quot;dataSource&quot;)</span><br><span class="line">public DataSource createDataSource() &#123;</span><br><span class="line">try &#123;</span><br><span class="line">ComboPooledDataSource ds &#x3D; new ComboPooledDataSource();</span><br><span class="line">ds.setUser(&quot;root&quot;);</span><br><span class="line">ds.setPassword(&quot;1234&quot;);</span><br><span class="line">ds.setDriverClass(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">ds.setJdbcUrl(&quot;jdbc:mysql:&#x2F;&#x2F;&#x2F;spring_day02&quot;);</span><br><span class="line">return ds;</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">throw new RuntimeException(e);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 创建一个 DBAssit，并且也存入 spring 容器中</span><br><span class="line">* @param dataSource</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Bean(name&#x3D;&quot;dbAssit&quot;)</span><br><span class="line">public DBAssit createDBAssit(DataSource dataSource) &#123;</span><br><span class="line">return new DBAssit(dataSource);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">注意:</span><br><span class="line">我们已经把数据源和 DBAssit 从配置文件中移除了，此时可以删除 bean.xml 了。</span><br><span class="line">但是由于没有了配置文件，创建数据源的配置又都写死在类中了。如何把它们配置出来呢？</span><br><span class="line">请看下一个注解。</span><br></pre></td></tr></table></figure>
-
-<h3 id="PropertySource"><a href="#PropertySource" class="headerlink" title="@PropertySource"></a>@PropertySource</h3><blockquote>
-<p><strong>作用</strong>：  </p>
-<p>用于加载.properties 文件中的配置。例如我们配置数据源时，可以把连接数据库的信息写到<br>properties 配置文件中，就可以使用此注解指定 properties 配置文件的位置。<br><strong>属性</strong>：<br>value[]：用于指定 properties 文件位置。如果是在类路径下，需要写上 classpath:  </p>
-</blockquote>
-<p><strong>示例代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">配置：</span><br><span class="line">&#x2F;**</span><br><span class="line">* 连接数据库的配置类</span><br><span class="line">*&#x2F;</span><br><span class="line">public class JdbcConfig &#123;</span><br><span class="line">@Value(&quot;$&#123;jdbc.driver&#125;&quot;)</span><br><span class="line">private String driver;</span><br><span class="line">@Value(&quot;$&#123;jdbc.url&#125;&quot;)</span><br><span class="line">private String url;</span><br><span class="line">@Value(&quot;$&#123;jdbc.username&#125;&quot;)</span><br><span class="line">private String username;</span><br><span class="line">@Value(&quot;$&#123;jdbc.password&#125;&quot;)</span><br><span class="line">private String password;</span><br><span class="line">&#x2F;**</span><br><span class="line">* 创建一个数据源，并存入 spring 容器中</span><br><span class="line">* @return</span><br><span class="line">*&#x2F;</span><br><span class="line">@Bean(name&#x3D;&quot;dataSource&quot;)</span><br><span class="line">public DataSource createDataSource() &#123;</span><br><span class="line">try &#123;</span><br><span class="line">ComboPooledDataSource ds &#x3D; new ComboPooledDataSource();</span><br><span class="line">ds.setDriverClass(driver);</span><br><span class="line">ds.setJdbcUrl(url);</span><br><span class="line">ds.setUser(username);</span><br><span class="line">ds.setPassword(password);</span><br><span class="line">return ds;</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">throw new RuntimeException(e);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">jdbc.properties 文件：</span><br><span class="line">jdbc.driver&#x3D;com.mysql.jdbc.Driver</span><br><span class="line">jdbc.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;pring、</span><br><span class="line">jdbc.username&#x3D;root</span><br><span class="line">jdbc.password&#x3D;root</span><br><span class="line">注意：</span><br><span class="line">此时我们已经有了两个配置类，但是他们还没有关系。如何建立他们的关系呢？</span><br><span class="line">请看下一个注解。</span><br></pre></td></tr></table></figure>
-
-<h3 id="Import"><a href="#Import" class="headerlink" title="@Import"></a>@Import</h3><blockquote>
-<p><strong>作用</strong>：<br>用于导入其他配置类，在引入其他配置类时，可以不用再写@Configuration 注解。 当然，写上也没问<br>题。<br><strong>属性</strong>：<br>value[]：用于指定其他配置类的字节码。<br>示例代码：<br>@Configuration<br>@ComponentScan(basePackages = “com.itheima.spring”)<br>@Import({ JdbcConfig.class})<br>public class SpringConfiguration {<br>}</p>
-<p>@Configuration<br>@PropertySource(“classpath:jdbc.properties”)<br>public class JdbcConfig{<br>}<br>注意：<br>我们已经把要配置的都配置好了，但是新的问题产生了，由于没有配置文件了，如何获取容器呢？<br>请看下一小节。  </p>
-</blockquote>
-<h3 id="通过注解获取容器"><a href="#通过注解获取容器" class="headerlink" title="通过注解获取容器"></a>通过注解获取容器</h3><blockquote>
-<p>ApplicationContext ac =new AnnotationConfigApplicationContext(SpringConfiguration.class);  </p>
-</blockquote>
-<h1 id="Spring-整合-Junit"><a href="#Spring-整合-Junit" class="headerlink" title="Spring 整合 Junit"></a><center>Spring 整合 Junit</center></h1><h2 id="第一步：导入Junit依赖"><a href="#第一步：导入Junit依赖" class="headerlink" title="第一步：导入Junit依赖"></a>第一步：导入Junit依赖</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-test&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.0.8.RELEASE&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="第二步：使用-RunWith-注解替换原有运行器"><a href="#第二步：使用-RunWith-注解替换原有运行器" class="headerlink" title="第二步：使用@RunWith 注解替换原有运行器"></a>第二步：使用@RunWith 注解替换原有运行器</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* 测试类</span><br><span class="line">*&#x2F;</span><br><span class="line">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">public class AccountServiceTest &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="第三步：使用-ContextConfiguration-指定-spring-配置文件的位置"><a href="#第三步：使用-ContextConfiguration-指定-spring-配置文件的位置" class="headerlink" title="第三步：使用@ContextConfiguration 指定 spring 配置文件的位置"></a>第三步：使用@ContextConfiguration 指定 spring 配置文件的位置</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* 测试类</span><br><span class="line">*&#x2F;</span><br><span class="line">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">@ContextConfiguration(locations&#x3D; &#123;&quot;classpath:bean.xml&quot;&#125;)</span><br><span class="line">public class AccountServiceTest &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>@ContextConfiguration 注解：<br>locations 属性： 用于指定配置文件的位置。如果是类路径下，需要用 classpath:表明<br>classes 属性： 用于指定注解的类。当不使用 xml 配置时，需要用此属性指定注解类的位置。  </p>
-</blockquote>
-<h2 id="第四步：使用-Autowired-给测试类中的变量注入数据"><a href="#第四步：使用-Autowired-给测试类中的变量注入数据" class="headerlink" title="第四步：使用@Autowired 给测试类中的变量注入数据"></a>第四步：使用@Autowired 给测试类中的变量注入数据</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* 测试类</span><br><span class="line">*&#x2F;</span><br><span class="line">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">@ContextConfiguration(locations&#x3D; &#123;&quot;classpath:bean.xml&quot;&#125;)</span><br><span class="line">public class AccountServiceTest &#123;</span><br><span class="line">@Autowired</span><br><span class="line">private IAccountService as ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>SSM框架</category>
-      </categories>
-      <tags>
-        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
