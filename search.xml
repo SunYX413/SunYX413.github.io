@@ -483,6 +483,214 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux常用命令</title>
+    <url>/2020/03/26/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a><center>Linux常用命令</center></h1><h2 id="切换目录命令cd"><a href="#切换目录命令cd" class="headerlink" title="切换目录命令cd"></a>切换目录命令cd</h2><p>使用cd app   切换到app目录 </p>
+<p>cd ..  切换到上一层目录<br>cd /     切换到系统根目录<br>cd ~   切换到用户主目录<br>cd -     切换到上一个所在目录</p>
+<p>使用tab键来补全文件路径</p>
+<h2 id="列出文件列表：ls-ll"><a href="#列出文件列表：ls-ll" class="headerlink" title="列出文件列表：ls ll"></a>列出文件列表：ls ll</h2><p>ls(list)是一个非常有用的命令，用来显示当前目录下的内容。配合参数的使用，能以不同的方式显示目录内容。</p>
+<p>格式：ls[参数] [路径或文件名]</p>
+<p>在linux中以 . 开头的文件都是隐藏的文件</p>
+<p>ls<br>ls -a 显示所有文件或目录（包含隐藏的文件）<br>ls -l 缩写成ll</p>
+<h2 id="创建目录和移除目录：mkdir-rmdir"><a href="#创建目录和移除目录：mkdir-rmdir" class="headerlink" title="创建目录和移除目录：mkdir rmdir"></a>创建目录和移除目录：mkdir rmdir</h2><p>mkdir(make directory)命令可用来创建子目录。<br>mkdir app     在当前目录下创建app目录<br>mkdir –p app2/test  级联创建aap2以及test目<br>rmdir(remove directory)命令可用来删除“空”的子目录:rmdir app  删除app目录</p>
+<h2 id="浏览文件"><a href="#浏览文件" class="headerlink" title="浏览文件"></a>浏览文件</h2><p><strong>【cat、more、less】</strong></p>
+<p>cat用于显示文件的内容。格式：cat[参数]&lt;文件名&gt;</p>
+<blockquote>
+<p> cat a.txt</p>
+</blockquote>
+<p>more一般用于要显示的内容会超过一个画面长度的情况。按空格键显示下一个画面。</p>
+<p>回车显示下一行内容。按 q 键退出查看。</p>
+<blockquote>
+<p>more yum.conf</p>
+<p>空格显示下一页数据 回车显示下一行的数据</p>
+</blockquote>
+<p>less用法和more类似，不同的是less可以通过PgUp、PgDn键来控制.</p>
+<blockquote>
+<p>less yum.conf</p>
+<p>PgUp 和 PgDn 进行上下翻页.</p>
+</blockquote>
+<p><strong>tail</strong></p>
+<p>tail命令是在实际使用过程中使用非常多的一个命令，它的功能是：用于显示文件后几行的内容。</p>
+<p>用法:</p>
+<blockquote>
+<p>tail -10 /etc/passwd    查看后10行数据</p>
+<p>tail -f catalina.log   动态查看日志</p>
+<p>ctrl+c 结束查看</p>
+</blockquote>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p><strong>【rm】</strong></p>
+<p>rm 删除文件</p>
+<ul>
+<li><p>用法：</p>
+<blockquote>
+<p>rm [选项]… 文件..<br>rm a.txt  删除a.txt文件   删除需要用户确认，y/n<br>rm -f a.txt  不询问，直接删除rm 删除目录<br>rm -r a    递归删除不询问递归删除（慎用）<br>rm -rf a  不询问递归删除<br>rm -rf *    删除所有文件<br>rm -rf /*    删除系统所有文件，危险行为</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>【cp、mv】</strong></p>
+<p>cp(copy)命令可以将文件从一处复制到另一处。一般在使用cp命令时将一个文件复制成另一个文件或复制到某目录时，需要指定源文件名与目标文件名或目录。</p>
+<blockquote>
+<p>cp a.txt b.txt  将a.txt复制为b.txt文件<br>cp a.txt ../    将a.txt文件复制到上一层目录中</p>
+</blockquote>
+<p>mv 移动或者重命名：</p>
+<blockquote>
+<p>mv a.txt ../  将a.txt文件移动到上一层目录中<br>mv a.txt b.txt  将a.txt文件重命名为b.txt</p>
+</blockquote>
+<p><strong>【tar】命令:( 打包或解压)</strong></p>
+<p>tar命令位于/bin目录下，它能够将用户所指定的文件或目录打包成一个文件，但不做压缩。一般Linux上常用的压缩方式是选用tar将许多文件打包成一个文件，再以gzip压缩命令压缩成xxx.tar.gz(或称为xxx.tgz)的文件。</p>
+<p>常用参数：</p>
+<blockquote>
+<p>-c：创建一个新tar文件<br>-v：显示运行过程的信息<br>-f：指定文件名<br>-z：调用gzip压缩命令进行压缩<br>-t：查看压缩文件的内容<br>-x：解开tar文件</p>
+</blockquote>
+<p>打包：</p>
+<blockquote>
+<p>tar –cvf  xxx.tar  ./*</p>
+</blockquote>
+<p>打包并且压缩：</p>
+<blockquote>
+<p> tar –zcvf xxx.tar.gz ./*</p>
+</blockquote>
+<p>解压 ：tar –xvf xxx.tar</p>
+<blockquote>
+<p>tar -zxvf xxx.tar.gz -C /usr/aaa</p>
+</blockquote>
+<p><strong>【find】命令</strong></p>
+<p>find指令用于查找符合条件的文件。</p>
+<p>示例：</p>
+<blockquote>
+<p> find / -name “ins*” 查找文件名称是以ins开头的文件</p>
+<p>find / -name “ins*” –ls </p>
+<p>find / –user ss –ls 查找用户ss的文件</p>
+<p>find / –user ss–type d –ls 查找用户ss的目录</p>
+<p>find /-perm -777 –type d-ls 查找权限是777的文件</p>
+</blockquote>
+<p><strong>【grep】命令</strong></p>
+<p>查找文件里符合条件的字符串。</p>
+<p>用法：</p>
+<p>grep [选项]… PATTERN [FILE]…示例：</p>
+<p>grep lang anaconda-ks.cfg     在文件中查找lang</p>
+<p>grep lang anaconda-ks.cfg –color     高亮显示</p>
+<blockquote>
+<p>grep debug yum.conf –color</p>
+<p>grep debug yum.conf –color  -A5</p>
+<p>grep debug yum.conf –color -A5 -B5</p>
+</blockquote>
+<h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><p><strong>【pwd】</strong></p>
+<p>显示当前所在目录</p>
+<p><strong>【touch】</strong></p>
+<p>创建一个空文件</p>
+<blockquote>
+<p>touch a.txt</p>
+</blockquote>
+<p><strong>【clear/ crtl + L】</strong></p>
+<p>清屏</p>
+<h2 id="VI和Vim编辑器"><a href="#VI和Vim编辑器" class="headerlink" title="VI和Vim编辑器"></a>VI和Vim编辑器</h2><p>在Linux下一般使用vi编辑器来编辑文件。vi既可以查看文件也可以编辑文件。三种模式：命令行、插入、底行模式。</p>
+<p>切换到命令行模式：按Esc键</p>
+<p>切换到插入模式：按 i 、o、a键；</p>
+<blockquote>
+<p>  i 在当前位置前插入</p>
+<p>  I 在当前行首插入</p>
+<p>  a 在当前位置后插入</p>
+<p>  A 在当前行尾插入</p>
+<p>  o 在当前行之后插入一行</p>
+<p>  O 在当前行之前插入一行</p>
+</blockquote>
+<p>打开文件：vim file</p>
+<p>退出：esc   :q</p>
+<p>修改文件：输入i进入插入模式</p>
+<p>保存并退出：esc :wq</p>
+<p>不保存退出：esc :q!</p>
+<p>三种进入插入模式：</p>
+<blockquote>
+<p> i:在当前的光标所在处插入<br>o:在当前光标所在的行的下一行插入<br>a:在光标所在的下一个字符插入</p>
+</blockquote>
+<p>快捷键：</p>
+<blockquote>
+<p>dd – 快速删除一行</p>
+<p>yy - 复制当前行</p>
+<p>nyy - 从当前行向后复制几行</p>
+<p>p - 粘贴</p>
+<p>R – 替换</p>
+</blockquote>
+<h2 id="重定向输出-gt-和-gt-gt"><a href="#重定向输出-gt-和-gt-gt" class="headerlink" title="重定向输出&gt;和&gt;&gt;"></a>重定向输出&gt;和&gt;&gt;</h2><p> 重定向输出，覆盖原有内容；&gt;&gt; 重定向输出，又追加功能；示例：</p>
+<blockquote>
+<p>cat /etc/passwd &gt; a.txt 将输出定向到a.txt中</p>
+<p>cat /etc/passwd &gt;&gt; a.txt 输出并且追加</p>
+<p>ifconfig &gt; ifconfig.txt</p>
+</blockquote>
+<h2 id="系统管理命令"><a href="#系统管理命令" class="headerlink" title="系统管理命令"></a>系统管理命令</h2><p>ps 正在运行的某个进程的状态</p>
+<blockquote>
+<p>ps –ef 查看所有进程</p>
+<p>ps –ef | grep ssh 查找某一进程</p>
+<p>kill 2868 杀掉2868编号的进程</p>
+<p>kill -9 2868 强制杀死进程</p>
+</blockquote>
+<h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><p>管道是Linux命令中重要的一个概念，其作用是将一个命令的输出用作另一个命令的输入。示例：</p>
+<blockquote>
+<p>ls –help | more 分页查询帮助信息</p>
+<p>ps –ef | grep java 查询名称中包含java的进程</p>
+<p>ifconfig | more</p>
+<p>cat index.html | more</p>
+<p>ps –ef | grep aio</p>
+</blockquote>
+<h2 id="LInux权限命令"><a href="#LInux权限命令" class="headerlink" title="LInux权限命令"></a>LInux权限命令</h2><h3 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h3><p><img src="/" class="lazyload" data-src="/img/Linux/1.png"  alt=""></p>
+<p><img src="/" class="lazyload" data-src="/img/Linux/2.png"  alt=""></p>
+<p>r:对文件是指可读取内容 对目录是可以ls</p>
+<p>w:对文件是指可修改文件内容，对目录 是指可以在其中创建或删除子节点(目录或文件)</p>
+<p>x:对文件是指是否可以运行这个文件，对目录是指是否可以cd进入这个目录</p>
+<h3 id="Linux三种文件类型："><a href="#Linux三种文件类型：" class="headerlink" title="Linux三种文件类型："></a>Linux三种文件类型：</h3><blockquote>
+<p>普通文件： 包括文本文件、数据文件、可执行的二进制程序文件等。 </p>
+<p>目录文件： Linux系统把目录看成是一种特殊的文件，利用它构成文件系统的树型结构。 </p>
+<p>设备文件： Linux系统把每一个设备都看成是一个文件</p>
+</blockquote>
+<h3 id="文件类型标识"><a href="#文件类型标识" class="headerlink" title="文件类型标识"></a>文件类型标识</h3><blockquote>
+<p>普通文件（-）目录（d）符号链接（l）</p>
+<p>进入etc可以查看，相当于快捷方式字符设备文件（c）块设备文件（s）套接字（s）命名管道（p</p>
+</blockquote>
+<h3 id="文件权限管理"><a href="#文件权限管理" class="headerlink" title="文件权限管理"></a>文件权限管理</h3><blockquote>
+<p>chmod 变更文件或目录的权限。</p>
+<p>chmod 755 a.txt </p>
+<p>chmod u=rwx,g=rx,o=rx a.txt</p>
+</blockquote>
+<h2 id="Linux上常用网络操作"><a href="#Linux上常用网络操作" class="headerlink" title="Linux上常用网络操作"></a>Linux上常用网络操作</h2><h3 id="主机名配置"><a href="#主机名配置" class="headerlink" title="主机名配置"></a>主机名配置</h3><blockquote>
+<p>hostname 查看主机名</p>
+<p>hostname xxx 修改主机名 重启后无效</p>
+<p>如果想要永久生效，可以修改/etc/sysconfig/network文件</p>
+</blockquote>
+<h3 id="IP地址配置"><a href="#IP地址配置" class="headerlink" title="IP地址配置"></a>IP地址配置</h3><blockquote>
+<p>ifconfig 查看(修改)ip地址(重启后无效)</p>
+<p>ifconfig eth0 192.168.12.22 修改ip地址</p>
+<p>如果想要永久生效</p>
+<p>修改 /etc/sysconfig/network-scripts/ifcfg-eth0文件</p>
+<p>DEVICE=eth0 #网卡名称</p>
+<p>BOOTPROTO=static #获取ip的方式(static/dhcp/bootp/none)</p>
+<p>HWADDR=00:0C:29:B5:B2:69 #MAC地址</p>
+<p>IPADDR=12.168.177.129 #IP地址<br>NETMASK=255.255.255.0 #子网掩码<br>NETWORK=192.168.177.0 #网络地址<br>BROADCAST=192.168.0.255 #广播地址</p>
+<p>NBOOT=yes #  系统启动时是否设置此网络接口，设置为yes时，系统启动时激活此设备。</p>
+</blockquote>
+<h3 id="域名映射"><a href="#域名映射" class="headerlink" title="域名映射"></a>域名映射</h3><p>/etc/hosts文件用于在通过主机名进行访问时做ip地址解析之用,相当于windows系统的C:\Windows\System32\drivers\etc\hosts文件的功能</p>
+<h3 id="网络服务管理"><a href="#网络服务管理" class="headerlink" title="网络服务管理"></a>网络服务管理</h3><blockquote>
+<p>service network status 查看指定服务的状态</p>
+<p>service network stop 停止指定服务</p>
+<p>service network start 启动指定服务</p>
+<p>service network restart 重启指定服务</p>
+<p>service –status–all 查看系统中所有后台服务</p>
+<p>netstat –nltp 查看系统中网络进程的端口监听情况</p>
+<p>防火墙设置</p>
+<p>防火墙根据配置文件/etc/sysconfig/iptables来控制本机的”出”、”入”网络访问行为。</p>
+<p>service iptables status 查看防火墙状态</p>
+<p>service iptables stop 关闭防火墙</p>
+<p>service iptables start 启动防火墙</p>
+<p>chkconfig iptables off 禁止防火墙自启</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MarkDown语法</title>
     <url>/2020/03/21/MarkDown%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h2 id="MarkDown语法"><a href="#MarkDown语法" class="headerlink" title="MarkDown语法"></a><center>MarkDown语法<center></h2><p>Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。</p>
@@ -702,214 +910,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux常用命令</title>
-    <url>/2020/03/26/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a><center>Linux常用命令</center></h1><h2 id="切换目录命令cd"><a href="#切换目录命令cd" class="headerlink" title="切换目录命令cd"></a>切换目录命令cd</h2><p>使用cd app   切换到app目录 </p>
-<p>cd ..  切换到上一层目录<br>cd /     切换到系统根目录<br>cd ~   切换到用户主目录<br>cd -     切换到上一个所在目录</p>
-<p>使用tab键来补全文件路径</p>
-<h2 id="列出文件列表：ls-ll"><a href="#列出文件列表：ls-ll" class="headerlink" title="列出文件列表：ls ll"></a>列出文件列表：ls ll</h2><p>ls(list)是一个非常有用的命令，用来显示当前目录下的内容。配合参数的使用，能以不同的方式显示目录内容。</p>
-<p>格式：ls[参数] [路径或文件名]</p>
-<p>在linux中以 . 开头的文件都是隐藏的文件</p>
-<p>ls<br>ls -a 显示所有文件或目录（包含隐藏的文件）<br>ls -l 缩写成ll</p>
-<h2 id="创建目录和移除目录：mkdir-rmdir"><a href="#创建目录和移除目录：mkdir-rmdir" class="headerlink" title="创建目录和移除目录：mkdir rmdir"></a>创建目录和移除目录：mkdir rmdir</h2><p>mkdir(make directory)命令可用来创建子目录。<br>mkdir app     在当前目录下创建app目录<br>mkdir –p app2/test  级联创建aap2以及test目<br>rmdir(remove directory)命令可用来删除“空”的子目录:rmdir app  删除app目录</p>
-<h2 id="浏览文件"><a href="#浏览文件" class="headerlink" title="浏览文件"></a>浏览文件</h2><p><strong>【cat、more、less】</strong></p>
-<p>cat用于显示文件的内容。格式：cat[参数]&lt;文件名&gt;</p>
-<blockquote>
-<p> cat a.txt</p>
-</blockquote>
-<p>more一般用于要显示的内容会超过一个画面长度的情况。按空格键显示下一个画面。</p>
-<p>回车显示下一行内容。按 q 键退出查看。</p>
-<blockquote>
-<p>more yum.conf</p>
-<p>空格显示下一页数据 回车显示下一行的数据</p>
-</blockquote>
-<p>less用法和more类似，不同的是less可以通过PgUp、PgDn键来控制.</p>
-<blockquote>
-<p>less yum.conf</p>
-<p>PgUp 和 PgDn 进行上下翻页.</p>
-</blockquote>
-<p><strong>tail</strong></p>
-<p>tail命令是在实际使用过程中使用非常多的一个命令，它的功能是：用于显示文件后几行的内容。</p>
-<p>用法:</p>
-<blockquote>
-<p>tail -10 /etc/passwd    查看后10行数据</p>
-<p>tail -f catalina.log   动态查看日志</p>
-<p>ctrl+c 结束查看</p>
-</blockquote>
-<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p><strong>【rm】</strong></p>
-<p>rm 删除文件</p>
-<ul>
-<li><p>用法：</p>
-<blockquote>
-<p>rm [选项]… 文件..<br>rm a.txt  删除a.txt文件   删除需要用户确认，y/n<br>rm -f a.txt  不询问，直接删除rm 删除目录<br>rm -r a    递归删除不询问递归删除（慎用）<br>rm -rf a  不询问递归删除<br>rm -rf *    删除所有文件<br>rm -rf /*    删除系统所有文件，危险行为</p>
-</blockquote>
-</li>
-</ul>
-<p><strong>【cp、mv】</strong></p>
-<p>cp(copy)命令可以将文件从一处复制到另一处。一般在使用cp命令时将一个文件复制成另一个文件或复制到某目录时，需要指定源文件名与目标文件名或目录。</p>
-<blockquote>
-<p>cp a.txt b.txt  将a.txt复制为b.txt文件<br>cp a.txt ../    将a.txt文件复制到上一层目录中</p>
-</blockquote>
-<p>mv 移动或者重命名：</p>
-<blockquote>
-<p>mv a.txt ../  将a.txt文件移动到上一层目录中<br>mv a.txt b.txt  将a.txt文件重命名为b.txt</p>
-</blockquote>
-<p><strong>【tar】命令:( 打包或解压)</strong></p>
-<p>tar命令位于/bin目录下，它能够将用户所指定的文件或目录打包成一个文件，但不做压缩。一般Linux上常用的压缩方式是选用tar将许多文件打包成一个文件，再以gzip压缩命令压缩成xxx.tar.gz(或称为xxx.tgz)的文件。</p>
-<p>常用参数：</p>
-<blockquote>
-<p>-c：创建一个新tar文件<br>-v：显示运行过程的信息<br>-f：指定文件名<br>-z：调用gzip压缩命令进行压缩<br>-t：查看压缩文件的内容<br>-x：解开tar文件</p>
-</blockquote>
-<p>打包：</p>
-<blockquote>
-<p>tar –cvf  xxx.tar  ./*</p>
-</blockquote>
-<p>打包并且压缩：</p>
-<blockquote>
-<p> tar –zcvf xxx.tar.gz ./*</p>
-</blockquote>
-<p>解压 ：tar –xvf xxx.tar</p>
-<blockquote>
-<p>tar -zxvf xxx.tar.gz -C /usr/aaa</p>
-</blockquote>
-<p><strong>【find】命令</strong></p>
-<p>find指令用于查找符合条件的文件。</p>
-<p>示例：</p>
-<blockquote>
-<p> find / -name “ins*” 查找文件名称是以ins开头的文件</p>
-<p>find / -name “ins*” –ls </p>
-<p>find / –user ss –ls 查找用户ss的文件</p>
-<p>find / –user ss–type d –ls 查找用户ss的目录</p>
-<p>find /-perm -777 –type d-ls 查找权限是777的文件</p>
-</blockquote>
-<p><strong>【grep】命令</strong></p>
-<p>查找文件里符合条件的字符串。</p>
-<p>用法：</p>
-<p>grep [选项]… PATTERN [FILE]…示例：</p>
-<p>grep lang anaconda-ks.cfg     在文件中查找lang</p>
-<p>grep lang anaconda-ks.cfg –color     高亮显示</p>
-<blockquote>
-<p>grep debug yum.conf –color</p>
-<p>grep debug yum.conf –color  -A5</p>
-<p>grep debug yum.conf –color -A5 -B5</p>
-</blockquote>
-<h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><p><strong>【pwd】</strong></p>
-<p>显示当前所在目录</p>
-<p><strong>【touch】</strong></p>
-<p>创建一个空文件</p>
-<blockquote>
-<p>touch a.txt</p>
-</blockquote>
-<p><strong>【clear/ crtl + L】</strong></p>
-<p>清屏</p>
-<h2 id="VI和Vim编辑器"><a href="#VI和Vim编辑器" class="headerlink" title="VI和Vim编辑器"></a>VI和Vim编辑器</h2><p>在Linux下一般使用vi编辑器来编辑文件。vi既可以查看文件也可以编辑文件。三种模式：命令行、插入、底行模式。</p>
-<p>切换到命令行模式：按Esc键</p>
-<p>切换到插入模式：按 i 、o、a键；</p>
-<blockquote>
-<p>  i 在当前位置前插入</p>
-<p>  I 在当前行首插入</p>
-<p>  a 在当前位置后插入</p>
-<p>  A 在当前行尾插入</p>
-<p>  o 在当前行之后插入一行</p>
-<p>  O 在当前行之前插入一行</p>
-</blockquote>
-<p>打开文件：vim file</p>
-<p>退出：esc   :q</p>
-<p>修改文件：输入i进入插入模式</p>
-<p>保存并退出：esc :wq</p>
-<p>不保存退出：esc :q!</p>
-<p>三种进入插入模式：</p>
-<blockquote>
-<p> i:在当前的光标所在处插入<br>o:在当前光标所在的行的下一行插入<br>a:在光标所在的下一个字符插入</p>
-</blockquote>
-<p>快捷键：</p>
-<blockquote>
-<p>dd – 快速删除一行</p>
-<p>yy - 复制当前行</p>
-<p>nyy - 从当前行向后复制几行</p>
-<p>p - 粘贴</p>
-<p>R – 替换</p>
-</blockquote>
-<h2 id="重定向输出-gt-和-gt-gt"><a href="#重定向输出-gt-和-gt-gt" class="headerlink" title="重定向输出&gt;和&gt;&gt;"></a>重定向输出&gt;和&gt;&gt;</h2><p> 重定向输出，覆盖原有内容；&gt;&gt; 重定向输出，又追加功能；示例：</p>
-<blockquote>
-<p>cat /etc/passwd &gt; a.txt 将输出定向到a.txt中</p>
-<p>cat /etc/passwd &gt;&gt; a.txt 输出并且追加</p>
-<p>ifconfig &gt; ifconfig.txt</p>
-</blockquote>
-<h2 id="系统管理命令"><a href="#系统管理命令" class="headerlink" title="系统管理命令"></a>系统管理命令</h2><p>ps 正在运行的某个进程的状态</p>
-<blockquote>
-<p>ps –ef 查看所有进程</p>
-<p>ps –ef | grep ssh 查找某一进程</p>
-<p>kill 2868 杀掉2868编号的进程</p>
-<p>kill -9 2868 强制杀死进程</p>
-</blockquote>
-<h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><p>管道是Linux命令中重要的一个概念，其作用是将一个命令的输出用作另一个命令的输入。示例：</p>
-<blockquote>
-<p>ls –help | more 分页查询帮助信息</p>
-<p>ps –ef | grep java 查询名称中包含java的进程</p>
-<p>ifconfig | more</p>
-<p>cat index.html | more</p>
-<p>ps –ef | grep aio</p>
-</blockquote>
-<h2 id="LInux权限命令"><a href="#LInux权限命令" class="headerlink" title="LInux权限命令"></a>LInux权限命令</h2><h3 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h3><p><img src="/" class="lazyload" data-src="/img/Linux/1.png"  alt=""></p>
-<p><img src="/" class="lazyload" data-src="/img/Linux/2.png"  alt=""></p>
-<p>r:对文件是指可读取内容 对目录是可以ls</p>
-<p>w:对文件是指可修改文件内容，对目录 是指可以在其中创建或删除子节点(目录或文件)</p>
-<p>x:对文件是指是否可以运行这个文件，对目录是指是否可以cd进入这个目录</p>
-<h3 id="Linux三种文件类型："><a href="#Linux三种文件类型：" class="headerlink" title="Linux三种文件类型："></a>Linux三种文件类型：</h3><blockquote>
-<p>普通文件： 包括文本文件、数据文件、可执行的二进制程序文件等。 </p>
-<p>目录文件： Linux系统把目录看成是一种特殊的文件，利用它构成文件系统的树型结构。 </p>
-<p>设备文件： Linux系统把每一个设备都看成是一个文件</p>
-</blockquote>
-<h3 id="文件类型标识"><a href="#文件类型标识" class="headerlink" title="文件类型标识"></a>文件类型标识</h3><blockquote>
-<p>普通文件（-）目录（d）符号链接（l）</p>
-<p>进入etc可以查看，相当于快捷方式字符设备文件（c）块设备文件（s）套接字（s）命名管道（p</p>
-</blockquote>
-<h3 id="文件权限管理"><a href="#文件权限管理" class="headerlink" title="文件权限管理"></a>文件权限管理</h3><blockquote>
-<p>chmod 变更文件或目录的权限。</p>
-<p>chmod 755 a.txt </p>
-<p>chmod u=rwx,g=rx,o=rx a.txt</p>
-</blockquote>
-<h2 id="Linux上常用网络操作"><a href="#Linux上常用网络操作" class="headerlink" title="Linux上常用网络操作"></a>Linux上常用网络操作</h2><h3 id="主机名配置"><a href="#主机名配置" class="headerlink" title="主机名配置"></a>主机名配置</h3><blockquote>
-<p>hostname 查看主机名</p>
-<p>hostname xxx 修改主机名 重启后无效</p>
-<p>如果想要永久生效，可以修改/etc/sysconfig/network文件</p>
-</blockquote>
-<h3 id="IP地址配置"><a href="#IP地址配置" class="headerlink" title="IP地址配置"></a>IP地址配置</h3><blockquote>
-<p>ifconfig 查看(修改)ip地址(重启后无效)</p>
-<p>ifconfig eth0 192.168.12.22 修改ip地址</p>
-<p>如果想要永久生效</p>
-<p>修改 /etc/sysconfig/network-scripts/ifcfg-eth0文件</p>
-<p>DEVICE=eth0 #网卡名称</p>
-<p>BOOTPROTO=static #获取ip的方式(static/dhcp/bootp/none)</p>
-<p>HWADDR=00:0C:29:B5:B2:69 #MAC地址</p>
-<p>IPADDR=12.168.177.129 #IP地址<br>NETMASK=255.255.255.0 #子网掩码<br>NETWORK=192.168.177.0 #网络地址<br>BROADCAST=192.168.0.255 #广播地址</p>
-<p>NBOOT=yes #  系统启动时是否设置此网络接口，设置为yes时，系统启动时激活此设备。</p>
-</blockquote>
-<h3 id="域名映射"><a href="#域名映射" class="headerlink" title="域名映射"></a>域名映射</h3><p>/etc/hosts文件用于在通过主机名进行访问时做ip地址解析之用,相当于windows系统的C:\Windows\System32\drivers\etc\hosts文件的功能</p>
-<h3 id="网络服务管理"><a href="#网络服务管理" class="headerlink" title="网络服务管理"></a>网络服务管理</h3><blockquote>
-<p>service network status 查看指定服务的状态</p>
-<p>service network stop 停止指定服务</p>
-<p>service network start 启动指定服务</p>
-<p>service network restart 重启指定服务</p>
-<p>service –status–all 查看系统中所有后台服务</p>
-<p>netstat –nltp 查看系统中网络进程的端口监听情况</p>
-<p>防火墙设置</p>
-<p>防火墙根据配置文件/etc/sysconfig/iptables来控制本机的”出”、”入”网络访问行为。</p>
-<p>service iptables status 查看防火墙状态</p>
-<p>service iptables stop 关闭防火墙</p>
-<p>service iptables start 启动防火墙</p>
-<p>chkconfig iptables off 禁止防火墙自启</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mybatis学习笔记（三）</title>
     <url>/2020/03/28/Mybatie%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/</url>
     <content><![CDATA[<h1 id="Mybatis学习笔记（三）"><a href="#Mybatis学习笔记（三）" class="headerlink" title="Mybatis学习笔记（三）"></a><center>Mybatis学习笔记（三）</center></h1><h2 id="Mybatis-的输出结果封装"><a href="#Mybatis-的输出结果封装" class="headerlink" title="Mybatis 的输出结果封装"></a>Mybatis 的输出结果封装</h2><h3 id="resultMap-结果类型"><a href="#resultMap-结果类型" class="headerlink" title="resultMap 结果类型"></a>resultMap 结果类型</h3><blockquote>
@@ -963,48 +963,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Mybatis学习笔记（一）</title>
-    <url>/2020/03/27/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<h1 id="MyBatis学习笔记（一）"><a href="#MyBatis学习笔记（一）" class="headerlink" title="MyBatis学习笔记（一）"></a><center>MyBatis学习笔记（一）</center></h1><h2 id="Mybatis概述"><a href="#Mybatis概述" class="headerlink" title="Mybatis概述"></a>Mybatis概述</h2><p>mybatis 是一个优秀的基于 java 的持久层框架，它内部封装了 jdbc，使开发者只需要关注 sql 语句本身，而不需要花费精力去处理加载驱动、创建连接、创建 statement 等繁杂的过程。</p>
-<p>mybatis 通过 xml 或注解的方式将要执行的各种 statement 配置起来，并通过 java 对象和 statement 中sql 的动态参数进行映射生成最终执行的 sql 语句，最后由 mybatis 框架执行 sql 并将结果映射为 java 对象并返回。</p>
-<p>采用 ORM 思想解决了实体和数据库映射的问题，对 jdbc 进行了封装，屏蔽了 jdbc api 底层访问细节，使我们不用与 jdbc api 打交道，就可以完成对数据库的持久化操作。  </p>
-<h2 id="Mybatis环境搭建"><a href="#Mybatis环境搭建" class="headerlink" title="Mybatis环境搭建"></a>Mybatis环境搭建</h2><h3 id="创建maven工程"><a href="#创建maven工程" class="headerlink" title="创建maven工程"></a>创建maven工程</h3><p>创建 mybatis01 的工程，工程信息如下：<br>Groupid:com.syx<br>ArtifactId:mybatis<br>Packing:jar  </p>
-<h3 id="添加Mybatis坐标"><a href="#添加Mybatis坐标" class="headerlink" title="添加Mybatis坐标"></a>添加Mybatis坐标</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.mybatis&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mybatis&lt;&#x2F;artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.4.6&lt;&#x2F;version&gt;</span><br><span class="line">        &lt;&#x2F;dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">            &lt;version&gt;5.1.6&lt;&#x2F;version&gt;</span><br><span class="line">        &lt;&#x2F;dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;junit&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;junit&lt;&#x2F;artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.12&lt;&#x2F;version&gt;</span><br><span class="line">        &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;&#x2F;dependencies&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="编写User实体类"><a href="#编写User实体类" class="headerlink" title="编写User实体类"></a>编写User实体类</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class User implements Serializable &#123;</span><br><span class="line">    private  Integer id;</span><br><span class="line">    private  String username;</span><br><span class="line">    private Date birthday;</span><br><span class="line">    private  String sex;</span><br><span class="line">    private  String address;</span><br><span class="line"></span><br><span class="line">    public Integer getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setId(Integer id) &#123;</span><br><span class="line">        this.id &#x3D; id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getUsername() &#123;</span><br><span class="line">        return username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setUsername(String username) &#123;</span><br><span class="line">        this.username &#x3D; username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Date getBirthday() &#123;</span><br><span class="line">        return birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setBirthday(Date birthday) &#123;</span><br><span class="line">        this.birthday &#x3D; birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getSex() &#123;</span><br><span class="line">        return sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSex(String sex) &#123;</span><br><span class="line">        this.sex &#x3D; sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getAddress() &#123;</span><br><span class="line">        return address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAddress(String address) &#123;</span><br><span class="line">        this.address &#x3D; address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;User&#123;&quot; +</span><br><span class="line">                &quot;id&#x3D;&quot; + id +</span><br><span class="line">                &quot;, username&#x3D;&#39;&quot; + username + &#39;\&#39;&#39; +</span><br><span class="line">                &quot;, birthday&#x3D;&quot; + birthday +</span><br><span class="line">                &quot;, sex&#x3D;&#39;&quot; + sex + &#39;\&#39;&#39; +</span><br><span class="line">                &quot;, address&#x3D;&#39;&quot; + address + &#39;\&#39;&#39; +</span><br><span class="line">                &#39;&#125;&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="编写持久层接口IUserDao"><a href="#编写持久层接口IUserDao" class="headerlink" title="编写持久层接口IUserDao"></a>编写持久层接口IUserDao</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*</span><br><span class="line">* 用户持久层接口</span><br><span class="line">* *&#x2F;</span><br><span class="line">public interface IUserDao &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 查询所有方法</span><br><span class="line">     *&#x2F;</span><br><span class="line">    List&lt;User&gt; findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="编写持久层接口映射文件IUserDao-xml"><a href="#编写持久层接口映射文件IUserDao-xml" class="headerlink" title="编写持久层接口映射文件IUserDao.xml"></a>编写持久层接口映射文件IUserDao.xml</h3><p>要求：</p>
-<ul>
-<li>创建位置： 必须和持久层接口在相同的包中。</li>
-<li>名称： 必须以持久层接口名称命名文件名，扩展名是.xml  </li>
-</ul>
-<p><img src="/" class="lazyload" data-src="/img/Mybatis/1.png"  alt=""></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">        PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;&#x2F;DTD Mapper 3.0&#x2F;&#x2F;EN&quot;</span><br><span class="line">        &quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line"> &lt;mapper namespace&#x3D;&quot;com.syx.dao.IUserDao&quot;&gt;</span><br><span class="line">    &lt;!-- 配置查询所有--&gt;</span><br><span class="line">    &lt;select id&#x3D;&quot;findAll&quot; resultType&#x3D;&quot;com.syx.domain.User&quot;&gt;</span><br><span class="line">        select  * from user</span><br><span class="line">    &lt;&#x2F;select&gt;</span><br><span class="line">&lt;&#x2F;mapper&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="编写SqlMapConfig-xml-主配置文件"><a href="#编写SqlMapConfig-xml-主配置文件" class="headerlink" title="编写SqlMapConfig.xml 主配置文件"></a>编写SqlMapConfig.xml 主配置文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">        PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;&#x2F;DTD Config 3.0&#x2F;&#x2F;EN&quot;</span><br><span class="line">        &quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-config.dtd&quot;&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;!--配置环境 --&gt;</span><br><span class="line">    &lt;environments default&#x3D;&quot;mysql&quot;&gt;</span><br><span class="line">        &lt;!-- 配置mysql环境--&gt;</span><br><span class="line">        &lt;environment id&#x3D;&quot;mysql&quot;&gt;</span><br><span class="line">            &lt;!-- 配置事务类型--&gt;</span><br><span class="line">            &lt;transactionManager type&#x3D;&quot;JDBC&quot;&gt;&lt;&#x2F;transactionManager&gt;</span><br><span class="line">            &lt;!--配置数据源(连接池) --&gt;</span><br><span class="line">            &lt;dataSource type&#x3D;&quot;POOLED&quot;&gt;</span><br><span class="line">                &lt;property name&#x3D;&quot;driver&quot; value&#x3D;&quot;com.mysql.jdbc.Driver&quot;&#x2F;&gt;</span><br><span class="line">                &lt;property name&#x3D;&quot;url&quot; value&#x3D;&quot;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;mybatis&quot;&#x2F;&gt;</span><br><span class="line">                &lt;property name&#x3D;&quot;username&quot; value&#x3D;&quot;root&quot;&#x2F;&gt;</span><br><span class="line">                &lt;property name&#x3D;&quot;password&quot; value&#x3D;&quot;root&quot;&#x2F;&gt;</span><br><span class="line">            &lt;&#x2F;dataSource&gt;</span><br><span class="line">        &lt;&#x2F;environment&gt;</span><br><span class="line">    &lt;&#x2F;environments&gt;</span><br><span class="line">    &lt;!--指定映射配置文件位置，映射配置文件指的是每个dao独立配置的文件--&gt;</span><br><span class="line">    &lt;mappers&gt;</span><br><span class="line">        &lt;mapper resource&#x3D;&quot;com&#x2F;syx&#x2F;dao&#x2F;IUserDao.xml&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;mappers&gt;</span><br><span class="line">&lt;&#x2F;configuration&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="编写测试类"><a href="#编写测试类" class="headerlink" title="编写测试类"></a>编写测试类</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MybatisTest &#123;</span><br><span class="line">    public static void main(String[] args) throws   Exception &#123;</span><br><span class="line">        &#x2F;&#x2F;1.读取配置文件</span><br><span class="line">        InputStream in &#x3D; Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);</span><br><span class="line">        &#x2F;&#x2F;2.创建SqlSessionFactory工厂</span><br><span class="line">        SqlSessionFactoryBuilder builder &#x3D; new SqlSessionFactoryBuilder();</span><br><span class="line">        SqlSessionFactory factory &#x3D; builder.build(in);</span><br><span class="line">        &#x2F;&#x2F;3.试用工厂创建SqlSession对象</span><br><span class="line">        SqlSession sqlSession &#x3D; factory.openSession();</span><br><span class="line">        &#x2F;&#x2F;4.使用SqlSession创建Dao接口的代理对象</span><br><span class="line">        IUserDao dao &#x3D; sqlSession.getMapper(IUserDao.class);</span><br><span class="line">        &#x2F;&#x2F;5.使用代理对象执行方法</span><br><span class="line">        List&lt;User&gt; userList &#x3D; dao.findAll();</span><br><span class="line">        for (User user : userList) &#123;</span><br><span class="line">            System.out.println(user);</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;6.释放资源</span><br><span class="line">        sqlSession.close();</span><br><span class="line">        in.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="数据库搭建"><a href="#数据库搭建" class="headerlink" title="数据库搭建"></a>数据库搭建</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE TABLE &#96;user&#96; (</span><br><span class="line">  &#96;id&#96; int(11) NOT NULL auto_increment,</span><br><span class="line">  &#96;username&#96; varchar(32) NOT NULL COMMENT &#39;用户名称&#39;,</span><br><span class="line">  &#96;birthday&#96; datetime default NULL COMMENT &#39;生日&#39;,</span><br><span class="line">  &#96;sex&#96; char(1) default NULL COMMENT &#39;性别&#39;,</span><br><span class="line">  &#96;address&#96; varchar(256) default NULL COMMENT &#39;地址&#39;,</span><br><span class="line">  PRIMARY KEY  (&#96;id&#96;)</span><br><span class="line">) ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line">insert  into &#96;user&#96;(&#96;id&#96;,&#96;username&#96;,&#96;birthday&#96;,&#96;sex&#96;,&#96;address&#96;) values (41,&#39;老王&#39;,&#39;2018-02-27 17:47:08&#39;,&#39;男&#39;,&#39;北京&#39;),(42,&#39;小二王&#39;,&#39;2018-03-02 15:09:37&#39;,&#39;女&#39;,&#39;北京金燕龙&#39;),(43,&#39;小二王&#39;,&#39;2018-03-04 11:34:34&#39;,&#39;女&#39;,&#39;北京金燕龙&#39;),(45,&#39;a&#39;,&#39;2018-03-04 12:04:06&#39;,&#39;男&#39;,&#39;北京金燕龙&#39;),(46,&#39;老王&#39;,&#39;2018-03-07 17:37:26&#39;,&#39;男&#39;,&#39;北京&#39;),(48,&#39;小马宝莉&#39;,&#39;2018-03-08 11:44:00&#39;,&#39;女&#39;,&#39;北京修正&#39;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="补充（基于注解的-mybatis-使用）"><a href="#补充（基于注解的-mybatis-使用）" class="headerlink" title="补充（基于注解的 mybatis 使用）"></a>补充（基于注解的 mybatis 使用）</h3><h4 id="在持久层接口中添加注解"><a href="#在持久层接口中添加注解" class="headerlink" title="在持久层接口中添加注解"></a>在持久层接口中添加注解</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*</span><br><span class="line">* 用户持久层接口</span><br><span class="line">* *&#x2F;</span><br><span class="line">public interface IUserDao &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 查询所有方法</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Select(&quot;select * from user&quot;)</span><br><span class="line">    List&lt;User&gt; findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="修改-SqlMapConfig-xml"><a href="#修改-SqlMapConfig-xml" class="headerlink" title="修改 SqlMapConfig.xml"></a>修改 SqlMapConfig.xml</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--指定映射配置文件位置，映射配置文件指的是每个dao独立配置的文件--&gt;</span><br><span class="line">   &lt;mappers&gt;</span><br><span class="line">       &lt;mapper class&#x3D;&quot;com.syx.dao.IUserDao&quot;&#x2F;&gt;</span><br><span class="line">   &lt;&#x2F;mappers&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><blockquote>
-<p>在使用基于注解的 Mybatis 配置时，请移除 xml 的映射配置（IUserDao.xml）。<br>补充  </p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>SSM框架</category>
-      </categories>
-      <tags>
-        <tag>Mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mybatis学习笔记（二）</title>
     <url>/2020/03/28/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
     <content><![CDATA[<h1 id="Mybatis学习笔记（二）"><a href="#Mybatis学习笔记（二）" class="headerlink" title="Mybatis学习笔记（二）"></a><center>Mybatis学习笔记（二）</center></h1><h2 id="根据ID查询"><a href="#根据ID查询" class="headerlink" title="根据ID查询"></a>根据ID查询</h2><h3 id="在持久层接口中添加-findById-方法"><a href="#在持久层接口中添加-findById-方法" class="headerlink" title="在持久层接口中添加 findById 方法"></a>在持久层接口中添加 findById 方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 根据Id查询</span><br><span class="line"> *&#x2F;</span><br><span class="line">User findById(int userId);</span><br></pre></td></tr></table></figure>
@@ -1049,6 +1007,48 @@
 
 <h3 id="加入聚合查询的测试方法"><a href="#加入聚合查询的测试方法" class="headerlink" title="加入聚合查询的测试方法"></a>加入聚合查询的测试方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">public  void findTotal()&#123;</span><br><span class="line">    int total &#x3D; userDao.findTotal();</span><br><span class="line">    System.out.println(total);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+]]></content>
+      <categories>
+        <category>SSM框架</category>
+      </categories>
+      <tags>
+        <tag>Mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mybatis学习笔记（一）</title>
+    <url>/2020/03/27/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="MyBatis学习笔记（一）"><a href="#MyBatis学习笔记（一）" class="headerlink" title="MyBatis学习笔记（一）"></a><center>MyBatis学习笔记（一）</center></h1><h2 id="Mybatis概述"><a href="#Mybatis概述" class="headerlink" title="Mybatis概述"></a>Mybatis概述</h2><p>mybatis 是一个优秀的基于 java 的持久层框架，它内部封装了 jdbc，使开发者只需要关注 sql 语句本身，而不需要花费精力去处理加载驱动、创建连接、创建 statement 等繁杂的过程。</p>
+<p>mybatis 通过 xml 或注解的方式将要执行的各种 statement 配置起来，并通过 java 对象和 statement 中sql 的动态参数进行映射生成最终执行的 sql 语句，最后由 mybatis 框架执行 sql 并将结果映射为 java 对象并返回。</p>
+<p>采用 ORM 思想解决了实体和数据库映射的问题，对 jdbc 进行了封装，屏蔽了 jdbc api 底层访问细节，使我们不用与 jdbc api 打交道，就可以完成对数据库的持久化操作。  </p>
+<h2 id="Mybatis环境搭建"><a href="#Mybatis环境搭建" class="headerlink" title="Mybatis环境搭建"></a>Mybatis环境搭建</h2><h3 id="创建maven工程"><a href="#创建maven工程" class="headerlink" title="创建maven工程"></a>创建maven工程</h3><p>创建 mybatis01 的工程，工程信息如下：<br>Groupid:com.syx<br>ArtifactId:mybatis<br>Packing:jar  </p>
+<h3 id="添加Mybatis坐标"><a href="#添加Mybatis坐标" class="headerlink" title="添加Mybatis坐标"></a>添加Mybatis坐标</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.mybatis&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mybatis&lt;&#x2F;artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.4.6&lt;&#x2F;version&gt;</span><br><span class="line">        &lt;&#x2F;dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">            &lt;version&gt;5.1.6&lt;&#x2F;version&gt;</span><br><span class="line">        &lt;&#x2F;dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;junit&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;junit&lt;&#x2F;artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.12&lt;&#x2F;version&gt;</span><br><span class="line">        &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;&#x2F;dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编写User实体类"><a href="#编写User实体类" class="headerlink" title="编写User实体类"></a>编写User实体类</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class User implements Serializable &#123;</span><br><span class="line">    private  Integer id;</span><br><span class="line">    private  String username;</span><br><span class="line">    private Date birthday;</span><br><span class="line">    private  String sex;</span><br><span class="line">    private  String address;</span><br><span class="line"></span><br><span class="line">    public Integer getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setId(Integer id) &#123;</span><br><span class="line">        this.id &#x3D; id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getUsername() &#123;</span><br><span class="line">        return username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setUsername(String username) &#123;</span><br><span class="line">        this.username &#x3D; username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Date getBirthday() &#123;</span><br><span class="line">        return birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setBirthday(Date birthday) &#123;</span><br><span class="line">        this.birthday &#x3D; birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getSex() &#123;</span><br><span class="line">        return sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSex(String sex) &#123;</span><br><span class="line">        this.sex &#x3D; sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getAddress() &#123;</span><br><span class="line">        return address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAddress(String address) &#123;</span><br><span class="line">        this.address &#x3D; address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;User&#123;&quot; +</span><br><span class="line">                &quot;id&#x3D;&quot; + id +</span><br><span class="line">                &quot;, username&#x3D;&#39;&quot; + username + &#39;\&#39;&#39; +</span><br><span class="line">                &quot;, birthday&#x3D;&quot; + birthday +</span><br><span class="line">                &quot;, sex&#x3D;&#39;&quot; + sex + &#39;\&#39;&#39; +</span><br><span class="line">                &quot;, address&#x3D;&#39;&quot; + address + &#39;\&#39;&#39; +</span><br><span class="line">                &#39;&#125;&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编写持久层接口IUserDao"><a href="#编写持久层接口IUserDao" class="headerlink" title="编写持久层接口IUserDao"></a>编写持久层接口IUserDao</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*</span><br><span class="line">* 用户持久层接口</span><br><span class="line">* *&#x2F;</span><br><span class="line">public interface IUserDao &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 查询所有方法</span><br><span class="line">     *&#x2F;</span><br><span class="line">    List&lt;User&gt; findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编写持久层接口映射文件IUserDao-xml"><a href="#编写持久层接口映射文件IUserDao-xml" class="headerlink" title="编写持久层接口映射文件IUserDao.xml"></a>编写持久层接口映射文件IUserDao.xml</h3><p>要求：</p>
+<ul>
+<li>创建位置： 必须和持久层接口在相同的包中。</li>
+<li>名称： 必须以持久层接口名称命名文件名，扩展名是.xml  </li>
+</ul>
+<p><img src="/" class="lazyload" data-src="/img/Mybatis/1.png"  alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">        PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;&#x2F;DTD Mapper 3.0&#x2F;&#x2F;EN&quot;</span><br><span class="line">        &quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line"> &lt;mapper namespace&#x3D;&quot;com.syx.dao.IUserDao&quot;&gt;</span><br><span class="line">    &lt;!-- 配置查询所有--&gt;</span><br><span class="line">    &lt;select id&#x3D;&quot;findAll&quot; resultType&#x3D;&quot;com.syx.domain.User&quot;&gt;</span><br><span class="line">        select  * from user</span><br><span class="line">    &lt;&#x2F;select&gt;</span><br><span class="line">&lt;&#x2F;mapper&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编写SqlMapConfig-xml-主配置文件"><a href="#编写SqlMapConfig-xml-主配置文件" class="headerlink" title="编写SqlMapConfig.xml 主配置文件"></a>编写SqlMapConfig.xml 主配置文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">        PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;&#x2F;DTD Config 3.0&#x2F;&#x2F;EN&quot;</span><br><span class="line">        &quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-config.dtd&quot;&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;!--配置环境 --&gt;</span><br><span class="line">    &lt;environments default&#x3D;&quot;mysql&quot;&gt;</span><br><span class="line">        &lt;!-- 配置mysql环境--&gt;</span><br><span class="line">        &lt;environment id&#x3D;&quot;mysql&quot;&gt;</span><br><span class="line">            &lt;!-- 配置事务类型--&gt;</span><br><span class="line">            &lt;transactionManager type&#x3D;&quot;JDBC&quot;&gt;&lt;&#x2F;transactionManager&gt;</span><br><span class="line">            &lt;!--配置数据源(连接池) --&gt;</span><br><span class="line">            &lt;dataSource type&#x3D;&quot;POOLED&quot;&gt;</span><br><span class="line">                &lt;property name&#x3D;&quot;driver&quot; value&#x3D;&quot;com.mysql.jdbc.Driver&quot;&#x2F;&gt;</span><br><span class="line">                &lt;property name&#x3D;&quot;url&quot; value&#x3D;&quot;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;mybatis&quot;&#x2F;&gt;</span><br><span class="line">                &lt;property name&#x3D;&quot;username&quot; value&#x3D;&quot;root&quot;&#x2F;&gt;</span><br><span class="line">                &lt;property name&#x3D;&quot;password&quot; value&#x3D;&quot;root&quot;&#x2F;&gt;</span><br><span class="line">            &lt;&#x2F;dataSource&gt;</span><br><span class="line">        &lt;&#x2F;environment&gt;</span><br><span class="line">    &lt;&#x2F;environments&gt;</span><br><span class="line">    &lt;!--指定映射配置文件位置，映射配置文件指的是每个dao独立配置的文件--&gt;</span><br><span class="line">    &lt;mappers&gt;</span><br><span class="line">        &lt;mapper resource&#x3D;&quot;com&#x2F;syx&#x2F;dao&#x2F;IUserDao.xml&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;mappers&gt;</span><br><span class="line">&lt;&#x2F;configuration&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编写测试类"><a href="#编写测试类" class="headerlink" title="编写测试类"></a>编写测试类</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MybatisTest &#123;</span><br><span class="line">    public static void main(String[] args) throws   Exception &#123;</span><br><span class="line">        &#x2F;&#x2F;1.读取配置文件</span><br><span class="line">        InputStream in &#x3D; Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);</span><br><span class="line">        &#x2F;&#x2F;2.创建SqlSessionFactory工厂</span><br><span class="line">        SqlSessionFactoryBuilder builder &#x3D; new SqlSessionFactoryBuilder();</span><br><span class="line">        SqlSessionFactory factory &#x3D; builder.build(in);</span><br><span class="line">        &#x2F;&#x2F;3.试用工厂创建SqlSession对象</span><br><span class="line">        SqlSession sqlSession &#x3D; factory.openSession();</span><br><span class="line">        &#x2F;&#x2F;4.使用SqlSession创建Dao接口的代理对象</span><br><span class="line">        IUserDao dao &#x3D; sqlSession.getMapper(IUserDao.class);</span><br><span class="line">        &#x2F;&#x2F;5.使用代理对象执行方法</span><br><span class="line">        List&lt;User&gt; userList &#x3D; dao.findAll();</span><br><span class="line">        for (User user : userList) &#123;</span><br><span class="line">            System.out.println(user);</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;6.释放资源</span><br><span class="line">        sqlSession.close();</span><br><span class="line">        in.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据库搭建"><a href="#数据库搭建" class="headerlink" title="数据库搭建"></a>数据库搭建</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE TABLE &#96;user&#96; (</span><br><span class="line">  &#96;id&#96; int(11) NOT NULL auto_increment,</span><br><span class="line">  &#96;username&#96; varchar(32) NOT NULL COMMENT &#39;用户名称&#39;,</span><br><span class="line">  &#96;birthday&#96; datetime default NULL COMMENT &#39;生日&#39;,</span><br><span class="line">  &#96;sex&#96; char(1) default NULL COMMENT &#39;性别&#39;,</span><br><span class="line">  &#96;address&#96; varchar(256) default NULL COMMENT &#39;地址&#39;,</span><br><span class="line">  PRIMARY KEY  (&#96;id&#96;)</span><br><span class="line">) ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line">insert  into &#96;user&#96;(&#96;id&#96;,&#96;username&#96;,&#96;birthday&#96;,&#96;sex&#96;,&#96;address&#96;) values (41,&#39;老王&#39;,&#39;2018-02-27 17:47:08&#39;,&#39;男&#39;,&#39;北京&#39;),(42,&#39;小二王&#39;,&#39;2018-03-02 15:09:37&#39;,&#39;女&#39;,&#39;北京金燕龙&#39;),(43,&#39;小二王&#39;,&#39;2018-03-04 11:34:34&#39;,&#39;女&#39;,&#39;北京金燕龙&#39;),(45,&#39;a&#39;,&#39;2018-03-04 12:04:06&#39;,&#39;男&#39;,&#39;北京金燕龙&#39;),(46,&#39;老王&#39;,&#39;2018-03-07 17:37:26&#39;,&#39;男&#39;,&#39;北京&#39;),(48,&#39;小马宝莉&#39;,&#39;2018-03-08 11:44:00&#39;,&#39;女&#39;,&#39;北京修正&#39;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="补充（基于注解的-mybatis-使用）"><a href="#补充（基于注解的-mybatis-使用）" class="headerlink" title="补充（基于注解的 mybatis 使用）"></a>补充（基于注解的 mybatis 使用）</h3><h4 id="在持久层接口中添加注解"><a href="#在持久层接口中添加注解" class="headerlink" title="在持久层接口中添加注解"></a>在持久层接口中添加注解</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*</span><br><span class="line">* 用户持久层接口</span><br><span class="line">* *&#x2F;</span><br><span class="line">public interface IUserDao &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 查询所有方法</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Select(&quot;select * from user&quot;)</span><br><span class="line">    List&lt;User&gt; findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改-SqlMapConfig-xml"><a href="#修改-SqlMapConfig-xml" class="headerlink" title="修改 SqlMapConfig.xml"></a>修改 SqlMapConfig.xml</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--指定映射配置文件位置，映射配置文件指的是每个dao独立配置的文件--&gt;</span><br><span class="line">   &lt;mappers&gt;</span><br><span class="line">       &lt;mapper class&#x3D;&quot;com.syx.dao.IUserDao&quot;&#x2F;&gt;</span><br><span class="line">   &lt;&#x2F;mappers&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><blockquote>
+<p>在使用基于注解的 Mybatis 配置时，请移除 xml 的映射配置（IUserDao.xml）。<br>补充  </p>
+</blockquote>
 ]]></content>
       <categories>
         <category>SSM框架</category>
@@ -1388,6 +1388,82 @@
       </tags>
   </entry>
   <entry>
+    <title>SpringIoc（基于xml配置）</title>
+    <url>/2020/04/03/SpringIoc%EF%BC%88%E5%9F%BA%E4%BA%8Exml%E9%85%8D%E7%BD%AE%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="1-SpringIoc的概念和作用"><a href="#1-SpringIoc的概念和作用" class="headerlink" title="1.SpringIoc的概念和作用"></a>1.SpringIoc的概念和作用</h2><h3 id="1-1程序的耦合和解耦"><a href="#1-1程序的耦合和解耦" class="headerlink" title="1.1程序的耦合和解耦 "></a><CENTER>1.1程序的耦合和解耦 <CENTER></h3><h4 id="1-1-1什么是程序的耦合"><a href="#1-1-1什么是程序的耦合" class="headerlink" title="1.1.1什么是程序的耦合?"></a>1.1.1什么是程序的耦合?</h4><blockquote>
+<p>耦合性(Coupling)，也叫耦合度，是对模块间关联程度的度量。耦合的强弱取决于模块间接口的复杂性、调<br>用模块的方式以及通过界面传送数据的多少。模块间的耦合度是指模块之间的依赖关系，包括控制关系、调用关系、数据传递关系。模块间联系越多，其耦合性越强，同时表明其独立性越差( 降低耦合性，可以提高其独立性)。 耦合性存在于各个领域，而非软件设计中独有的，但是我们只讨论软件工程中的耦合。<br>在软件工程中， 耦合指的就是就是对象之间的依赖性。对象之间的耦合越高，维护成本越高。因此对象的设计应使类和构件之间的耦合最小。 软件设计中通常用耦合度和内聚度作为衡量模块独立程度的标准。 划分模块的一个准则就是高内聚低耦合。</p>
+<a id="more"></a>
+<p>它有如下分类：<br>（1） 内容耦合。当一个模块直接修改或操作另一个模块的数据时，或一个模块不通过正常入口而转入另 一个模块时，这样的耦合被称为内容耦合。内容耦合是最高程度的耦合，应该避免使用之。<br>（2） 公共耦合。两个或两个以上的模块共同引用一个全局数据项，这种耦合被称为公共耦合。在具有大 量公共耦合的结构中，确定究竟是哪个模块给全局变量赋了一个特定的值是十分困难的。<br>（3） 外部耦合 。一组模块都访问同一全局简单变量而不是同一全局数据结构，而且不是通过参数表传递该全局变量的信息，则称之为外部耦合。<br>（4） 控制耦合 。一个模块通过接口向另一个模块传递一个控制信号，接受信号的模块根据信号值而进 行适当的动作，这种耦合被称为控制耦合。<br>（5） 标记耦合 。若一个模块 A 通过接口向两个模块 B 和 C 传递一个公共参数，那么称模块 B 和 C 之间 存在一个标记耦合。<br>（6） 数据耦合。模块之间通过参数来传递数据，那么被称为数据耦合。数据耦合是最低的一种耦合形式，系统中一般都存在这种类型的耦合，因为为了完成一些有意义的功能，往往需要将某些模块的输出数据作为另一些模块的输入数据。<br>（7） 非直接耦合 。两个模块之间没有直接关系，它们之间的联系完全是通过主模块的控制和调用来实 现的。<br>总结：<br>耦合是影响软件复杂程度和设计质量的一个重要因素，在设计上我们应采用以下原则：如果模块间必须 存在耦合，就尽量使用数据耦合，少用控制耦合，限制公共耦合的范围，尽量避免使用内容耦合。<br>内聚与耦合内聚标志一个模块内各个元素彼此结合的紧密程度，它是信息隐蔽和局部化概念的自然扩展。 内聚是从功能角度来度量模块内的联系，一个好的内聚模块应当恰好做一件事。它描述的是模块内的功能联系。耦合是软件结构中各模块之间相互连接的一种度量，耦合强弱取决于模块间接口的复杂程度、进入或访问一个模块的点以及通过接口的数据。 程序讲究的是低耦合，高内聚。就是同一个模块内的各个元素之间要高度紧密，但是各个模块之间的相互依存度却要不那么紧密。<br>内聚和耦合是密切相关的，同其他模块存在高耦合的模块意味着低内聚，而高内聚的模块意味着该模块同其他模块之间是低耦合。在进行软件设计时，应力争做到高内聚，低耦合。</p>
+</blockquote>
+<h4 id="1-1-2解决耦合思路"><a href="#1-1-2解决耦合思路" class="headerlink" title="1.1.2解决耦合思路"></a>1.1.2解决耦合思路</h4><blockquote>
+<p>当是我们讲解 jdbc 时，是通过反射来注册驱动的，代码如下：<br>Class.forName(“com.mysql.jdbc.Driver”);//此处只是一个字符串<br>此时的好处是，我们的类中不再依赖具体的驱动类，此时就算删除 mysql 的驱动 jar 包，依然可以编译（运行就不要想了，没有驱动不可能运行成功的） 。<br>同时，也产生了一个新的问题， mysql 驱动的全限定类名字符串是在 java 类中写死的，一旦要改还是要修改 源码。<br>解决这个问题也很简单，使用配置文件配置  </p>
+</blockquote>
+<h4 id="1-1-3工厂模式解耦"><a href="#1-1-3工厂模式解耦" class="headerlink" title="1.1.3工厂模式解耦"></a>1.1.3工厂模式解耦</h4><blockquote>
+<p>在实际开发中我们可以把三层的对象都使用配置文件配置起来，当启动服务器应用加载的时候， 让一个类中的方法通过读取配置文件，把这些对象创建出来并存起来。在接下来的使用的时候，直接拿过来用就好了。<br>那么，这个读取配置文件， 创建和获取三层对象的类就是工厂</p>
+</blockquote>
+<h4 id="1-1-4控制反转-Inversion-Of-Control"><a href="#1-1-4控制反转-Inversion-Of-Control" class="headerlink" title="1.1.4控制反转-Inversion Of Control"></a>1.1.4控制反转-Inversion Of Control</h4><blockquote>
+<p>解耦的思路有 2 个问题：<br>1、存哪去？<br>分析：由于我们是很多对象，肯定要找个集合来存。这时候有 Map 和 List 供选择。<br>到底选 Map 还是 List 就看我们有没有查找需求。有查找需求，选 Map。<br>所以我们的答案就是<br>在应用加载时，创建一个 Map，用于存放三层对象。<br>我们把这个 map 称之为容器。<br>2、还是没解释什么是工厂？<br>工厂就是负责给我们从容器中获取指定对象的类。这时候我们获取对象的方式发生了改变。<br>原来：<br>我们在获取对象时，都是采用 new 的方式。 是主动的。<br>现在：<br>我们获取对象时，同时跟工厂要，有工厂为我们查找或者创建对象。 是被动的。<br>这种被动接收的方式获取对象的思想就是控制反转，它是 spring 框架的核心之一。<br><strong>明确 ioc 的作用</strong>：<br>削减计算机程序的耦合(解除我们代码中的依赖关系)。  </p>
+</blockquote>
+<h2 id="2-使用-spring-的-IOC-解决程序耦合"><a href="#2-使用-spring-的-IOC-解决程序耦合" class="headerlink" title="2.使用 spring 的 IOC 解决程序耦合"></a><center>2.使用 spring 的 IOC 解决程序耦合</center></h2><h3 id="2-1案例的前期准备"><a href="#2-1案例的前期准备" class="headerlink" title="2.1案例的前期准备"></a>2.1案例的前期准备</h3><h4 id="2-1-1导入依赖"><a href="#2-1-1导入依赖" class="headerlink" title="2.1.1导入依赖"></a>2.1.1导入依赖</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-context&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;version&gt;5.1.0.RELEASE&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;&#x2F;dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-2创建业务层接口和实现类"><a href="#2-1-2创建业务层接口和实现类" class="headerlink" title="2.1.2创建业务层接口和实现类"></a>2.1.2创建业务层接口和实现类</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IAccountService &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 模拟保存用户</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void saveAccount();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class AccountServiceImpl implements IAccountService &#123;</span><br><span class="line">    private IAccountDao accountDao &#x3D; new AccountDaoImpl();</span><br><span class="line"></span><br><span class="line">    public void saveAccount() &#123;</span><br><span class="line">        accountDao.saveAccount();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-3创建持久层接口和实现类"><a href="#2-1-3创建持久层接口和实现类" class="headerlink" title="2.1.3创建持久层接口和实现类"></a>2.1.3创建持久层接口和实现类</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IAccountDao &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 模拟保存用户</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void saveAccount(); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class AccountDaoImpl implements IAccountDao &#123;</span><br><span class="line">    public void saveAccount() &#123;</span><br><span class="line">        System.out.println(&quot;账户保存了................&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-基于-XML-的配置"><a href="#2-2-基于-XML-的配置" class="headerlink" title="2.2 基于 XML 的配置"></a>2.2 基于 XML 的配置</h3><h4 id="2-2-1在resource下创建xml配置文件，导入约束"><a href="#2-2-1在resource下创建xml配置文件，导入约束" class="headerlink" title="2.2.1在resource下创建xml配置文件，导入约束"></a>2.2.1在resource下创建xml配置文件，导入约束</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;</span><br><span class="line">       xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">       xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans</span><br><span class="line">http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans.xsd&quot;&gt;</span><br><span class="line">&lt;&#x2F;beans&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-2让-spring-管理资源，在配置文件中配置-service-和-dao"><a href="#2-2-2让-spring-管理资源，在配置文件中配置-service-和-dao" class="headerlink" title="2.2.2让 spring 管理资源，在配置文件中配置 service 和 dao"></a>2.2.2让 spring 管理资源，在配置文件中配置 service 和 dao</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;</span><br><span class="line">       xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">       xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans</span><br><span class="line">http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans.xsd&quot;&gt;</span><br><span class="line">        &lt;!-- bean 标签：用于配置让 spring 创建对象，并且存入 ioc 容器之中</span><br><span class="line">        id 属性：对象的唯一标识。</span><br><span class="line">        class 属性：指定要创建对象的全限定类名</span><br><span class="line">        --&gt;</span><br><span class="line">    &lt;!--配置Service--&gt;</span><br><span class="line">    &lt;bean id&#x3D;&quot;accountService&quot; class&#x3D;&quot;com.syx.service.Impl.AccountServiceImpl&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line">    &lt;!--配置Dao--&gt;</span><br><span class="line">    &lt;bean id&#x3D;&quot;accountDao&quot; class&#x3D;&quot;com.syx.dao.Impl.AccountDaoImpl&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;&#x2F;beans&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-3测试配置是否成功"><a href="#2-2-3测试配置是否成功" class="headerlink" title="2.2.3测试配置是否成功"></a>2.2.3测试配置是否成功</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Client &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        &#x2F;&#x2F;使用ApplicationContext接口，获取spring容器</span><br><span class="line">        ApplicationContext ac &#x3D; new ClassPathXmlApplicationContext(&quot;bean.xml&quot;);</span><br><span class="line">        &#x2F;&#x2F;根基bean的id获取对象 </span><br><span class="line">        AccountServiceImpl accountService &#x3D; ac.getBean(&quot;accountService&quot;, AccountServiceImpl.class);</span><br><span class="line">        System.out.println(accountService);</span><br><span class="line">        AccountDaoImpl accountDao &#x3D; ac.getBean(&quot;accountDao&quot;, AccountDaoImpl.class);</span><br><span class="line">        System.out.println(accountDao);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Spring基于xml的Ioc细节"><a href="#3-Spring基于xml的Ioc细节" class="headerlink" title="3.Spring基于xml的Ioc细节"></a><center>3.Spring基于xml的Ioc细节</center></h2><p>spring 中工厂的类结构图  </p>
+<p><img src="/" class="lazyload" data-src="/img/Spring/1.png"  alt=""></p>
+<h3 id="3-1BeanFactory-和-ApplicationContext-的区别"><a href="#3-1BeanFactory-和-ApplicationContext-的区别" class="headerlink" title="3.1BeanFactory 和 ApplicationContext 的区别"></a>3.1BeanFactory 和 ApplicationContext 的区别</h3><blockquote>
+<p>BeanFactory 才是 Spring 容器中的顶层接口。<br>ApplicationContext 是它的子接口。<br>BeanFactory 和 ApplicationContext 的区别：<br>创建对象的时间点不一样。<br>ApplicationContext：只要一读取配置文件，默认情况下就会创建对象。<br>BeanFactory：什么使用什么时候创建对象。  </p>
+</blockquote>
+<h3 id="3-2ApplicationContext-接口的实现类"><a href="#3-2ApplicationContext-接口的实现类" class="headerlink" title="3.2ApplicationContext 接口的实现类"></a>3.2ApplicationContext 接口的实现类</h3><blockquote>
+<p>ClassPathXmlApplicationContext：<br>它是从类的根路径下加载配置文件 推荐使用这种<br>FileSystemXmlApplicationContext：<br>它是从磁盘路径上加载配置文件，配置文件可以在磁盘的任意位置。<br>AnnotationConfigApplicationContext:<br>当我们使用注解配置容器对象时，需要使用此类来创建 spring 容器。它用来读取注解。</p>
+</blockquote>
+<h2 id="4-IOC-中-bean-标签和管理对象细节"><a href="#4-IOC-中-bean-标签和管理对象细节" class="headerlink" title="4.IOC 中 bean 标签和管理对象细节"></a><center>4.IOC 中 bean 标签和管理对象细节</center></h2><h3 id="4-1-bean标签"><a href="#4-1-bean标签" class="headerlink" title="4.1.bean标签"></a>4.1.bean标签</h3><blockquote>
+<p>作用：<br>用于配置对象让 spring 来创建的。<br>默认情况下它调用的是类中的无参构造函数。如果没有无参构造函数则不能创建成功。<br>属性：<br>id： 给对象在容器中提供一个唯一标识。用于获取对象。<br>class： 指定类的全限定类名。用于反射创建对象。默认情况下调用无参构造函数。<br>scope： 指定对象的作用范围。</p>
+<ul>
+<li>singleton :默认值，单例的.</li>
+<li>prototype :多例的.</li>
+<li>request :WEB 项目中,Spring 创建一个 Bean 的对象,将对象存入到 request 域中.</li>
+<li>session :WEB 项目中,Spring 创建一个 Bean 的对象,将对象存入到 session 域中.</li>
+<li>global session :WEB 项目中,应用在 Portlet 环境.如果没有 Portlet 环境那么globalSession 相当于 session.</li>
+</ul>
+<p>init-method： 指定类中的初始化方法名称。<br>destroy-method： 指定类中销毁方法名称。</p>
+</blockquote>
+<h3 id="4-2bean-的作用范围和生命周期"><a href="#4-2bean-的作用范围和生命周期" class="headerlink" title="4.2bean 的作用范围和生命周期"></a>4.2bean 的作用范围和生命周期</h3><blockquote>
+<p>单例对象： scope=”singleton”<br>    一个应用只有一个对象的实例。它的作用范围就是整个引用。<br>    生命周期：<br>        对象出生：当应用加载，创建容器时，对象就被创建了。<br>        对象活着：只要容器在，对象一直活着。<br>        对象死亡：当应用卸载，销毁容器时，对象就被销毁了。<br>多例对象： scope=”prototype”<br>    每次访问对象时，都会重新创建对象实例。<br>    生命周期：<br>        对象出生：当使用对象时，创建新的对象实例。<br>        对象活着：只要对象在使用中，就一直活着。<br>        对象死亡：当对象长时间不用时，被 java 的垃圾回收器回收了。</p>
+</blockquote>
+<h3 id="4-3实例化-Bean-的三种方式"><a href="#4-3实例化-Bean-的三种方式" class="headerlink" title="4.3实例化 Bean 的三种方式"></a>4.3实例化 Bean 的三种方式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第一种方式：使用默认无参构造函数</span><br><span class="line">&lt;!--在默认情况下：</span><br><span class="line">它会根据默认无参构造函数来创建类对象。如果 bean 中没有默认无参构造函数，将会创建失败。--&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;accountService&quot; class&#x3D;&quot;com.syx.service.impl.AccountServiceImpl&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第二种方式： spring 管理静态工厂-使用静态工厂的方法创建对象</span><br><span class="line">&#x2F;**</span><br><span class="line">* 模拟一个静态工厂，创建业务层实现类</span><br><span class="line">*&#x2F;</span><br><span class="line">public class StaticFactory &#123;</span><br><span class="line">public static IAccountService createAccountService()&#123;</span><br><span class="line">		return new AccountServiceImpl();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!-- 此种方式是:</span><br><span class="line">使用 StaticFactory 类中的静态方法 createAccountService 创建对象，并存入 spring 容器</span><br><span class="line">id 属性：指定 bean 的 id，用于从容器中获取</span><br><span class="line">class 属性：指定静态工厂的全限定类名</span><br><span class="line">factory-method 属性：指定生产对象的静态方法</span><br><span class="line">--&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;accountService&quot;</span><br><span class="line">class&#x3D;&quot;com.syx.factory.StaticFactory&quot;</span><br><span class="line">factory-method&#x3D;&quot;createAccountService&quot;&gt;&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第三种方式： spring 管理实例工厂-使用实例工厂的方法创建对象</span><br><span class="line">&#x2F;**</span><br><span class="line">* 模拟一个实例工厂，创建业务层实现类</span><br><span class="line">* 此工厂创建对象，必须现有工厂实例对象，再调用方法</span><br><span class="line">*&#x2F;</span><br><span class="line">public class InstanceFactory &#123;</span><br><span class="line">public IAccountService createAccountService()&#123;</span><br><span class="line">return new AccountServiceImpl();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!-- 此种方式是：</span><br><span class="line">先把工厂的创建交给 spring 来管理。</span><br><span class="line">然后在使用工厂的 bean 来调用里面的方法</span><br><span class="line">factory-bean 属性：用于指定实例工厂 bean 的 id。</span><br><span class="line">factory-method 属性：用于指定实例工厂中创建对象的方法。</span><br><span class="line">--&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;instancFactory&quot; class&#x3D;&quot;com.syx.factory.InstanceFactory&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;accountService&quot;</span><br><span class="line">factory-bean&#x3D;&quot;instancFactory&quot;</span><br><span class="line">factory-method&#x3D;&quot;createAccountService&quot;&gt;&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4spring-的依赖注入"><a href="#4-4spring-的依赖注入" class="headerlink" title="4.4spring 的依赖注入"></a>4.4spring 的依赖注入</h3><h4 id="4-4-1-依赖注入的概念"><a href="#4-4-1-依赖注入的概念" class="headerlink" title="4.4.1.依赖注入的概念"></a>4.4.1.依赖注入的概念</h4><blockquote>
+<p>依赖注入： Dependency Injection。 它是 spring 框架核心 ioc 的具体实现。<br>我们的程序在编写时， 通过控制反转， 把对象的创建交给了 spring，但是代码中不可能出现没有依赖的情况。<br>ioc 解耦只是降低他们的依赖关系，但不会消除。 例如：我们的业务层仍会调用持久层的方法。<br>那这种业务层和持久层的依赖关系， 在使用 spring 之后， 就让 spring 来维护了。<br>简单的说，就是坐等框架把持久层对象传入业务层，而不用我们自己去获取。</p>
+</blockquote>
+<h4 id="4-4-2-构造函数注入"><a href="#4-4-2-构造函数注入" class="headerlink" title="4.4.2.构造函数注入"></a>4.4.2.构造函数注入</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class AccountDaoImpl implements IAccountDao &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private String sex;</span><br><span class="line">    private Date   birthday;</span><br><span class="line">    public AccountDaoImpl(String name,String sex,Date birthday)&#123;</span><br><span class="line">        this.name &#x3D; name;</span><br><span class="line">        this.sex &#x3D; sex;</span><br><span class="line">        this.birthday &#x3D; birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void saveAccount() &#123;</span><br><span class="line">        System.out.println(name+&quot;,&quot;+sex+&quot;，&quot;+birthday);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;!-- 使用构造函数的方式，给 service 中的属性传值</span><br><span class="line">要求：</span><br><span class="line">类中需要提供一个对应参数列表的构造函数。</span><br><span class="line">涉及的标签：</span><br><span class="line">constructor-arg</span><br><span class="line">属性：</span><br><span class="line">index:指定参数在构造函数参数列表的索引位置</span><br><span class="line">type:name:指定参数在构造函数中的名称 用这个找给谁赋值</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;上面三个都是找给谁赋值，下面两个指的是赋什么值的&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">value:它能赋的值是基本数据类型和 String 类型</span><br><span class="line">ref:它能赋的值是其他 bean 类型，也就是说，必须得是在配置文件中配置过的 bean</span><br><span class="line">--&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;accountService&quot; class&#x3D;&quot;com.itheima.service.impl.AccountServiceImpl&quot;&gt;</span><br><span class="line">&lt;constructor-arg name&#x3D;&quot;name&quot; value&#x3D;&quot;张三&quot;&gt;&lt;&#x2F;constructor-arg&gt;</span><br><span class="line">&lt;constructor-arg name&#x3D;&quot;age&quot; value&#x3D;&quot;18&quot;&gt;&lt;&#x2F;constructor-arg&gt;</span><br><span class="line">&lt;constructor-arg name&#x3D;&quot;birthday&quot; ref&#x3D;&quot;now&quot;&gt;&lt;&#x2F;constructor-arg&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;now&quot; class&#x3D;&quot;java.util.Date&quot;&gt;&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4-3-set-方法注入"><a href="#4-4-3-set-方法注入" class="headerlink" title="4.4.3.set 方法注入"></a>4.4.3.set 方法注入</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class AccountServiceImpl implements IAccountService &#123;</span><br><span class="line">private String name;</span><br><span class="line">private Integer age;</span><br><span class="line">private Date birthday;</span><br><span class="line">public void setName(String name) &#123;</span><br><span class="line">this.name &#x3D; name;</span><br><span class="line">&#125;</span><br><span class="line">public void setAge(Integer age) &#123;</span><br><span class="line">this.age &#x3D; age;</span><br><span class="line">&#125;</span><br><span class="line">public void setBirthday(Date birthday) &#123;</span><br><span class="line">this.birthday &#x3D; birthday;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">public void saveAccount() &#123;</span><br><span class="line">System.out.println(name+&quot;,&quot;+age+&quot;,&quot;+birthday);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!-- 通过配置文件给 bean 中的属性传值：使用 set 方法的方式</span><br><span class="line">涉及的标签：</span><br><span class="line">属性：</span><br><span class="line">name：找的是类中 set 方法后面的部分</span><br><span class="line">ref：给属性赋值是其他 bean 类型的</span><br><span class="line">value：给属性赋值是基本数据类型和 string 类型的</span><br><span class="line">实际开发中，此种方式用的较多。</span><br><span class="line">--&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;accountService&quot; class&#x3D;&quot;com.itheima.service.impl.AccountServiceImpl&quot;&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;name&quot; value&#x3D;&quot;test&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;age&quot; value&#x3D;&quot;21&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;birthday&quot; ref&#x3D;&quot;now&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;now&quot; class&#x3D;&quot;java.util.Date&quot;&gt;&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4-4-注入集合属性"><a href="#4-4-4-注入集合属性" class="headerlink" title="4.4.4.注入集合属性"></a>4.4.4.注入集合属性</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class AccountDaoImpl implements IAccountDao &#123;</span><br><span class="line">    private String[] myStrs;</span><br><span class="line">    private List&lt;String&gt; myList;</span><br><span class="line">    private Set&lt;String&gt; mySet;</span><br><span class="line">    private Map&lt;String,String&gt; myMap;</span><br><span class="line">    private Properties myProps;</span><br><span class="line"></span><br><span class="line">    public void setMyStrs(String[] myStrs) &#123;</span><br><span class="line">        this.myStrs &#x3D; myStrs;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setMyList(List&lt;String&gt; myList) &#123;</span><br><span class="line">        this.myList &#x3D; myList;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setMySet(Set&lt;String&gt; mySet) &#123;</span><br><span class="line">        this.mySet &#x3D; mySet;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setMyMap(Map&lt;String, String&gt; myMap) &#123;</span><br><span class="line">        this.myMap &#x3D; myMap;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setMyProps(Properties myProps) &#123;</span><br><span class="line">        this.myProps &#x3D; myProps;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void saveAccount() &#123;</span><br><span class="line">        System.out.println(Arrays.toString(myStrs));</span><br><span class="line">        System.out.println(myList);</span><br><span class="line">        System.out.println(mySet);</span><br><span class="line">        System.out.println(myMap);</span><br><span class="line">        System.out.println(myProps);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;</span><br><span class="line">       xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">       xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans</span><br><span class="line">http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans.xsd&quot;&gt;</span><br><span class="line">        &lt;!-- bean 标签：用于配置让 spring 创建对象，并且存入 ioc 容器之中</span><br><span class="line">        id 属性：对象的唯一标识。</span><br><span class="line">        class 属性：指定要创建对象的全限定类名</span><br><span class="line">        --&gt;</span><br><span class="line">    &lt;!--配置Service--&gt;</span><br><span class="line">    &lt;bean id&#x3D;&quot;accountService&quot; class&#x3D;&quot;com.syx.service.Impl.AccountServiceImpl&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 注入集合数据</span><br><span class="line">    List 结构的：array,list,set</span><br><span class="line">    Map 结构的map,entry,props,prop</span><br><span class="line">    --&gt;</span><br><span class="line">    &lt;!--配置Dao--&gt;</span><br><span class="line">    &lt;bean id&#x3D;&quot;accountDao&quot; class&#x3D;&quot;com.syx.dao.Impl.AccountDaoImpl&quot;&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;myStrs&quot;&gt;</span><br><span class="line">            &lt;set&gt;</span><br><span class="line">                &lt;value&gt;AAA&lt;&#x2F;value&gt;</span><br><span class="line">                &lt;value&gt;BBB&lt;&#x2F;value&gt;</span><br><span class="line">                &lt;value&gt;CCC&lt;&#x2F;value&gt;</span><br><span class="line">            &lt;&#x2F;set&gt;</span><br><span class="line">        &lt;&#x2F;property&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;myList&quot;&gt;</span><br><span class="line">           &lt;array&gt;</span><br><span class="line">               &lt;value&gt;AAA&lt;&#x2F;value&gt;</span><br><span class="line">               &lt;value&gt;BBB&lt;&#x2F;value&gt;</span><br><span class="line">               &lt;value&gt;CCC&lt;&#x2F;value&gt;</span><br><span class="line">           &lt;&#x2F;array&gt;</span><br><span class="line">        &lt;&#x2F;property&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;mySet&quot;&gt;</span><br><span class="line">            &lt;list&gt;</span><br><span class="line">                &lt;value&gt;AAA&lt;&#x2F;value&gt;</span><br><span class="line">                &lt;value&gt;BBB&lt;&#x2F;value&gt;</span><br><span class="line">                &lt;value&gt;CCC&lt;&#x2F;value&gt;</span><br><span class="line">            &lt;&#x2F;list&gt;</span><br><span class="line">        &lt;&#x2F;property&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;myMap&quot;&gt;</span><br><span class="line">            &lt;props&gt;</span><br><span class="line">                &lt;prop key&#x3D;&quot;testA&quot;&gt;aaa&lt;&#x2F;prop&gt;</span><br><span class="line">                &lt;prop key&#x3D;&quot;testB&quot;&gt;bbb&lt;&#x2F;prop&gt;</span><br><span class="line">            &lt;&#x2F;props&gt;</span><br><span class="line">        &lt;&#x2F;property&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;myProps&quot;&gt;</span><br><span class="line">            &lt;map&gt;</span><br><span class="line">                &lt;entry key&#x3D;&quot;testA&quot; value&#x3D;&quot;aaa&quot;&gt;&lt;&#x2F;entry&gt;</span><br><span class="line">                &lt;entry key&#x3D;&quot;testB&quot;&gt;</span><br><span class="line">                &lt;value&gt;bbb&lt;&#x2F;value&gt;</span><br><span class="line">                &lt;&#x2F;entry&gt;</span><br><span class="line">            &lt;&#x2F;map&gt;</span><br><span class="line">        &lt;&#x2F;property&gt;</span><br><span class="line">    &lt;&#x2F;bean&gt;</span><br><span class="line">&lt;&#x2F;beans&gt;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>SSM框架</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringAoc</title>
     <url>/2020/04/05/SpringAoc/</url>
     <content><![CDATA[<h1 id="AOP-的相关概念"><a href="#AOP-的相关概念" class="headerlink" title="AOP 的相关概念  "></a><center>AOP 的相关概念  </center></h1><h2 id="AOP-概述"><a href="#AOP-概述" class="headerlink" title="AOP 概述"></a>AOP 概述</h2><h3 id="什么是-AOP"><a href="#什么是-AOP" class="headerlink" title="什么是 AOP"></a>什么是 AOP</h3><blockquote>
@@ -1609,82 +1685,6 @@
 <p>@ContextConfiguration 注解：<br>locations 属性： 用于指定配置文件的位置。如果是类路径下，需要用 classpath:表明<br>classes 属性： 用于指定注解的类。当不使用 xml 配置时，需要用此属性指定注解类的位置。  </p>
 </blockquote>
 <h2 id="第四步：使用-Autowired-给测试类中的变量注入数据"><a href="#第四步：使用-Autowired-给测试类中的变量注入数据" class="headerlink" title="第四步：使用@Autowired 给测试类中的变量注入数据"></a>第四步：使用@Autowired 给测试类中的变量注入数据</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* 测试类</span><br><span class="line">*&#x2F;</span><br><span class="line">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">@ContextConfiguration(locations&#x3D; &#123;&quot;classpath:bean.xml&quot;&#125;)</span><br><span class="line">public class AccountServiceTest &#123;</span><br><span class="line">@Autowired</span><br><span class="line">private IAccountService as ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>SSM框架</category>
-      </categories>
-      <tags>
-        <tag>Spring</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringIoc（基于xml配置）</title>
-    <url>/2020/04/03/SpringIoc%EF%BC%88%E5%9F%BA%E4%BA%8Exml%E9%85%8D%E7%BD%AE%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="1-SpringIoc的概念和作用"><a href="#1-SpringIoc的概念和作用" class="headerlink" title="1.SpringIoc的概念和作用"></a>1.SpringIoc的概念和作用</h2><h3 id="1-1程序的耦合和解耦"><a href="#1-1程序的耦合和解耦" class="headerlink" title="1.1程序的耦合和解耦 "></a><CENTER>1.1程序的耦合和解耦 <CENTER></h3><h4 id="1-1-1什么是程序的耦合"><a href="#1-1-1什么是程序的耦合" class="headerlink" title="1.1.1什么是程序的耦合?"></a>1.1.1什么是程序的耦合?</h4><blockquote>
-<p>耦合性(Coupling)，也叫耦合度，是对模块间关联程度的度量。耦合的强弱取决于模块间接口的复杂性、调<br>用模块的方式以及通过界面传送数据的多少。模块间的耦合度是指模块之间的依赖关系，包括控制关系、调用关系、数据传递关系。模块间联系越多，其耦合性越强，同时表明其独立性越差( 降低耦合性，可以提高其独立性)。 耦合性存在于各个领域，而非软件设计中独有的，但是我们只讨论软件工程中的耦合。<br>在软件工程中， 耦合指的就是就是对象之间的依赖性。对象之间的耦合越高，维护成本越高。因此对象的设计应使类和构件之间的耦合最小。 软件设计中通常用耦合度和内聚度作为衡量模块独立程度的标准。 划分模块的一个准则就是高内聚低耦合。</p>
-<a id="more"></a>
-<p>它有如下分类：<br>（1） 内容耦合。当一个模块直接修改或操作另一个模块的数据时，或一个模块不通过正常入口而转入另 一个模块时，这样的耦合被称为内容耦合。内容耦合是最高程度的耦合，应该避免使用之。<br>（2） 公共耦合。两个或两个以上的模块共同引用一个全局数据项，这种耦合被称为公共耦合。在具有大 量公共耦合的结构中，确定究竟是哪个模块给全局变量赋了一个特定的值是十分困难的。<br>（3） 外部耦合 。一组模块都访问同一全局简单变量而不是同一全局数据结构，而且不是通过参数表传递该全局变量的信息，则称之为外部耦合。<br>（4） 控制耦合 。一个模块通过接口向另一个模块传递一个控制信号，接受信号的模块根据信号值而进 行适当的动作，这种耦合被称为控制耦合。<br>（5） 标记耦合 。若一个模块 A 通过接口向两个模块 B 和 C 传递一个公共参数，那么称模块 B 和 C 之间 存在一个标记耦合。<br>（6） 数据耦合。模块之间通过参数来传递数据，那么被称为数据耦合。数据耦合是最低的一种耦合形式，系统中一般都存在这种类型的耦合，因为为了完成一些有意义的功能，往往需要将某些模块的输出数据作为另一些模块的输入数据。<br>（7） 非直接耦合 。两个模块之间没有直接关系，它们之间的联系完全是通过主模块的控制和调用来实 现的。<br>总结：<br>耦合是影响软件复杂程度和设计质量的一个重要因素，在设计上我们应采用以下原则：如果模块间必须 存在耦合，就尽量使用数据耦合，少用控制耦合，限制公共耦合的范围，尽量避免使用内容耦合。<br>内聚与耦合内聚标志一个模块内各个元素彼此结合的紧密程度，它是信息隐蔽和局部化概念的自然扩展。 内聚是从功能角度来度量模块内的联系，一个好的内聚模块应当恰好做一件事。它描述的是模块内的功能联系。耦合是软件结构中各模块之间相互连接的一种度量，耦合强弱取决于模块间接口的复杂程度、进入或访问一个模块的点以及通过接口的数据。 程序讲究的是低耦合，高内聚。就是同一个模块内的各个元素之间要高度紧密，但是各个模块之间的相互依存度却要不那么紧密。<br>内聚和耦合是密切相关的，同其他模块存在高耦合的模块意味着低内聚，而高内聚的模块意味着该模块同其他模块之间是低耦合。在进行软件设计时，应力争做到高内聚，低耦合。</p>
-</blockquote>
-<h4 id="1-1-2解决耦合思路"><a href="#1-1-2解决耦合思路" class="headerlink" title="1.1.2解决耦合思路"></a>1.1.2解决耦合思路</h4><blockquote>
-<p>当是我们讲解 jdbc 时，是通过反射来注册驱动的，代码如下：<br>Class.forName(“com.mysql.jdbc.Driver”);//此处只是一个字符串<br>此时的好处是，我们的类中不再依赖具体的驱动类，此时就算删除 mysql 的驱动 jar 包，依然可以编译（运行就不要想了，没有驱动不可能运行成功的） 。<br>同时，也产生了一个新的问题， mysql 驱动的全限定类名字符串是在 java 类中写死的，一旦要改还是要修改 源码。<br>解决这个问题也很简单，使用配置文件配置  </p>
-</blockquote>
-<h4 id="1-1-3工厂模式解耦"><a href="#1-1-3工厂模式解耦" class="headerlink" title="1.1.3工厂模式解耦"></a>1.1.3工厂模式解耦</h4><blockquote>
-<p>在实际开发中我们可以把三层的对象都使用配置文件配置起来，当启动服务器应用加载的时候， 让一个类中的方法通过读取配置文件，把这些对象创建出来并存起来。在接下来的使用的时候，直接拿过来用就好了。<br>那么，这个读取配置文件， 创建和获取三层对象的类就是工厂</p>
-</blockquote>
-<h4 id="1-1-4控制反转-Inversion-Of-Control"><a href="#1-1-4控制反转-Inversion-Of-Control" class="headerlink" title="1.1.4控制反转-Inversion Of Control"></a>1.1.4控制反转-Inversion Of Control</h4><blockquote>
-<p>解耦的思路有 2 个问题：<br>1、存哪去？<br>分析：由于我们是很多对象，肯定要找个集合来存。这时候有 Map 和 List 供选择。<br>到底选 Map 还是 List 就看我们有没有查找需求。有查找需求，选 Map。<br>所以我们的答案就是<br>在应用加载时，创建一个 Map，用于存放三层对象。<br>我们把这个 map 称之为容器。<br>2、还是没解释什么是工厂？<br>工厂就是负责给我们从容器中获取指定对象的类。这时候我们获取对象的方式发生了改变。<br>原来：<br>我们在获取对象时，都是采用 new 的方式。 是主动的。<br>现在：<br>我们获取对象时，同时跟工厂要，有工厂为我们查找或者创建对象。 是被动的。<br>这种被动接收的方式获取对象的思想就是控制反转，它是 spring 框架的核心之一。<br><strong>明确 ioc 的作用</strong>：<br>削减计算机程序的耦合(解除我们代码中的依赖关系)。  </p>
-</blockquote>
-<h2 id="2-使用-spring-的-IOC-解决程序耦合"><a href="#2-使用-spring-的-IOC-解决程序耦合" class="headerlink" title="2.使用 spring 的 IOC 解决程序耦合"></a><center>2.使用 spring 的 IOC 解决程序耦合</center></h2><h3 id="2-1案例的前期准备"><a href="#2-1案例的前期准备" class="headerlink" title="2.1案例的前期准备"></a>2.1案例的前期准备</h3><h4 id="2-1-1导入依赖"><a href="#2-1-1导入依赖" class="headerlink" title="2.1.1导入依赖"></a>2.1.1导入依赖</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-context&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;version&gt;5.1.0.RELEASE&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;&#x2F;dependencies&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-1-2创建业务层接口和实现类"><a href="#2-1-2创建业务层接口和实现类" class="headerlink" title="2.1.2创建业务层接口和实现类"></a>2.1.2创建业务层接口和实现类</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IAccountService &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 模拟保存用户</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void saveAccount();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class AccountServiceImpl implements IAccountService &#123;</span><br><span class="line">    private IAccountDao accountDao &#x3D; new AccountDaoImpl();</span><br><span class="line"></span><br><span class="line">    public void saveAccount() &#123;</span><br><span class="line">        accountDao.saveAccount();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-1-3创建持久层接口和实现类"><a href="#2-1-3创建持久层接口和实现类" class="headerlink" title="2.1.3创建持久层接口和实现类"></a>2.1.3创建持久层接口和实现类</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IAccountDao &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 模拟保存用户</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void saveAccount(); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class AccountDaoImpl implements IAccountDao &#123;</span><br><span class="line">    public void saveAccount() &#123;</span><br><span class="line">        System.out.println(&quot;账户保存了................&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-基于-XML-的配置"><a href="#2-2-基于-XML-的配置" class="headerlink" title="2.2 基于 XML 的配置"></a>2.2 基于 XML 的配置</h3><h4 id="2-2-1在resource下创建xml配置文件，导入约束"><a href="#2-2-1在resource下创建xml配置文件，导入约束" class="headerlink" title="2.2.1在resource下创建xml配置文件，导入约束"></a>2.2.1在resource下创建xml配置文件，导入约束</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;</span><br><span class="line">       xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">       xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans</span><br><span class="line">http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans.xsd&quot;&gt;</span><br><span class="line">&lt;&#x2F;beans&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-2让-spring-管理资源，在配置文件中配置-service-和-dao"><a href="#2-2-2让-spring-管理资源，在配置文件中配置-service-和-dao" class="headerlink" title="2.2.2让 spring 管理资源，在配置文件中配置 service 和 dao"></a>2.2.2让 spring 管理资源，在配置文件中配置 service 和 dao</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;</span><br><span class="line">       xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">       xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans</span><br><span class="line">http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans.xsd&quot;&gt;</span><br><span class="line">        &lt;!-- bean 标签：用于配置让 spring 创建对象，并且存入 ioc 容器之中</span><br><span class="line">        id 属性：对象的唯一标识。</span><br><span class="line">        class 属性：指定要创建对象的全限定类名</span><br><span class="line">        --&gt;</span><br><span class="line">    &lt;!--配置Service--&gt;</span><br><span class="line">    &lt;bean id&#x3D;&quot;accountService&quot; class&#x3D;&quot;com.syx.service.Impl.AccountServiceImpl&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line">    &lt;!--配置Dao--&gt;</span><br><span class="line">    &lt;bean id&#x3D;&quot;accountDao&quot; class&#x3D;&quot;com.syx.dao.Impl.AccountDaoImpl&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;&#x2F;beans&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-3测试配置是否成功"><a href="#2-2-3测试配置是否成功" class="headerlink" title="2.2.3测试配置是否成功"></a>2.2.3测试配置是否成功</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Client &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        &#x2F;&#x2F;使用ApplicationContext接口，获取spring容器</span><br><span class="line">        ApplicationContext ac &#x3D; new ClassPathXmlApplicationContext(&quot;bean.xml&quot;);</span><br><span class="line">        &#x2F;&#x2F;根基bean的id获取对象 </span><br><span class="line">        AccountServiceImpl accountService &#x3D; ac.getBean(&quot;accountService&quot;, AccountServiceImpl.class);</span><br><span class="line">        System.out.println(accountService);</span><br><span class="line">        AccountDaoImpl accountDao &#x3D; ac.getBean(&quot;accountDao&quot;, AccountDaoImpl.class);</span><br><span class="line">        System.out.println(accountDao);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-Spring基于xml的Ioc细节"><a href="#3-Spring基于xml的Ioc细节" class="headerlink" title="3.Spring基于xml的Ioc细节"></a><center>3.Spring基于xml的Ioc细节</center></h2><p>spring 中工厂的类结构图  </p>
-<p><img src="/" class="lazyload" data-src="/img/Spring/1.png"  alt=""></p>
-<h3 id="3-1BeanFactory-和-ApplicationContext-的区别"><a href="#3-1BeanFactory-和-ApplicationContext-的区别" class="headerlink" title="3.1BeanFactory 和 ApplicationContext 的区别"></a>3.1BeanFactory 和 ApplicationContext 的区别</h3><blockquote>
-<p>BeanFactory 才是 Spring 容器中的顶层接口。<br>ApplicationContext 是它的子接口。<br>BeanFactory 和 ApplicationContext 的区别：<br>创建对象的时间点不一样。<br>ApplicationContext：只要一读取配置文件，默认情况下就会创建对象。<br>BeanFactory：什么使用什么时候创建对象。  </p>
-</blockquote>
-<h3 id="3-2ApplicationContext-接口的实现类"><a href="#3-2ApplicationContext-接口的实现类" class="headerlink" title="3.2ApplicationContext 接口的实现类"></a>3.2ApplicationContext 接口的实现类</h3><blockquote>
-<p>ClassPathXmlApplicationContext：<br>它是从类的根路径下加载配置文件 推荐使用这种<br>FileSystemXmlApplicationContext：<br>它是从磁盘路径上加载配置文件，配置文件可以在磁盘的任意位置。<br>AnnotationConfigApplicationContext:<br>当我们使用注解配置容器对象时，需要使用此类来创建 spring 容器。它用来读取注解。</p>
-</blockquote>
-<h2 id="4-IOC-中-bean-标签和管理对象细节"><a href="#4-IOC-中-bean-标签和管理对象细节" class="headerlink" title="4.IOC 中 bean 标签和管理对象细节"></a><center>4.IOC 中 bean 标签和管理对象细节</center></h2><h3 id="4-1-bean标签"><a href="#4-1-bean标签" class="headerlink" title="4.1.bean标签"></a>4.1.bean标签</h3><blockquote>
-<p>作用：<br>用于配置对象让 spring 来创建的。<br>默认情况下它调用的是类中的无参构造函数。如果没有无参构造函数则不能创建成功。<br>属性：<br>id： 给对象在容器中提供一个唯一标识。用于获取对象。<br>class： 指定类的全限定类名。用于反射创建对象。默认情况下调用无参构造函数。<br>scope： 指定对象的作用范围。</p>
-<ul>
-<li>singleton :默认值，单例的.</li>
-<li>prototype :多例的.</li>
-<li>request :WEB 项目中,Spring 创建一个 Bean 的对象,将对象存入到 request 域中.</li>
-<li>session :WEB 项目中,Spring 创建一个 Bean 的对象,将对象存入到 session 域中.</li>
-<li>global session :WEB 项目中,应用在 Portlet 环境.如果没有 Portlet 环境那么globalSession 相当于 session.</li>
-</ul>
-<p>init-method： 指定类中的初始化方法名称。<br>destroy-method： 指定类中销毁方法名称。</p>
-</blockquote>
-<h3 id="4-2bean-的作用范围和生命周期"><a href="#4-2bean-的作用范围和生命周期" class="headerlink" title="4.2bean 的作用范围和生命周期"></a>4.2bean 的作用范围和生命周期</h3><blockquote>
-<p>单例对象： scope=”singleton”<br>    一个应用只有一个对象的实例。它的作用范围就是整个引用。<br>    生命周期：<br>        对象出生：当应用加载，创建容器时，对象就被创建了。<br>        对象活着：只要容器在，对象一直活着。<br>        对象死亡：当应用卸载，销毁容器时，对象就被销毁了。<br>多例对象： scope=”prototype”<br>    每次访问对象时，都会重新创建对象实例。<br>    生命周期：<br>        对象出生：当使用对象时，创建新的对象实例。<br>        对象活着：只要对象在使用中，就一直活着。<br>        对象死亡：当对象长时间不用时，被 java 的垃圾回收器回收了。</p>
-</blockquote>
-<h3 id="4-3实例化-Bean-的三种方式"><a href="#4-3实例化-Bean-的三种方式" class="headerlink" title="4.3实例化 Bean 的三种方式"></a>4.3实例化 Bean 的三种方式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第一种方式：使用默认无参构造函数</span><br><span class="line">&lt;!--在默认情况下：</span><br><span class="line">它会根据默认无参构造函数来创建类对象。如果 bean 中没有默认无参构造函数，将会创建失败。--&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;accountService&quot; class&#x3D;&quot;com.syx.service.impl.AccountServiceImpl&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第二种方式： spring 管理静态工厂-使用静态工厂的方法创建对象</span><br><span class="line">&#x2F;**</span><br><span class="line">* 模拟一个静态工厂，创建业务层实现类</span><br><span class="line">*&#x2F;</span><br><span class="line">public class StaticFactory &#123;</span><br><span class="line">public static IAccountService createAccountService()&#123;</span><br><span class="line">		return new AccountServiceImpl();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!-- 此种方式是:</span><br><span class="line">使用 StaticFactory 类中的静态方法 createAccountService 创建对象，并存入 spring 容器</span><br><span class="line">id 属性：指定 bean 的 id，用于从容器中获取</span><br><span class="line">class 属性：指定静态工厂的全限定类名</span><br><span class="line">factory-method 属性：指定生产对象的静态方法</span><br><span class="line">--&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;accountService&quot;</span><br><span class="line">class&#x3D;&quot;com.syx.factory.StaticFactory&quot;</span><br><span class="line">factory-method&#x3D;&quot;createAccountService&quot;&gt;&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第三种方式： spring 管理实例工厂-使用实例工厂的方法创建对象</span><br><span class="line">&#x2F;**</span><br><span class="line">* 模拟一个实例工厂，创建业务层实现类</span><br><span class="line">* 此工厂创建对象，必须现有工厂实例对象，再调用方法</span><br><span class="line">*&#x2F;</span><br><span class="line">public class InstanceFactory &#123;</span><br><span class="line">public IAccountService createAccountService()&#123;</span><br><span class="line">return new AccountServiceImpl();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!-- 此种方式是：</span><br><span class="line">先把工厂的创建交给 spring 来管理。</span><br><span class="line">然后在使用工厂的 bean 来调用里面的方法</span><br><span class="line">factory-bean 属性：用于指定实例工厂 bean 的 id。</span><br><span class="line">factory-method 属性：用于指定实例工厂中创建对象的方法。</span><br><span class="line">--&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;instancFactory&quot; class&#x3D;&quot;com.syx.factory.InstanceFactory&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;accountService&quot;</span><br><span class="line">factory-bean&#x3D;&quot;instancFactory&quot;</span><br><span class="line">factory-method&#x3D;&quot;createAccountService&quot;&gt;&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-4spring-的依赖注入"><a href="#4-4spring-的依赖注入" class="headerlink" title="4.4spring 的依赖注入"></a>4.4spring 的依赖注入</h3><h4 id="4-4-1-依赖注入的概念"><a href="#4-4-1-依赖注入的概念" class="headerlink" title="4.4.1.依赖注入的概念"></a>4.4.1.依赖注入的概念</h4><blockquote>
-<p>依赖注入： Dependency Injection。 它是 spring 框架核心 ioc 的具体实现。<br>我们的程序在编写时， 通过控制反转， 把对象的创建交给了 spring，但是代码中不可能出现没有依赖的情况。<br>ioc 解耦只是降低他们的依赖关系，但不会消除。 例如：我们的业务层仍会调用持久层的方法。<br>那这种业务层和持久层的依赖关系， 在使用 spring 之后， 就让 spring 来维护了。<br>简单的说，就是坐等框架把持久层对象传入业务层，而不用我们自己去获取。</p>
-</blockquote>
-<h4 id="4-4-2-构造函数注入"><a href="#4-4-2-构造函数注入" class="headerlink" title="4.4.2.构造函数注入"></a>4.4.2.构造函数注入</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class AccountDaoImpl implements IAccountDao &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private String sex;</span><br><span class="line">    private Date   birthday;</span><br><span class="line">    public AccountDaoImpl(String name,String sex,Date birthday)&#123;</span><br><span class="line">        this.name &#x3D; name;</span><br><span class="line">        this.sex &#x3D; sex;</span><br><span class="line">        this.birthday &#x3D; birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void saveAccount() &#123;</span><br><span class="line">        System.out.println(name+&quot;,&quot;+sex+&quot;，&quot;+birthday);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;!-- 使用构造函数的方式，给 service 中的属性传值</span><br><span class="line">要求：</span><br><span class="line">类中需要提供一个对应参数列表的构造函数。</span><br><span class="line">涉及的标签：</span><br><span class="line">constructor-arg</span><br><span class="line">属性：</span><br><span class="line">index:指定参数在构造函数参数列表的索引位置</span><br><span class="line">type:name:指定参数在构造函数中的名称 用这个找给谁赋值</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;上面三个都是找给谁赋值，下面两个指的是赋什么值的&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">value:它能赋的值是基本数据类型和 String 类型</span><br><span class="line">ref:它能赋的值是其他 bean 类型，也就是说，必须得是在配置文件中配置过的 bean</span><br><span class="line">--&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;accountService&quot; class&#x3D;&quot;com.itheima.service.impl.AccountServiceImpl&quot;&gt;</span><br><span class="line">&lt;constructor-arg name&#x3D;&quot;name&quot; value&#x3D;&quot;张三&quot;&gt;&lt;&#x2F;constructor-arg&gt;</span><br><span class="line">&lt;constructor-arg name&#x3D;&quot;age&quot; value&#x3D;&quot;18&quot;&gt;&lt;&#x2F;constructor-arg&gt;</span><br><span class="line">&lt;constructor-arg name&#x3D;&quot;birthday&quot; ref&#x3D;&quot;now&quot;&gt;&lt;&#x2F;constructor-arg&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;now&quot; class&#x3D;&quot;java.util.Date&quot;&gt;&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-4-3-set-方法注入"><a href="#4-4-3-set-方法注入" class="headerlink" title="4.4.3.set 方法注入"></a>4.4.3.set 方法注入</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class AccountServiceImpl implements IAccountService &#123;</span><br><span class="line">private String name;</span><br><span class="line">private Integer age;</span><br><span class="line">private Date birthday;</span><br><span class="line">public void setName(String name) &#123;</span><br><span class="line">this.name &#x3D; name;</span><br><span class="line">&#125;</span><br><span class="line">public void setAge(Integer age) &#123;</span><br><span class="line">this.age &#x3D; age;</span><br><span class="line">&#125;</span><br><span class="line">public void setBirthday(Date birthday) &#123;</span><br><span class="line">this.birthday &#x3D; birthday;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">public void saveAccount() &#123;</span><br><span class="line">System.out.println(name+&quot;,&quot;+age+&quot;,&quot;+birthday);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!-- 通过配置文件给 bean 中的属性传值：使用 set 方法的方式</span><br><span class="line">涉及的标签：</span><br><span class="line">属性：</span><br><span class="line">name：找的是类中 set 方法后面的部分</span><br><span class="line">ref：给属性赋值是其他 bean 类型的</span><br><span class="line">value：给属性赋值是基本数据类型和 string 类型的</span><br><span class="line">实际开发中，此种方式用的较多。</span><br><span class="line">--&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;accountService&quot; class&#x3D;&quot;com.itheima.service.impl.AccountServiceImpl&quot;&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;name&quot; value&#x3D;&quot;test&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;age&quot; value&#x3D;&quot;21&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;property name&#x3D;&quot;birthday&quot; ref&#x3D;&quot;now&quot;&gt;&lt;&#x2F;property&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;now&quot; class&#x3D;&quot;java.util.Date&quot;&gt;&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-4-4-注入集合属性"><a href="#4-4-4-注入集合属性" class="headerlink" title="4.4.4.注入集合属性"></a>4.4.4.注入集合属性</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class AccountDaoImpl implements IAccountDao &#123;</span><br><span class="line">    private String[] myStrs;</span><br><span class="line">    private List&lt;String&gt; myList;</span><br><span class="line">    private Set&lt;String&gt; mySet;</span><br><span class="line">    private Map&lt;String,String&gt; myMap;</span><br><span class="line">    private Properties myProps;</span><br><span class="line"></span><br><span class="line">    public void setMyStrs(String[] myStrs) &#123;</span><br><span class="line">        this.myStrs &#x3D; myStrs;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setMyList(List&lt;String&gt; myList) &#123;</span><br><span class="line">        this.myList &#x3D; myList;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setMySet(Set&lt;String&gt; mySet) &#123;</span><br><span class="line">        this.mySet &#x3D; mySet;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setMyMap(Map&lt;String, String&gt; myMap) &#123;</span><br><span class="line">        this.myMap &#x3D; myMap;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setMyProps(Properties myProps) &#123;</span><br><span class="line">        this.myProps &#x3D; myProps;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void saveAccount() &#123;</span><br><span class="line">        System.out.println(Arrays.toString(myStrs));</span><br><span class="line">        System.out.println(myList);</span><br><span class="line">        System.out.println(mySet);</span><br><span class="line">        System.out.println(myMap);</span><br><span class="line">        System.out.println(myProps);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;</span><br><span class="line">       xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">       xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans</span><br><span class="line">http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans.xsd&quot;&gt;</span><br><span class="line">        &lt;!-- bean 标签：用于配置让 spring 创建对象，并且存入 ioc 容器之中</span><br><span class="line">        id 属性：对象的唯一标识。</span><br><span class="line">        class 属性：指定要创建对象的全限定类名</span><br><span class="line">        --&gt;</span><br><span class="line">    &lt;!--配置Service--&gt;</span><br><span class="line">    &lt;bean id&#x3D;&quot;accountService&quot; class&#x3D;&quot;com.syx.service.Impl.AccountServiceImpl&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 注入集合数据</span><br><span class="line">    List 结构的：array,list,set</span><br><span class="line">    Map 结构的map,entry,props,prop</span><br><span class="line">    --&gt;</span><br><span class="line">    &lt;!--配置Dao--&gt;</span><br><span class="line">    &lt;bean id&#x3D;&quot;accountDao&quot; class&#x3D;&quot;com.syx.dao.Impl.AccountDaoImpl&quot;&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;myStrs&quot;&gt;</span><br><span class="line">            &lt;set&gt;</span><br><span class="line">                &lt;value&gt;AAA&lt;&#x2F;value&gt;</span><br><span class="line">                &lt;value&gt;BBB&lt;&#x2F;value&gt;</span><br><span class="line">                &lt;value&gt;CCC&lt;&#x2F;value&gt;</span><br><span class="line">            &lt;&#x2F;set&gt;</span><br><span class="line">        &lt;&#x2F;property&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;myList&quot;&gt;</span><br><span class="line">           &lt;array&gt;</span><br><span class="line">               &lt;value&gt;AAA&lt;&#x2F;value&gt;</span><br><span class="line">               &lt;value&gt;BBB&lt;&#x2F;value&gt;</span><br><span class="line">               &lt;value&gt;CCC&lt;&#x2F;value&gt;</span><br><span class="line">           &lt;&#x2F;array&gt;</span><br><span class="line">        &lt;&#x2F;property&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;mySet&quot;&gt;</span><br><span class="line">            &lt;list&gt;</span><br><span class="line">                &lt;value&gt;AAA&lt;&#x2F;value&gt;</span><br><span class="line">                &lt;value&gt;BBB&lt;&#x2F;value&gt;</span><br><span class="line">                &lt;value&gt;CCC&lt;&#x2F;value&gt;</span><br><span class="line">            &lt;&#x2F;list&gt;</span><br><span class="line">        &lt;&#x2F;property&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;myMap&quot;&gt;</span><br><span class="line">            &lt;props&gt;</span><br><span class="line">                &lt;prop key&#x3D;&quot;testA&quot;&gt;aaa&lt;&#x2F;prop&gt;</span><br><span class="line">                &lt;prop key&#x3D;&quot;testB&quot;&gt;bbb&lt;&#x2F;prop&gt;</span><br><span class="line">            &lt;&#x2F;props&gt;</span><br><span class="line">        &lt;&#x2F;property&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;myProps&quot;&gt;</span><br><span class="line">            &lt;map&gt;</span><br><span class="line">                &lt;entry key&#x3D;&quot;testA&quot; value&#x3D;&quot;aaa&quot;&gt;&lt;&#x2F;entry&gt;</span><br><span class="line">                &lt;entry key&#x3D;&quot;testB&quot;&gt;</span><br><span class="line">                &lt;value&gt;bbb&lt;&#x2F;value&gt;</span><br><span class="line">                &lt;&#x2F;entry&gt;</span><br><span class="line">            &lt;&#x2F;map&gt;</span><br><span class="line">        &lt;&#x2F;property&gt;</span><br><span class="line">    &lt;&#x2F;bean&gt;</span><br><span class="line">&lt;&#x2F;beans&gt;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
